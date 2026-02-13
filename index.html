@@ -1,858 +1,1532 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weekly Newsletter – Feb 7–13, 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --color-primary: #1a2332;
-  --color-retailer: #16a34a;
-  --color-supply: #dc2626;
-  --color-bg: #fafbfc;
-  --color-surface: #ffffff;
-  --color-text: #1f2937;
-  --color-text-light: #6b7280;
-  --color-border: #e5e7eb;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-  --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'DM Sans',-apple-system,sans-serif; font-size:16px; line-height:1.7; color:var(--color-text); background:var(--color-bg); }
-header { background:linear-gradient(135deg,#1a2332 0%,#2d3748 100%); padding:60px 20px; margin-bottom:40px; text-align:center; box-shadow:var(--shadow-lg); }
-header h1 { font-family:'Playfair Display',serif; font-size:3.5rem; font-weight:900; color:#fff; letter-spacing:-0.02em; line-height:1.1; margin-bottom:12px; }
-header .date-range { font-size:1.1rem; color:rgba(255,255,255,0.9); font-weight:500; letter-spacing:0.05em; }
-.container { max-width:1200px; padding:40px 20px; margin:0 auto; }
-h2 { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; margin-bottom:30px; color:var(--color-primary); }
-h3 { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:700; margin-bottom:32px; scroll-margin-top:100px; }
-h4 { font-size:1.3rem; font-weight:700; margin:32px 0 16px 0; color:var(--color-primary); }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Newsletter - February 7-13, 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* Toast */
-.toast { position:fixed; top:20px; left:50%; transform:translateX(-50%) translateY(-80px); background:var(--color-primary); color:#fff; padding:10px 28px; border-radius:30px; font-size:0.82rem; font-weight:600; box-shadow:var(--shadow-lg); transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1); z-index:200; }
-.toast.show { transform:translateX(-50%) translateY(0); }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9fafb;
+        }
 
-/* Filter */
-.filter-bar { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
-.filter-btn { padding:8px 20px; border-radius:25px; border:2px solid #e2e8f0; background:var(--color-surface); font-family:'DM Sans',sans-serif; font-size:0.85rem; font-weight:600; color:var(--color-text-light); cursor:pointer; transition:all 0.25s; }
-.filter-btn.active { background:var(--color-primary); color:#fff; border-color:var(--color-primary); }
-.filter-btn:hover { border-color:var(--color-primary); }
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a2332 0%, #2d3748 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
 
-/* Summary Table */
-.summary-table { width:100%; border-collapse:collapse; background:var(--color-surface); border-radius:16px; overflow:hidden; box-shadow:var(--shadow-md); margin-bottom:40px; }
-.group-header { background:linear-gradient(135deg,#f8fafc,#f1f5f9); }
-.group-header td { padding:16px 24px; border-bottom:2px solid var(--color-border); }
-.group-header-content { display:flex; align-items:center; gap:14px; }
-.company-avatar { width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.72rem; color:#fff; flex-shrink:0; }
-.company-name { font-weight:700; font-size:1rem; color:var(--color-primary); }
-.company-count { font-size:0.75rem; color:var(--color-text-light); }
-.news-row { cursor:pointer; transition:background 0.2s; }
-.news-row:hover { background:#eef2ff; }
-.news-row:hover .headline-text { text-decoration:underline; }
-.news-row td { padding:14px 24px 14px 78px; border-bottom:1px solid #f1f3f7; }
-.headline-cell { display:flex; align-items:center; gap:10px; }
-.news-bullet { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
-.news-bullet.retailer { background:var(--color-retailer); }
-.news-bullet.supply { background:var(--color-supply); }
-.headline-text { font-size:0.9rem; color:var(--color-text); }
-.impact-cell { text-align:right; white-space:nowrap; }
-.impact-badge { padding:4px 12px; border-radius:8px; font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; display:inline-block; }
-.impact-critical { background:#fef2f2; color:#dc2626; }
-.impact-high { background:#fff7ed; color:#ea580c; }
-.impact-medium { background:#eff6ff; color:#2563eb; }
-.impact-low { background:#f3f4f6; color:#6b7280; }
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
 
-/* Sections */
-.section-divider { display:flex; align-items:center; gap:16px; margin:60px 0 40px 0; padding-bottom:16px; border-bottom:3px solid; }
-.section-divider.retailer { border-color:var(--color-retailer); }
-.section-divider.supply { border-color:var(--color-supply); }
-.section-icon { width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; color:#fff; flex-shrink:0; font-weight:800; font-size:0.8rem; }
-.section-icon.retailer { background:linear-gradient(135deg,var(--color-retailer),#0d8a2e); }
-.section-icon.supply { background:linear-gradient(135deg,var(--color-supply),#b91c1c); }
+        header .date-range {
+            font-size: 1.1em;
+            opacity: 0.95;
+            font-weight: 500;
+        }
 
-.company-section { margin-bottom:40px; }
-.company-section-header { display:flex; align-items:center; gap:14px; margin-bottom:24px; }
-.company-section-header h3 { margin-bottom:0; }
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
 
-/* Article Cards */
-.article-card { background:var(--color-surface); border-radius:16px; padding:32px; margin-bottom:24px; box-shadow:var(--shadow-sm); transition:all 0.3s; scroll-margin-top:24px; }
-.article-card.retailer { border-left:4px solid var(--color-retailer); }
-.article-card.supply { border-left:4px solid var(--color-supply); }
-.article-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); }
-@keyframes highlightFlash { 0%{box-shadow:0 0 0 4px rgba(37,99,235,0.45);} 100%{box-shadow:var(--shadow-sm);} }
-.article-card.flash { animation:highlightFlash 2s ease-out; }
+        /* Summary Section */
+        .summary-section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
 
-.article-meta { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:12px; font-size:0.8rem; color:var(--color-text-light); }
-.article-tag { display:inline-flex; align-items:center; padding:4px 12px; border-radius:8px; font-size:0.75rem; font-weight:600; }
-.article-tag.retailer { background:#dcfce7; color:#15803d; }
-.article-tag.supply { background:#fee2e2; color:#b91c1c; }
-.article-date { font-size:0.8rem; }
-.article-source a { color:#2563eb; text-decoration:none; font-size:0.8rem; }
-.article-source a:hover { text-decoration:underline; }
+        .summary-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #1a2332;
+            font-weight: 700;
+        }
 
-.details-list { background:#f8fafc; padding:24px; border-radius:8px; margin:20px 0; border-left:3px solid #cbd5e1; }
-.details-list ul { list-style:none; padding:0; }
-.details-list li { padding:8px 0 8px 24px; position:relative; }
-.details-list li::before { content:'▸'; position:absolute; left:0; color:var(--color-retailer); font-weight:700; }
-.article-card.supply .details-list li::before { color:var(--color-supply); }
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
 
-.data-table { width:100%; border-collapse:collapse; border-radius:8px; overflow:hidden; box-shadow:var(--shadow-sm); margin:20px 0; }
-.data-table th { background:linear-gradient(135deg,#334155,#1e293b); color:#fff; padding:14px; text-transform:uppercase; font-size:0.85rem; letter-spacing:0.05em; text-align:left; }
-.data-table td { padding:14px; border-bottom:1px solid #e5e7eb; }
-.data-table tr:hover td { background:#f9fafb; }
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            color: #666;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: 'DM Sans', sans-serif;
+        }
 
-/* Back to Top */
-.back-to-top { position:fixed; bottom:30px; right:30px; background:var(--color-primary); color:#fff; width:48px; height:48px; border-radius:50%; display:none; align-items:center; justify-content:center; border:none; cursor:pointer; box-shadow:var(--shadow-md); font-size:1.2rem; transition:all 0.3s; z-index:100; }
-.back-to-top.visible { display:flex; }
-.back-to-top:hover { transform:scale(1.1); }
+        .filter-btn:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
 
-@media (max-width:768px) {
-  header h1 { font-size:2.2rem; }
-  header { padding:40px 16px; }
-  h2 { font-size:1.6rem; }
-  h3 { font-size:1.3rem; }
-  .container { padding:24px 16px; }
-  .article-card { padding:20px; }
-  .news-row td { padding-left:60px; }
-}
-</style>
+        .filter-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        /* Summary Table */
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .group-header {
+            background: #f3f4f6;
+            border-left: 4px solid #16a34a;
+            padding: 12px 15px;
+            font-weight: 600;
+            color: #1a2332;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .group-header.supply-chain {
+            border-left-color: #dc2626;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.85em;
+        }
+
+        .avatar.gap {
+            background: linear-gradient(135deg, #00549e 0%, #003d75 100%);
+        }
+
+        .avatar.wmt {
+            background: linear-gradient(135deg, #0071ce 0%, #004c91 100%);
+        }
+
+        .avatar.khl {
+            background: linear-gradient(135deg, #c8102e 0%, #9a0c23 100%);
+        }
+
+        .avatar.aeo {
+            background: linear-gradient(135deg, #2d4a3e 0%, #1a2f26 100%);
+        }
+
+        .avatar.tgt {
+            background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
+        }
+
+        .avatar.shein {
+            background: linear-gradient(135deg, #ff6600 0%, #cc5200 100%);
+        }
+
+        .avatar.lll {
+            background: linear-gradient(135deg, #d31334 0%, #a00f28 100%);
+        }
+
+        .avatar.mcy {
+            background: linear-gradient(135deg, #e21a2c 0%, #b01522 100%);
+        }
+
+        .avatar.tjx {
+            background: linear-gradient(135deg, #d71920 0%, #ab1419 100%);
+        }
+
+        .avatar.unq {
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+        }
+
+        .avatar.trade {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        }
+
+        .avatar.production {
+            background: linear-gradient(135deg, #8b5e3c 0%, #6b4830 100%);
+        }
+
+        .avatar.sustainability {
+            background: linear-gradient(135deg, #16a34a 0%, #0d8a2e 100%);
+        }
+
+        .news-row {
+            border-bottom: 1px solid #e5e7eb;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .news-row:hover {
+            background-color: #fafafa;
+        }
+
+        .news-row td {
+            padding: 8px;
+        }
+
+        .headline-link {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .headline-link:hover {
+            text-decoration: underline;
+        }
+
+        .impact-badge {
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .impact-critical {
+            background-color: #fef2f2;
+            color: #dc2626;
+        }
+
+        .impact-high {
+            background-color: #fff7ed;
+            color: #ea580c;
+        }
+
+        .impact-medium {
+            background-color: #eff6ff;
+            color: #2563eb;
+        }
+
+        .impact-low {
+            background-color: #f3f4f6;
+            color: #6b7280;
+        }
+
+        /* Articles Section */
+        .articles-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #16a34a;
+            color: #1a2332;
+            font-weight: 700;
+        }
+
+        .section-title.supply-chain {
+            border-bottom-color: #dc2626;
+        }
+
+        .article {
+            background: white;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #16a34a;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            scroll-margin-top: 80px;
+        }
+
+        .article.supply-chain {
+            border-left-color: #dc2626;
+        }
+
+        @keyframes flash {
+            0% {
+                background-color: #fef08a;
+            }
+            50% {
+                background-color: #fef08a;
+            }
+            100% {
+                background-color: white;
+            }
+        }
+
+        .article.flash {
+            animation: flash 0.8s ease-out;
+        }
+
+        .article-header {
+            margin-bottom: 15px;
+        }
+
+        .article-tag {
+            display: inline-block;
+            background: #f3f4f6;
+            color: #666;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            margin: 10px 0;
+            color: #1a2332;
+            font-weight: 700;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .meta-label {
+            font-weight: 600;
+        }
+
+        .article-source {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .article-source:hover {
+            text-decoration: underline;
+        }
+
+        .article-summary {
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-weight: 500;
+            line-height: 1.7;
+        }
+
+        .article-details {
+            margin-top: 15px;
+        }
+
+        .article-details ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .article-details li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        /* Toast Notification */
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1a2332;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+            font-weight: 500;
+        }
+
+        #toast.show {
+            opacity: 1;
+        }
+
+        /* Back to Top Button */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #3b82f6;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 999;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        #backToTop.visible {
+            opacity: 1;
+        }
+
+        #backToTop:hover {
+            background: #2563eb;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            header .date-range {
+                font-size: 0.95em;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            .summary-section,
+            .article {
+                padding: 20px;
+            }
+
+            .article-title {
+                font-size: 1.2em;
+            }
+
+            .section-title {
+                font-size: 1.5em;
+            }
+
+            .filter-buttons {
+                gap: 8px;
+            }
+
+            .filter-btn {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .news-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .impact-badge {
+                margin-top: 8px;
+            }
+
+            #backToTop,
+            #toast {
+                bottom: 20px;
+            }
+
+            #backToTop {
+                left: 20px;
+            }
+
+            #toast {
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            .container {
+                padding: 15px 10px;
+            }
+
+            .summary-section {
+                padding: 15px;
+            }
+
+            .article {
+                padding: 15px;
+            }
+
+            .article-title {
+                font-size: 1.1em;
+            }
+
+            .section-title {
+                font-size: 1.3em;
+            }
+
+            .filter-btn {
+                padding: 8px 12px;
+                font-size: 0.85em;
+            }
+
+            .group-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .article-meta {
+                font-size: 0.85em;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Weekly Newsletter</h1>
+        <div class="date-range">February 7, 2026 ~ February 13, 2026</div>
+    </header>
 
-<header>
-  <h1>Weekly Newsletter</h1>
-  <p class="date-range">February 7 – February 13, 2026</p>
-</header>
+    <div class="container">
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <h2>Summary</h2>
 
-<div class="toast" id="toast">📍 Scrolling to article...</div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterTable('all', this)">All</button>
+                <button class="filter-btn" onclick="filterTable('critical', this)">Critical</button>
+                <button class="filter-btn" onclick="filterTable('high', this)">High</button>
+                <button class="filter-btn" onclick="filterTable('medium', this)">Medium</button>
+                <button class="filter-btn" onclick="filterTable('low', this)">Low</button>
+            </div>
 
-<div class="container">
-  <h2>Summary</h2>
-  <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterTable('all', this)">All</button>
-    <button class="filter-btn" onclick="filterTable('critical', this)">Critical</button>
-    <button class="filter-btn" onclick="filterTable('high', this)">High</button>
-    <button class="filter-btn" onclick="filterTable('medium', this)">Medium</button>
-    <button class="filter-btn" onclick="filterTable('low', this)">Low</button>
-  </div>
+            <table class="summary-table" id="summaryTable">
+                <!-- Gap Inc Group -->
+                <tr class="group-header" data-company="gap">
+                    <td colspan="3">
+                        <div class="avatar gap">GAP</div>
+                        <span>Gap Inc</span>
+                    </td>
+                </tr>
+                <tr class="news-row" data-company="gap" data-impact="medium">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('gap-1')">Gap Inc appoints Pam Kaufman as Chief Entertainment Officer</a></td>
+                    <td><span class="impact-badge impact-medium">Medium</span></td>
+                </tr>
+                <tr class="news-row" data-company="gap" data-impact="low">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('gap-2')">Gap Inc to report Q4 and FY2025 results on March 5</a></td>
+                    <td><span class="impact-badge impact-low">Low</span></td>
+                </tr>
+                <tr class="news-row" data-company="gap" data-impact="low">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('gap-3')">Water.org partners with Gap Inc to launch Get Blue initiative</a></td>
+                    <td><span class="impact-badge impact-low">Low</span></td>
+                </tr>
+                <tr class="news-row" data-company="gap" data-impact="low">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('gap-4')">Gap x Harlem's Fashion Row denim collaboration</a></td>
+                    <td><span class="impact-badge impact-low">Low</span></td>
+                </tr>
 
-  <table class="summary-table" id="summaryTable"><tbody>
-    <!-- Gap Inc -->
-    <tr class="group-header" data-company="gap" data-category="retailer">
-      <td colspan="2"><div class="group-header-content">
-        <div class="company-avatar" style="background:linear-gradient(135deg,#00549e,#003d75)">GAP</div>
-        <div><div class="company-name">Gap Inc</div><div class="company-count">3 articles</div></div>
-      </div></td>
-    </tr>
-    <tr class="news-row" data-impact="medium" data-company="gap" onclick="scrollToArticle('art-gap-1')">
-      <td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text">Gap Inc hires Paramount exec Pam Kaufman as Chief Entertainment Officer</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td>
-    </tr>
-    <tr class="news-row" data-impact="low" data-company="gap" onclick="scrollToArticle('art-gap-2')">
-      <td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text">Gap opens new Factory outlet; launches Sakura Collection in Japan</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-low">LOW</span></td>
-    </tr>
-    <tr class="news-row" data-impact="low" data-company="gap" onclick="scrollToArticle('art-gap-3')">
-      <td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text">Gap CEO: No material tariff impact "at this juncture"</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-low">LOW</span></td>
-    </tr>
+                <!-- Walmart Group -->
+                <tr class="group-header" data-company="walmart">
+                    <td colspan="3">
+                        <div class="avatar wmt">WMT</div>
+                        <span>Walmart</span>
+                    </td>
+                </tr>
+                <tr class="news-row" data-company="walmart" data-impact="high">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('wmt-1')">John Furner succeeds Doug McMillon as Walmart CEO</a></td>
+                    <td><span class="impact-badge impact-high">High</span></td>
+                </tr>
+                <tr class="news-row" data-company="walmart" data-impact="medium">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('wmt-2')">Walmart to report Q4 earnings on February 19</a></td>
+                    <td><span class="impact-badge impact-medium">Medium</span></td>
+                </tr>
+                <tr class="news-row" data-company="walmart" data-impact="medium">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('wmt-3')">Walmart expands AI and digital technology across stores</a></td>
+                    <td><span class="impact-badge impact-medium">Medium</span></td>
+                </tr>
+                <tr class="news-row" data-company="walmart" data-impact="low">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('wmt-4')">Walmart to eliminate synthetic food dyes from products</a></td>
+                    <td><span class="impact-badge impact-low">Low</span></td>
+                </tr>
 
-    <!-- Walmart -->
-    <tr class="group-header" data-company="walmart" data-category="retailer">
-      <td colspan="2"><div class="group-header-content">
-        <div class="company-avatar" style="background:linear-gradient(135deg,#0071ce,#004c91)">WMT</div>
-        <div><div class="company-name">Walmart</div><div class="company-count">4 articles</div></div>
-      </div></td>
-    </tr>
-    <tr class="news-row" data-impact="critical" data-company="walmart" onclick="scrollToArticle('art-wmt-1')">
-      <td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text">John Furner named Walmart CEO; major leadership overhaul effective Feb 1</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-critical">CRITICAL</span></td>
-    </tr>
-    <tr class="news-row" data-impact="high" data-company="walmart" onclick="scrollToArticle('art-wmt-2')">
-      <td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text">Walmart Q4 earnings call scheduled Feb 19; stock hits all-time high $129+</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td>
-    </tr>
-    <tr class="news-row" data-impact="medium" data-company="walmart" onclick="scrollToArticle('art-wmt-3')">
-      <td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text">Walmart partners with Google Gemini for AI-powered shopping experience</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td>
-    </tr>
-    <tr class="news-row" data-impact="medium" data-company="walmart" onclick="scrollToArticle('art-wmt-4')">
-      <td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text">Walmart to eliminate synthetic food dyes; digital shelf labels rolling out</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td>
-    </tr>
+                <!-- Kohl's Group -->
+                <tr class="group-header" data-company="kohls">
+                    <td colspan="3">
+                        <div class="avatar khl">KHL</div>
+                        <span>Kohl's</span>
+                    </td>
+                </tr>
+                <tr class="news-row" data-company="kohls" data-impact="medium">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('kohls-1')">Kohl's stock rises 6.2% amid mixed financial signals</a></td>
+                    <td><span class="impact-badge impact-medium">Medium</span></td>
+                </tr>
+                <tr class="news-row" data-company="kohls" data-impact="low">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('kohls-2')">Kohl's unveils 2026 Cares merchandise collections</a></td>
+                    <td><span class="impact-badge impact-low">Low</span></td>
+                </tr>
+                <tr class="news-row" data-company="kohls" data-impact="low">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('kohls-3')">CFO Jill Timm sells 25,000 shares</a></td>
+                    <td><span class="impact-badge impact-low">Low</span></td>
+                </tr>
 
-    <!-- Kohl's -->
-    <tr class="group-header" data-company="kohls" data-category="retailer">
-      <td colspan="2"><div class="group-header-content">
-        <div class="company-avatar" style="background:linear-gradient(135deg,#c8102e,#9a0c23)">KSS</div>
-        <div><div class="company-name">Kohl's</div><div class="company-count">2 articles</div></div>
-      </div></td>
-    </tr>
-    <tr class="news-row" data-impact="high" data-company="kohls" onclick="scrollToArticle('art-kss-1')">
-      <td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text">Kohl's closed 27 stores in 2025; experts fear more closures amid fulfillment shutdowns</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td>
-    </tr>
-    <tr class="news-row" data-impact="high" data-company="kohls" onclick="scrollToArticle('art-kss-2')">
-      <td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text">12 consecutive quarters of declining sales; interim CEO leads turnaround effort</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td>
-    </tr>
+                <!-- AEO Group -->
+                <tr class="group-header" data-company="aeo">
+                    <td colspan="3">
+                        <div class="avatar aeo">AEO</div>
+                        <span>American Eagle Outfitters</span>
+                    </td>
+                </tr>
+                <tr class="news-row" data-company="aeo" data-impact="medium">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('aeo-1')">AEO winds down Quiet Logistics, partners with Stord</a></td>
+                    <td><span class="impact-badge impact-medium">Medium</span></td>
+                </tr>
+                <tr class="news-row" data-company="aeo" data-impact="low">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('aeo-2')">Sydney Sweeney rings NYSE bell with AEO</a></td>
+                    <td><span class="impact-badge impact-low">Low</span></td>
+                </tr>
+                <tr class="news-row" data-company="aeo" data-impact="low">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('aeo-3')">AEO to report Q4 and FY2025 results on March 4</a></td>
+                    <td><span class="impact-badge impact-low">Low</span></td>
+                </tr>
+                <tr class="news-row" data-company="aeo" data-impact="low">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('aeo-4')">Zacks raises AEO FY2026 EPS estimate to $1.38</a></td>
+                    <td><span class="impact-badge impact-low">Low</span></td>
+                </tr>
 
-    <!-- AEO -->
-    <tr class="group-header" data-company="aeo" data-category="retailer">
-      <td colspan="2"><div class="group-header-content">
-        <div class="company-avatar" style="background:linear-gradient(135deg,#2d4a3e,#1a2f26)">AEO</div>
-        <div><div class="company-name">American Eagle Outfitters</div><div class="company-count">3 articles</div></div>
-      </div></td>
-    </tr>
-    <tr class="news-row" data-impact="medium" data-company="aeo" onclick="scrollToArticle('art-aeo-1')">
-      <td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text">Sydney Sweeney rings NYSE bell with AEO CEO; brand visibility push</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td>
-    </tr>
-    <tr class="news-row" data-impact="medium" data-company="aeo" onclick="scrollToArticle('art-aeo-2')">
-      <td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text">AEO exits Quiet Logistics; closes Boston & Dallas fulfillment centers</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td>
-    </tr>
-    <tr class="news-row" data-impact="low" data-company="aeo" onclick="scrollToArticle('art-aeo-3')">
-      <td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text">Zacks raises FY2026 EPS estimate to $1.38; Q4 FY2025 earnings due Mar 4</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-low">LOW</span></td>
-    </tr>
+                <!-- Target Group -->
+                <tr class="group-header" data-company="target">
+                    <td colspan="3">
+                        <div class="avatar tgt">TGT</div>
+                        <span>Target</span>
+                    </td>
+                </tr>
+                <tr class="news-row" data-company="target" data-impact="high">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('target-1')">New CEO Michael Fiddelke outlines strategic priorities</a></td>
+                    <td><span class="impact-badge impact-high">High</span></td>
+                </tr>
+                <tr class="news-row" data-company="target" data-impact="high">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('target-2')">Target cuts ~500 roles to redirect investment to stores</a></td>
+                    <td><span class="impact-badge impact-high">High</span></td>
+                </tr>
 
-    <!-- Target -->
-    <tr class="group-header" data-company="target" data-category="retailer">
-      <td colspan="2"><div class="group-header-content">
-        <div class="company-avatar" style="background:linear-gradient(135deg,#cc0000,#990000)">TGT</div>
-        <div><div class="company-name">Target</div><div class="company-count">2 articles</div></div>
-      </div></td>
-    </tr>
-    <tr class="news-row" data-impact="high" data-company="target" onclick="scrollToArticle('art-tgt-1')">
-      <td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text">New CEO Fiddelke takes helm; cuts 500 jobs while investing $1B in store remodels</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td>
-    </tr>
-    <tr class="news-row" data-impact="medium" data-company="target" onclick="scrollToArticle('art-tgt-2')">
-      <td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text">Ulta Beauty partnership ends Aug 2026; major executive reshuffling</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td>
-    </tr>
+                <!-- Shein/Temu Group -->
+                <tr class="group-header" data-company="shein">
+                    <td colspan="3">
+                        <div class="avatar shein">S/T</div>
+                        <span>Shein / Temu</span>
+                    </td>
+                </tr>
+                <tr class="news-row" data-company="shein" data-impact="high">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('shein-1')">Shein and Temu suspend sales in Turkey</a></td>
+                    <td><span class="impact-badge impact-high">High</span></td>
+                </tr>
+                <tr class="news-row" data-company="shein" data-impact="medium">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('shein-2')">Texas adds Shein and Temu parent to prohibited tech list</a></td>
+                    <td><span class="impact-badge impact-medium">Medium</span></td>
+                </tr>
 
-    <!-- Off-Price -->
-    <tr class="group-header" data-company="offprice" data-category="retailer">
-      <td colspan="2"><div class="group-header-content">
-        <div class="company-avatar" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">TJX</div>
-        <div><div class="company-name">TJX / Off-Price Retailers</div><div class="company-count">2 articles</div></div>
-      </div></td>
-    </tr>
-    <tr class="news-row" data-impact="medium" data-company="offprice" onclick="scrollToArticle('art-tjx-1')">
-      <td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text">TJX surges to record highs; targets 7,000 global stores, expanding to Spain & Mexico</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td>
-    </tr>
-    <tr class="news-row" data-impact="medium" data-company="offprice" onclick="scrollToArticle('art-tjx-2')">
-      <td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text">Off-price dominance: Ross opens 24 locations; Macy's to close 150 stores by 2026</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td>
-    </tr>
+                <!-- Lululemon Group -->
+                <tr class="group-header" data-company="lulu">
+                    <td colspan="3">
+                        <div class="avatar lll">LLL</div>
+                        <span>Lululemon</span>
+                    </td>
+                </tr>
+                <tr class="news-row" data-company="lulu" data-impact="medium">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('lulu-1')">Lululemon expands to 6 new international markets amid CEO transition</a></td>
+                    <td><span class="impact-badge impact-medium">Medium</span></td>
+                </tr>
 
-    <!-- Supply Chain -->
-    <tr class="group-header" data-company="trade" data-category="supply">
-      <td colspan="2"><div class="group-header-content">
-        <div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div>
-        <div><div class="company-name">Supply Chain &amp; Trade Policy</div><div class="company-count">5 articles</div></div>
-      </div></td>
-    </tr>
-    <tr class="news-row" data-impact="critical" data-company="trade" onclick="scrollToArticle('art-sc-1')">
-      <td><div class="headline-cell"><div class="news-bullet supply"></div><span class="headline-text">US apparel tariff rates spike to 23.8%; China at 69.1% — sourcing shifts accelerate</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-critical">CRITICAL</span></td>
-    </tr>
-    <tr class="news-row" data-impact="critical" data-company="trade" onclick="scrollToArticle('art-sc-2')">
-      <td><div class="headline-cell"><div class="news-bullet supply"></div><span class="headline-text">De minimis exemption abolished: US parcels drop 54%; EU to impose €3 duty from July 2026</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-critical">CRITICAL</span></td>
-    </tr>
-    <tr class="news-row" data-impact="high" data-company="trade" onclick="scrollToArticle('art-sc-3')">
-      <td><div class="headline-cell"><div class="news-bullet supply"></div><span class="headline-text">Bangladesh election amid garment crisis; textile mills shut down over duty-free imports</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td>
-    </tr>
-    <tr class="news-row" data-impact="medium" data-company="trade" onclick="scrollToArticle('art-sc-4')">
-      <td><div class="headline-cell"><div class="news-bullet supply"></div><span class="headline-text">Cotton prices fall to 59–62 cents/lb; USDA cuts US production forecast</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td>
-    </tr>
-    <tr class="news-row" data-impact="high" data-company="trade" onclick="scrollToArticle('art-sc-5')">
-      <td><div class="headline-cell"><div class="news-bullet supply"></div><span class="headline-text">EU ESPR bans unsold product destruction July 2026; France eco-score enforcement Oct 2026</span></div></td>
-      <td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td>
-    </tr>
-  </tbody></table>
+                <!-- Macy's Group -->
+                <tr class="group-header" data-company="macys">
+                    <td colspan="3">
+                        <div class="avatar mcy">MCY</div>
+                        <span>Macy's</span>
+                    </td>
+                </tr>
+                <tr class="news-row" data-company="macys" data-impact="high">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('macys-1')">Macy's to close 150 stores by end of 2026</a></td>
+                    <td><span class="impact-badge impact-high">High</span></td>
+                </tr>
 
-  <!-- ========== RETAILER SECTION ========== -->
-  <div class="section-divider retailer">
-    <div class="section-icon retailer">R</div>
-    <h2 style="margin-bottom:0">Retailer</h2>
-  </div>
+                <!-- TJX Group -->
+                <tr class="group-header" data-company="tjx">
+                    <td colspan="3">
+                        <div class="avatar tjx">TJX</div>
+                        <span>TJX Companies</span>
+                    </td>
+                </tr>
+                <tr class="news-row" data-company="tjx" data-impact="medium">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('tjx-1')">TJX sets long-term target of 7,000 stores globally</a></td>
+                    <td><span class="impact-badge impact-medium">Medium</span></td>
+                </tr>
 
-  <!-- GAP INC -->
-  <div class="company-section">
-    <div class="company-section-header">
-      <div class="company-avatar" style="background:linear-gradient(135deg,#00549e,#003d75)">GAP</div>
-      <h3>Gap Inc</h3>
+                <!-- Fast Retailing Group -->
+                <tr class="group-header" data-company="uniqlo">
+                    <td colspan="3">
+                        <div class="avatar unq">UNQ</div>
+                        <span>Fast Retailing</span>
+                    </td>
+                </tr>
+                <tr class="news-row" data-company="uniqlo" data-impact="medium">
+                    <td>Retailer</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('uniqlo-1')">Fast Retailing projects record 2026 revenue of ¥3.7 trillion</a></td>
+                    <td><span class="impact-badge impact-medium">Medium</span></td>
+                </tr>
+
+                <!-- Trade Group -->
+                <tr class="group-header supply-chain" data-company="trade">
+                    <td colspan="3">
+                        <div class="avatar trade">TRD</div>
+                        <span>Supply Chain & Trade Policy</span>
+                    </td>
+                </tr>
+                <tr class="news-row" data-company="trade" data-impact="critical">
+                    <td>Supply Chain</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('trade-1')">US and Bangladesh sign reciprocal trade agreement</a></td>
+                    <td><span class="impact-badge impact-critical">Critical</span></td>
+                </tr>
+                <tr class="news-row" data-company="trade" data-impact="high">
+                    <td>Supply Chain</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('trade-2')">Supreme Court hears US tariffs case</a></td>
+                    <td><span class="impact-badge impact-high">High</span></td>
+                </tr>
+
+                <!-- Production Group -->
+                <tr class="group-header supply-chain" data-company="production">
+                    <td colspan="3">
+                        <div class="avatar production">PRD</div>
+                        <span>Production Countries</span>
+                    </td>
+                </tr>
+                <tr class="news-row" data-company="production" data-impact="medium">
+                    <td>Supply Chain</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('prod-1')">Vietnam targets $47-48B in textile exports for 2026</a></td>
+                    <td><span class="impact-badge impact-medium">Medium</span></td>
+                </tr>
+                <tr class="news-row" data-company="production" data-impact="low">
+                    <td>Supply Chain</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('prod-2')">Cambodia rises to 8th largest garment export hub</a></td>
+                    <td><span class="impact-badge impact-low">Low</span></td>
+                </tr>
+
+                <!-- Sustainability Group -->
+                <tr class="group-header supply-chain" data-company="sustainability">
+                    <td colspan="3">
+                        <div class="avatar sustainability">ESG</div>
+                        <span>Sustainability</span>
+                    </td>
+                </tr>
+                <tr class="news-row" data-company="sustainability" data-impact="high">
+                    <td>Supply Chain</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('sust-1')">EU bans destruction of unsold clothing from July 2026</a></td>
+                    <td><span class="impact-badge impact-high">High</span></td>
+                </tr>
+                <tr class="news-row" data-company="sustainability" data-impact="medium">
+                    <td>Supply Chain</td>
+                    <td><a href="javascript:void(0)" class="headline-link" onclick="scrollToArticle('sust-2')">EU greenwashing ban effective September 2026</a></td>
+                    <td><span class="impact-badge impact-medium">Medium</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Articles Section -->
+        <div class="articles-section">
+            <h2 class="section-title">Retailer</h2>
+
+            <!-- Gap Inc Articles -->
+            <div class="article" id="gap-1">
+                <div class="article-header">
+                    <span class="article-tag">RETAIL</span>
+                    <span class="impact-badge impact-medium">Medium</span>
+                    <h3 class="article-title">Gap Inc appoints Pam Kaufman as Chief Entertainment Officer, opens LA office</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 2, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://variety.com/2026/biz/news/gap-inc-pam-kaufman-chief-entertainment-officer-1236631059/" target="_blank" class="article-source" referrerpolicy="no-referrer">Variety</a></div>
+                </div>
+                <div class="article-summary">
+                    Gap Inc. created a new Chief Entertainment Officer role and appointed Pam Kaufman as EVP to lead the company's "Fashiontainment" strategy across music, TV, film, sports, gaming, and cultural collaborations.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Kaufman officially started on February 2, 2026</li>
+                        <li>Gap Inc. will establish a Los Angeles-based office on Sunset Boulevard this spring</li>
+                        <li>The LA hub will anchor entertainment-focused initiatives and cultural partnerships</li>
+                        <li>Strategy aims to position Gap brands at the center of pop culture</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="article" id="gap-2">
+                <div class="article-header">
+                    <span class="article-tag">BUSINESS</span>
+                    <span class="impact-badge impact-low">Low</span>
+                    <h3 class="article-title">Gap Inc to report fourth quarter and fiscal 2025 results on March 5</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 10, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.gapinc.com/en-us/articles/2026/02/gap-inc-to-report-fourth-quarter-and-fiscal-2025-r" target="_blank" class="article-source" referrerpolicy="no-referrer">Gap Inc.</a></div>
+                </div>
+                <div class="article-summary">
+                    Gap Inc. (NYSE: GAP) will release Q4 and FY2025 financial results on March 5, 2026, at approximately 1:15 p.m. Pacific Time, followed by a conference call.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Share price as of Feb 6: $29.13/share (+4.11% WoW)</li>
+                        <li>Market cap: ~$10.84 billion</li>
+                        <li>Goldman Sachs raised target price to $32</li>
+                        <li>UBS upgraded from Neutral to Buy in January 2026</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="article" id="gap-3">
+                <div class="article-header">
+                    <span class="article-tag">SUSTAINABILITY</span>
+                    <span class="impact-badge impact-low">Low</span>
+                    <h3 class="article-title">Water.org partners with Gap Inc., Amazon, Starbucks, and Ecolab to launch Get Blue</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> January 19, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.prnewswire.com/news-releases/waterorg-partners-with-gap-inc-amazon-starbucks-and-ecolab-to-launch-get-blue-advancing-waterorgs-goal-of-reaching-200-million-people-by-2030-302664074.html" target="_blank" class="article-source" referrerpolicy="no-referrer">PR Newswire</a></div>
+                </div>
+                <div class="article-summary">
+                    Gap Inc. joined Amazon, Starbucks, and Ecolab as founding partners for Water.org's Get Blue initiative, launched at Davos, aiming to reach 200 million people with safe water by 2030.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>2.1 billion people worldwide still lack access to safe water</li>
+                        <li>Consumer and brand activations planned for later in 2026</li>
+                        <li>Starbucks has invested $50M in WaterEquity</li>
+                        <li>Water.org has reached 85 million people to date</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="article" id="gap-4">
+                <div class="article-header">
+                    <span class="article-tag">RETAIL</span>
+                    <span class="impact-badge impact-low">Low</span>
+                    <h3 class="article-title">Gap x Harlem's Fashion Row reunite for denim collaboration</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 7, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.gapinc.com/en-us/news" target="_blank" class="article-source" referrerpolicy="no-referrer">Gap Inc. Newsroom</a></div>
+                </div>
+                <div class="article-summary">
+                    Gap and Harlem's Fashion Row announced a renewed collaboration to reimagine denim, continuing their partnership to spotlight diverse designers.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Collaboration focuses on denim reimagination</li>
+                        <li>Builds on previous Gap x HFR partnerships</li>
+                        <li>Part of Gap's broader cultural collaboration strategy</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Walmart Articles -->
+            <div class="article" id="wmt-1">
+                <div class="article-header">
+                    <span class="article-tag">BUSINESS</span>
+                    <span class="impact-badge impact-high">High</span>
+                    <h3 class="article-title">John Furner succeeds Doug McMillon as Walmart CEO</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 1, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.bloomberg.com/news/articles/2026-01-30/walmart-wmt-new-ceo-john-furner-steps-in-with-mcmillon-era-momentum" target="_blank" class="article-source" referrerpolicy="no-referrer">Bloomberg</a></div>
+                </div>
+                <div class="article-summary">
+                    John Furner, 51, officially became President and CEO of Walmart Inc. on February 1, 2026, succeeding Doug McMillon who retired after nearly 12 years as CEO and 40+ years with the company.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>McMillon oversaw 300%+ share price increase during his tenure</li>
+                        <li>Furner began as hourly associate in 1993, previously led Walmart U.S. since 2019</li>
+                        <li>Key leadership changes effective Feb 1: David Guggina → Walmart U.S. CEO; Chris Nicholas → Walmart International CEO; Latriece Watkins → Sam's Club U.S. CEO</li>
+                        <li>Walmart stock at all-time high of $129+/share; market cap approaching $1 trillion</li>
+                        <li>McMillon stays on Board until June and as advisor through FY2027</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="article" id="wmt-2">
+                <div class="article-header">
+                    <span class="article-tag">BUSINESS</span>
+                    <span class="impact-badge impact-medium">Medium</span>
+                    <h3 class="article-title">Walmart to host Q4 earnings conference call on February 19</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 12, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.businesswire.com/news/home/20260212080792/en/Walmart-To-Host-Fourth-Quarter-Earnings-Conference-Call-February-19-2026" target="_blank" class="article-source" referrerpolicy="no-referrer">BusinessWire</a></div>
+                </div>
+                <div class="article-summary">
+                    Walmart will release Q4 FY2026 earnings results at 6 a.m. CST on February 19, 2026, with a live conference call at 7 a.m. CST.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>~75% of market share gains in 2025 came from households earning $100K+</li>
+                        <li>Stock hit all-time high above $129/share in early February 2026</li>
+                        <li>Investors watching for first full quarter guidance under new CEO Furner</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="article" id="wmt-3">
+                <div class="article-header">
+                    <span class="article-tag">RETAIL</span>
+                    <span class="impact-badge impact-medium">Medium</span>
+                    <h3 class="article-title">Walmart expands AI and digital technology across stores</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 8, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.yahoo.com/news/articles/walmart-unveils-major-store-changes-150059255.html" target="_blank" class="article-source" referrerpolicy="no-referrer">Yahoo News</a></div>
+                </div>
+                <div class="article-summary">
+                    Walmart is rolling out major technology upgrades including a GenAI shopping assistant, digital shelf labels, and "Store of the Future" concepts across its U.S. locations.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>"Sparky" GenAI assistant: suggests products, surfaces reviews, locates items</li>
+                        <li>Digital shelf labels replacing paper tags across thousands of locations</li>
+                        <li>100+ new or updated "Store of the Future" locations planned</li>
+                        <li>New fulfillment center with autonomous mobile robots breaking ground in 2026</li>
+                        <li>Partnership with OpenAI: free AI training and certification for all workers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="article" id="wmt-4">
+                <div class="article-header">
+                    <span class="article-tag">RETAIL</span>
+                    <span class="impact-badge impact-low">Low</span>
+                    <h3 class="article-title">Walmart to eliminate synthetic food dyes from all products</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 10, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.mashed.com/2058955/major-walmart-changes-expect-2026/" target="_blank" class="article-source" referrerpolicy="no-referrer">Mashed</a></div>
+                </div>
+                <div class="article-summary">
+                    Walmart announced plans to eliminate synthetic food dyes and other artificial ingredients across all its Great Value and store-brand products.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Aligns with growing consumer demand for clean-label products</li>
+                        <li>Follows similar moves by other major retailers</li>
+                        <li>Timeline for full implementation not yet specified</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Kohl's Articles -->
+            <div class="article" id="kohls-1">
+                <div class="article-header">
+                    <span class="article-tag">BUSINESS</span>
+                    <span class="impact-badge impact-medium">Medium</span>
+                    <h3 class="article-title">Kohl's stock rises 6.2% amid mixed financial signals</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 11, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.themarketsdaily.com/2026/02/11/kohls-nysekss-stock-price-up-6-2-still-a-buy.html" target="_blank" class="article-source" referrerpolicy="no-referrer">The Markets Daily</a></div>
+                </div>
+                <div class="article-summary">
+                    Kohl's (NYSE: KSS) shares rose 6.2% in a recent trading session despite ongoing concerns about declining same-store sales and high debt levels.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Stock traded as high as $18.78, last at $18.38</li>
+                        <li>Net margin: 1.23%; ROE: 4.30%</li>
+                        <li>Quarterly revenue: $3.58B vs. analyst estimate of $3.37B</li>
+                        <li>FY2025 EPS guidance: $1.25-$1.45; analysts expect $1.30</li>
+                        <li>Stock up 59.4% in six months, but analysts suggest caution</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="article" id="kohls-2">
+                <div class="article-header">
+                    <span class="article-tag">RETAIL</span>
+                    <span class="impact-badge impact-low">Low</span>
+                    <h3 class="article-title">Kohl's unveils 2026 Cares Goods for Good merchandise collections</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 7, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://corporate.kohls.com/news/2026-kohls-cares-goods-for-good-merchandise-collections-unveilednbsp" target="_blank" class="article-source" referrerpolicy="no-referrer">Kohl's Corporate</a></div>
+                </div>
+                <div class="article-summary">
+                    Kohl's launched its 2026 Cares merchandise collections priced under $10, featuring Bluey, Space Jam, and Disney characters, with 100% of net profit going to philanthropy.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Program has raised more than $440 million since 2000</li>
+                        <li>All items priced under $10</li>
+                        <li>Features beloved characters from Bluey, Space Jam, Disney classics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="article" id="kohls-3">
+                <div class="article-header">
+                    <span class="article-tag">BUSINESS</span>
+                    <span class="impact-badge impact-low">Low</span>
+                    <h3 class="article-title">CFO Jill Timm sells 25,000 shares of Kohl's stock</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> December 4, 2025</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://finance.yahoo.com/quote/KSS/press-releases/" target="_blank" class="article-source" referrerpolicy="no-referrer">Yahoo Finance</a></div>
+                </div>
+                <div class="article-summary">
+                    Kohl's CFO Jill Timm sold 25,000 shares at an average price of $22.75, totaling $568,750, reducing her position by 6.93%.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Post-sale ownership: 335,561 shares</li>
+                        <li>Sale price of $22.75 notably higher than current trading price of ~$18.38</li>
+                        <li>Transaction occurred on December 4, 2025</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- AEO Articles -->
+            <div class="article" id="aeo-1">
+                <div class="article-header">
+                    <span class="article-tag">BUSINESS</span>
+                    <span class="impact-badge impact-medium">Medium</span>
+                    <h3 class="article-title">AEO winds down Quiet Logistics, partners with Stord for fulfillment</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 8, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://finance.yahoo.com/news/american-eagle-outfitters-aeo-valuation-081227200.html" target="_blank" class="article-source" referrerpolicy="no-referrer">Yahoo Finance</a></div>
+                </div>
+                <div class="article-summary">
+                    American Eagle Outfitters decided to wind down its Quiet Logistics third-party fulfillment operations and close Boston and Dallas fulfillment centers, retaining only Atlanta for internal distribution.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Partnering with Stord for logistics operations</li>
+                        <li>Refocusing on core retail initiatives</li>
+                        <li>Expected to improve inventory flow and lower fulfillment costs</li>
+                        <li>AEO shares returned -16.8% over the past month vs. S&P 500's -1.5%</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="article" id="aeo-2">
+                <div class="article-header">
+                    <span class="article-tag">RETAIL</span>
+                    <span class="impact-badge impact-low">Low</span>
+                    <h3 class="article-title">Sydney Sweeney and AEO CEO ring NYSE opening bell</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 9, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.stocktitan.net/news/AEO/nyse-content-update-american-eagle-outfitters-sydney-sweeney-to-ring-drzvv0m30epl.html" target="_blank" class="article-source" referrerpolicy="no-referrer">Stock Titan</a></div>
+                </div>
+                <div class="article-summary">
+                    Sydney Sweeney joined AEO Chairman and CEO Jay Schottenstein to ring the NYSE opening bell on February 9, highlighting the brand's celebrity marketing strategy.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Part of AEO's broader "Creator Community" ambassador program</li>
+                        <li>Lamine Yamal also signed as brand ambassador in January 2026</li>
+                        <li>Focus on connecting with Gen Z through cultural figures</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="article" id="aeo-3">
+                <div class="article-header">
+                    <span class="article-tag">BUSINESS</span>
+                    <span class="impact-badge impact-low">Low</span>
+                    <h3 class="article-title">AEO to report Q4 and FY2025 results on March 4</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 10, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.stocktitan.net/news/AEO/aeo-inc-to-report-fourth-quarter-and-full-year-fiscal-2025-results-8he9mnoqvtlf.html" target="_blank" class="article-source" referrerpolicy="no-referrer">Stock Titan</a></div>
+                </div>
+                <div class="article-summary">
+                    AEO Inc. will report Q4 and full year FY2025 results on March 4, 2026, after market close, with a live conference call at 4:30 PM ET.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Market cap: $4.58B as of February 2026</li>
+                        <li>52-week range: $9.27 - $28.46</li>
+                        <li>Simply Wall St valuation score: 5 out of 6 (screens as undervalued)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="article" id="aeo-4">
+                <div class="article-header">
+                    <span class="article-tag">BUSINESS</span>
+                    <span class="impact-badge impact-low">Low</span>
+                    <h3 class="article-title">Zacks Research raises AEO FY2026 EPS estimate</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 6, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.defenseworld.net/2026/02/09/zacks-research-issues-optimistic-forecast-for-aeo-earnings.html" target="_blank" class="article-source" referrerpolicy="no-referrer">Defense World</a></div>
+                </div>
+                <div class="article-summary">
+                    Zacks Research raised its FY2026 EPS estimate for AEO from $1.33 to $1.38, maintaining a "Strong-Buy" rating.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Previous estimate: $1.33 EPS</li>
+                        <li>New estimate: $1.38 EPS (+3.8%)</li>
+                        <li>Rating: Strong-Buy</li>
+                        <li>Multiple insider trading Form 4 filings recorded on February 9</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Target Articles -->
+            <div class="article" id="target-1">
+                <div class="article-header">
+                    <span class="article-tag">BUSINESS</span>
+                    <span class="impact-badge impact-high">High</span>
+                    <h3 class="article-title">New CEO Michael Fiddelke outlines strategic priorities for Target</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 4, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.pymnts.com/news/retail/2026/targets-new-ceo-says-technology-is-a-top-priority/" target="_blank" class="article-source" referrerpolicy="no-referrer">PYMNTS</a></div>
+                </div>
+                <div class="article-summary">
+                    Target's new CEO Michael Fiddelke, who took the helm on February 1, outlined four strategic priorities during his first company town hall, emphasizing technology and merchandise excellence.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Four priorities: merchandising authority, guest experience, technology acceleration, team strengthening</li>
+                        <li>Fiddelke is a Target veteran who assumed role after Target shares dropped 28% in 2025 while S&P 500 rose 16%</li>
+                        <li>Plans to invest in in-store experiences and online discoverability</li>
+                        <li>Focus on merchandise for busy families and distinctive assortment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="article" id="target-2">
+                <div class="article-header">
+                    <span class="article-tag">BUSINESS</span>
+                    <span class="impact-badge impact-high">High</span>
+                    <h3 class="article-title">Target eliminates ~500 roles in major restructuring</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 10, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.ttnews.com/articles/target-supply-chain-layoffs" target="_blank" class="article-source" referrerpolicy="no-referrer">TT News</a></div>
+                </div>
+                <div class="article-summary">
+                    Target is cutting approximately 500 roles — 400 across supply-chain sites and 100 supporting stores — to redirect investment toward store staffing and operations.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>400 supply-chain roles eliminated</li>
+                        <li>100 store-support roles cut (district directors, HR partners, food/beverage coordinators)</li>
+                        <li>Savings redirected into store payroll for more scheduled hours and training</li>
+                        <li>Part of broader plan to open 300 new stores over a decade (20 stores in 2026)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Shein/Temu Articles -->
+            <div class="article" id="shein-1">
+                <div class="article-header">
+                    <span class="article-tag">TRADE</span>
+                    <span class="impact-badge impact-high">High</span>
+                    <h3 class="article-title">Shein and Temu suspend sales in Turkey as duty-free trade ends</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 6, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://amp.kr-asia.com/temu-shein-suspend-sales-as-turkey-scraps-online-duty-free-trade" target="_blank" class="article-source" referrerpolicy="no-referrer">KR-Asia</a></div>
+                </div>
+                <div class="article-summary">
+                    Shein and Temu suspended or restricted trade in Turkey after the government scrapped duty-free online trade effective February 6, 2026. Temu's Istanbul office was raided by government officials.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>From Feb 6: all incoming parcels subject to full commercial import procedures</li>
+                        <li>Requires customs brokers and various taxes</li>
+                        <li>Temu's Istanbul office raided by government officials</li>
+                        <li>Effectively kills small-parcel direct trade model in Turkey</li>
+                        <li>EU also imposing €3 customs fee on parcels under €150 from July 2026</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="article" id="shein-2">
+                <div class="article-header">
+                    <span class="article-tag">TRADE</span>
+                    <span class="impact-badge impact-medium">Medium</span>
+                    <h3 class="article-title">Texas adds Shein and Temu parent to prohibited technology list</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 10, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.foxbusiness.com/politics/texas-gov-abbott-adds-popular-chinese-electronics-online-shopping-companies-prohibited-tech-list" target="_blank" class="article-source" referrerpolicy="no-referrer">Fox Business</a></div>
+                </div>
+                <div class="article-summary">
+                    Texas Governor Greg Abbott expanded the state's prohibited technology list to include 26 Chinese companies, adding Alibaba, Shein, and PDD (Temu's parent) over data security and foreign interference concerns.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Restrictions apply to state employees and devices</li>
+                        <li>26 companies and entities added to the list</li>
+                        <li>Includes Alibaba, Shein, Hisense, and PDD (Temu operator)</li>
+                        <li>Based on concerns about data security and foreign interference</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Lululemon Articles -->
+            <div class="article" id="lulu-1">
+                <div class="article-header">
+                    <span class="article-tag">BUSINESS</span>
+                    <span class="impact-badge impact-medium">Medium</span>
+                    <h3 class="article-title">Lululemon expands to 6 new international markets amid CEO transition</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.retaildive.com/news/lululemon-enters-six-international-markets-greece-austria-india-2026/808480/" target="_blank" class="article-source" referrerpolicy="no-referrer">Retail Dive</a></div>
+                </div>
+                <div class="article-summary">
+                    Lululemon is expanding its international presence through franchise partnerships in six new markets, while navigating a major leadership transition with CEO Calvin McDonald set to step down.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>New franchise markets: Greece, Austria, Poland, Hungary, Romania, and India (via Tata CLiQ)</li>
+                        <li>CEO Calvin McDonald departing after 7 years</li>
+                        <li>Elliott Investment Management (>$1B stake) pushing for Ralph Lauren's Jane Nielsen as next CEO</li>
+                        <li>Founder Chip Wilson nominated 3 directors for 2026 annual meeting</li>
+                        <li>Americas revenue fell 2% in most recent quarter; overall revenue +7%</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Macy's Articles -->
+            <div class="article" id="macys-1">
+                <div class="article-header">
+                    <span class="article-tag">BUSINESS</span>
+                    <span class="impact-badge impact-high">High</span>
+                    <h3 class="article-title">Macy's to close 150 stores by end of 2026 under "Bold New Chapter" strategy</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.thestreet.com/retail/major-retailers-plan-sweeping-store-closures-for-2026" target="_blank" class="article-source" referrerpolicy="no-referrer">TheStreet</a></div>
+                </div>
+                <div class="article-summary">
+                    Macy's confirmed the closure of approximately 150 underperforming locations by end of 2026 as part of its "Bold New Chapter" strategy, with 66 closures already announced.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>66 store closures already confirmed</li>
+                        <li>Total target: ~150 locations by end of 2026</li>
+                        <li>Focus on stronger stores and customer experience investment</li>
+                        <li>Traditional department stores losing ground to off-price retailers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- TJX Articles -->
+            <div class="article" id="tjx-1">
+                <div class="article-header">
+                    <span class="article-tag">BUSINESS</span>
+                    <span class="impact-badge impact-medium">Medium</span>
+                    <h3 class="article-title">TJX sets long-term target of 7,000 stores globally</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://markets.financialcontent.com/wral/article/marketminute-2025-12-23-tjx-surges-as-off-price-retail-becomes-the-consumer-anchor-for-2026" target="_blank" class="article-source" referrerpolicy="no-referrer">Financial Content</a></div>
+                </div>
+                <div class="article-summary">
+                    TJX Companies reported record results and set a long-term target of 7,000 stores globally, positioning off-price retail as the dominant consumer format in 2026.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Stock surged to record highs following stellar Q3 earnings</li>
+                        <li>Long-term target: 7,000 stores globally</li>
+                        <li>Expanding T.K. Maxx into Spain; deepening footprint in Mexico and Middle East</li>
+                        <li>Off-price gaining market share as middle-income households prioritize value</li>
+                        <li>Forrester predicts 3 major U.S. specialty chains will declare bankruptcy in 2026</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Fast Retailing Articles -->
+            <div class="article" id="uniqlo-1">
+                <div class="article-header">
+                    <span class="article-tag">BUSINESS</span>
+                    <span class="impact-badge impact-medium">Medium</span>
+                    <h3 class="article-title">Fast Retailing projects record 2026 revenue, closing gap with rivals</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.modaes.com/global/companies/who-is-the-king-of-the-mainstream-fast-retailing-beats-gap-and-grows-more-than-inditex" target="_blank" class="article-source" referrerpolicy="no-referrer">Modaes Global</a></div>
+                </div>
+                <div class="article-summary">
+                    Fast Retailing (Uniqlo) projects another record year with revenue forecast at ¥3.7 trillion (+10.3% growth), consolidating its position as the world's third-largest fashion company.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>FY2026 revenue forecast: ¥3.7 trillion (+10.3%)</li>
+                        <li>Growing faster than Inditex; closing gap with H&M</li>
+                        <li>Uniqlo entered top 100 most valuable global brands in 2025</li>
+                        <li>Ranked sixth among fashion brands globally</li>
+                        <li>Japanese manufacturers shifting production to RCEP nations in Southeast Asia</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Supply Chain & Trade Policy Section -->
+            <h2 class="section-title supply-chain">Supply Chain & Trade Policy</h2>
+
+            <!-- Trade Articles -->
+            <div class="article supply-chain" id="trade-1">
+                <div class="article-header">
+                    <span class="article-tag">TRADE</span>
+                    <span class="impact-badge impact-critical">Critical</span>
+                    <h3 class="article-title">United States and Bangladesh sign reciprocal trade agreement</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 9, 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://ustr.gov/about/policy-offices/press-office/fact-sheets/2026/february/fact-sheet-united-states-and-bangladesh-reach-agreement-reciprocal-trade" target="_blank" class="article-source" referrerpolicy="no-referrer">USTR</a></div>
+                </div>
+                <div class="article-summary">
+                    The United States and Bangladesh signed a landmark reciprocal trade agreement on February 9, 2026 — the first in South Asia — reducing tariffs from 20% to 19% with provisions for zero-tariff textile imports using U.S.-produced cotton.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Reciprocal tariff reduced from 20% to 19% on originating goods</li>
+                        <li>Zero-tariff mechanism for textile/apparel made with U.S. cotton and man-made fiber</li>
+                        <li>Original tariff was 37%, reduced to 20% in August 2025, now 19%</li>
+                        <li>Bangladesh commits to purchase $3.5B of U.S. agricultural products and $15B of energy products over 15 years</li>
+                        <li>Bangladesh to accept U.S. vehicle safety standards, FDA certificates for medical devices</li>
+                        <li>Agreement goes into force 60 days after internal formalization</li>
+                        <li>If rescinded, tariffs reset to 37%</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="article supply-chain" id="trade-2">
+                <div class="article-header">
+                    <span class="article-tag">TRADE</span>
+                    <span class="impact-badge impact-high">High</span>
+                    <h3 class="article-title">Supreme Court hears US tariffs case; potential impact on apparel industry</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.businessoffashion.com/articles/global-markets/the-state-of-fashion-2026-report-tariffs-trade-us-market/" target="_blank" class="article-source" referrerpolicy="no-referrer">Business of Fashion</a></div>
+                </div>
+                <div class="article-summary">
+                    The U.S. Supreme Court heard arguments on the legality of emergency tariffs, with conservative justices signaling skepticism about presidential authority to impose tariffs under IEEPA.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Average U.S. apparel import tariff reached 26.4% (up from 14.7% pre-2025)</li>
+                        <li>Weighted average on apparel/footwear spiked to 54%, eased to 36%</li>
+                        <li>China-specific apparel tariff: 69.1% (unprecedented)</li>
+                        <li>76% of fashion executives say tariff response is #1 industry factor for 2026</li>
+                        <li>Estimated $35B total tariff duties if import volumes remain unchanged</li>
+                        <li>Only 3% of U.S. apparel currently manufactured domestically</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Production Articles -->
+            <div class="article supply-chain" id="prod-1">
+                <div class="article-header">
+                    <span class="article-tag">PRODUCTION</span>
+                    <span class="impact-badge impact-medium">Medium</span>
+                    <h3 class="article-title">Vietnam targets $47-48B in textile exports for 2026</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://vietnam.incorp.asia/vietnam-textile-and-garment-industry/" target="_blank" class="article-source" referrerpolicy="no-referrer">InCorp Vietnam</a></div>
+                </div>
+                <div class="article-summary">
+                    Vietnam's textile and garment industry targets $47-48 billion in exports for 2026, representing 6-9% growth, as the country continues to attract manufacturing away from China.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>2024 exports: ~$44B (+11% growth)</li>
+                        <li>2026 target: $47-48B (+6-9%)</li>
+                        <li>Average wages: ~$300/month (vs. Bangladesh $95, China $500-650)</li>
+                        <li>Higher productivity compensates for wage premium over Bangladesh</li>
+                        <li>Major investments in sustainability: solar power, waterless dyeing, rainwater recycling</li>
+                        <li>U.S. imposed 20% reciprocal tariff on Vietnamese goods</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="article supply-chain" id="prod-2">
+                <div class="article-header">
+                    <span class="article-tag">PRODUCTION</span>
+                    <span class="impact-badge impact-low">Low</span>
+                    <h3 class="article-title">Cambodia rises to 8th largest garment export hub globally</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.khmertimeskh.com/501427844/cambodia-jumps-to-8th-spot-globally-as-garment-export-hub/" target="_blank" class="article-source" referrerpolicy="no-referrer">Khmer Times</a></div>
+                </div>
+                <div class="article-summary">
+                    Cambodia has risen to become the world's 8th largest garment exporter according to WTO data, up from 11th in 2021, with manufacturing growth of 7.1% YoY in 2025.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Garment production growth: 7.1% YoY in 2025 (down from 15.8% in 2024)</li>
+                        <li>Global market share: 1.77%</li>
+                        <li>Rising from 11th to 8th spot globally since 2021</li>
+                        <li>Benefiting from supply chain diversification away from China</li>
+                        <li>U.S.-Cambodia trade agreement signed in October 2025</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sustainability Articles -->
+            <div class="article supply-chain" id="sust-1">
+                <div class="article-header">
+                    <span class="article-tag">SUSTAINABILITY</span>
+                    <span class="impact-badge impact-high">High</span>
+                    <h3 class="article-title">EU bans destruction of unsold clothing and footwear from July 2026</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.pwkrystian.com/blog/from-2026-no-more-destruction-of-unsold-clothing-and-footwear-in-the-eu-what-does-the-espr-regulation-mean/" target="_blank" class="article-source" referrerpolicy="no-referrer">PW Krystian</a></div>
+                </div>
+                <div class="article-summary">
+                    Under the EU's Ecodesign for Sustainable Products Regulation (ESPR), large companies will be banned from destroying unsold clothing and footwear from July 19, 2026, with Digital Product Passports also required.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Ban applies to large companies from July 19, 2026</li>
+                        <li>Medium-sized companies covered from July 19, 2030</li>
+                        <li>Micro/small enterprises exempt</li>
+                        <li>Digital Product Passport (DPP) required for textiles: material composition, environmental footprint, recyclability info via QR code</li>
+                        <li>Textiles-specific delegated act expected to apply late 2028</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="article supply-chain" id="sust-2">
+                <div class="article-header">
+                    <span class="article-tag">SUSTAINABILITY</span>
+                    <span class="impact-badge impact-medium">Medium</span>
+                    <h3 class="article-title">EU Empowering Consumers Directive bans greenwashing from September 2026</h3>
+                </div>
+                <div class="article-meta">
+                    <div class="meta-item"><span class="meta-label">Date:</span> February 2026</div>
+                    <div class="meta-item"><span class="meta-label">Source:</span> <a href="https://www.drapersonline.com/insight/comment/ukft-the-sustainability-regulation-changes-to-know-in-2026" target="_blank" class="article-source" referrerpolicy="no-referrer">Drapers Online</a></div>
+                </div>
+                <div class="article-summary">
+                    The EU's Empowering Consumers for the Green Transition Directive (ECGT), banning misleading environmental claims, must be transposed into national law by March 2026, with an effective start date of September 2026.
+                </div>
+                <div class="article-details">
+                    <ul>
+                        <li>Bans sustainability labels not based on certification schemes</li>
+                        <li>Bans unverified claims about future environmental performance</li>
+                        <li>France imposing eco-score labeling from October 2026 (fines of 5% of annual revenue for non-compliance)</li>
+                        <li>EU also advancing Extended Producer Responsibility (EPR) for textiles — expected final approval early 2026</li>
+                        <li>UKFT warns 2026 marks "decisive shift" in sustainability regulation for fashion</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="article-card retailer" id="art-gap-1">
-      <div class="article-meta">
-        <span class="article-tag retailer">Retailer – Gap</span>
-        <span class="impact-badge impact-medium">MEDIUM</span>
-        <span class="article-date">February 3, 2026</span>
-        <span class="article-source"><a href="https://www.retaildive.com/news/gap-inc-paramount-hollywood-exec-fashiontainment-role/809849/" target="_blank">Retail Dive</a></span>
-      </div>
-      <h4>Gap Inc Hires Paramount Exec Pam Kaufman as Chief Entertainment Officer</h4>
-      <p><strong>Summary:</strong> Gap Inc created a new Chief Entertainment Officer role and appointed former Paramount executive Pam Kaufman, reporting to CEO Richard Dickson, as part of a broader strategy to boost cultural relevance.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>Kaufman started early February 2026, bringing entertainment industry expertise to drive brand engagement</li>
-          <li>Role focuses on "fashiontainment" — merging fashion and entertainment to attract younger consumers</li>
-          <li>Goldman Sachs raised Gap target price to $32, citing strong brand momentum</li>
-        </ul>
-      </div>
-    </div>
+    <!-- Toast Notification -->
+    <div id="toast">Article navigated</div>
 
-    <div class="article-card retailer" id="art-gap-2">
-      <div class="article-meta">
-        <span class="article-tag retailer">Retailer – Gap</span>
-        <span class="impact-badge impact-low">LOW</span>
-        <span class="article-date">February 2, 2026</span>
-        <span class="article-source"><a href="https://finance.yahoo.com/news/gap-gap-store-openings-sakura-080937030.html" target="_blank">Yahoo Finance</a></span>
-      </div>
-      <h4>Gap Opens New Factory Outlet; Launches Sakura Collection in Japan</h4>
-      <p><strong>Summary:</strong> Gap Inc expanded its physical retail footprint with a new Gap Factory outlet at Fox River Mall and launched a cherry blossom-inspired Sakura Collection across Japan.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>New Gap Factory outlet opened at Fox River Mall</li>
-          <li>Sakura Collection launched across Japanese stores and online — cherry blossom-inspired apparel</li>
-          <li>Part of Gap's broader 2026 store expansion strategy</li>
-        </ul>
-      </div>
-    </div>
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Back to Top</button>
 
-    <div class="article-card retailer" id="art-gap-3">
-      <div class="article-meta">
-        <span class="article-tag retailer">Retailer – Gap</span>
-        <span class="impact-badge impact-low">LOW</span>
-        <span class="article-date">January 20, 2026</span>
-        <span class="article-source"><a href="https://www.cnbc.com/quotes/GAP" target="_blank">CNBC</a></span>
-      </div>
-      <h4>Gap CEO: "No More Material Impact" from Tariffs</h4>
-      <p><strong>Summary:</strong> CEO Richard Dickson commented on January 20 that Gap does not foresee additional material tariff impact, signaling confidence in the company's supply chain positioning.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>Dickson stated tariffs have no additional material impact "at this juncture"</li>
-          <li>Q3 FY2025 operating income was $334M, operating margin 8.5%</li>
-          <li>Net income: $236M; diluted EPS: $0.62</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+    <script>
+        function scrollToArticle(articleId) {
+            const el = document.getElementById(articleId);
+            if (!el) return;
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 1200);
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            el.classList.remove('flash');
+            void el.offsetWidth;
+            el.classList.add('flash');
+        }
 
-  <!-- WALMART -->
-  <div class="company-section">
-    <div class="company-section-header">
-      <div class="company-avatar" style="background:linear-gradient(135deg,#0071ce,#004c91)">WMT</div>
-      <h3>Walmart</h3>
-    </div>
+        function filterTable(level, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const table = document.getElementById('summaryTable');
+            const newsRows = table.querySelectorAll('.news-row');
+            const groupHeaders = table.querySelectorAll('.group-header');
+            if (level === 'all') {
+                newsRows.forEach(r => r.style.display = '');
+                groupHeaders.forEach(h => h.style.display = '');
+                return;
+            }
+            newsRows.forEach(row => {
+                row.style.display = row.dataset.impact === level ? '' : 'none';
+            });
+            groupHeaders.forEach(header => {
+                const company = header.dataset.company;
+                const visibleRows = table.querySelectorAll(`.news-row[data-company="${company}"][data-impact="${level}"]`);
+                header.style.display = visibleRows.length > 0 ? '' : 'none';
+            });
+        }
 
-    <div class="article-card retailer" id="art-wmt-1">
-      <div class="article-meta">
-        <span class="article-tag retailer">Retailer – Walmart</span>
-        <span class="impact-badge impact-critical">CRITICAL</span>
-        <span class="article-date">February 1, 2026</span>
-        <span class="article-source"><a href="https://corporate.walmart.com/news/2026/01/16/walmart-announces-leadership-changes" target="_blank">Walmart Corporate</a></span>
-      </div>
-      <h4>John Furner Named Walmart CEO; Major Leadership Overhaul Effective Feb 1</h4>
-      <p><strong>Summary:</strong> Walmart appointed John Furner as CEO, succeeding Doug McMillon after 12 years, as the company crossed the $1 trillion market cap threshold. Multiple C-suite positions reshuffled simultaneously.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>John Furner — former hourly associate turned Walmart US head — became CEO effective Feb 1, 2026</li>
-          <li>Seth Dallaire named EVP & Chief Growth Officer (expanded from US-only role)</li>
-          <li>Chris Nicholas moved from Sam's Club US to President & CEO of Walmart International</li>
-          <li>Latriece Watkins named President & CEO of Sam's Club US</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="article-card retailer" id="art-wmt-2">
-      <div class="article-meta">
-        <span class="article-tag retailer">Retailer – Walmart</span>
-        <span class="impact-badge impact-high">HIGH</span>
-        <span class="article-date">February 12, 2026</span>
-        <span class="article-source"><a href="https://www.businesswire.com/news/home/20260212080792/en/Walmart-To-Host-Fourth-Quarter-Earnings-Conference-Call-February-19-2026" target="_blank">BusinessWire</a></span>
-      </div>
-      <h4>Walmart Q4 Earnings Call Scheduled Feb 19; Stock Hits All-Time High</h4>
-      <p><strong>Summary:</strong> Walmart will release Q4 results on Feb 19 at 6 a.m. CST. The stock recently hit an all-time high above $129/share, with 75% of market share gains coming from households earning over $100K.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>Q4 earnings release: Feb 19, 2026 at 6:00 AM CST; live call at 7:00 AM CST</li>
-          <li>Stock all-time high: above $129/share</li>
-          <li>75% of 2025 market share gains from households earning &gt; $100K annually</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="article-card retailer" id="art-wmt-3">
-      <div class="article-meta">
-        <span class="article-tag retailer">Retailer – Walmart</span>
-        <span class="impact-badge impact-medium">MEDIUM</span>
-        <span class="article-date">January 11, 2026</span>
-        <span class="article-source"><a href="https://www.cnbc.com/2026/01/11/walmart-partners-with-google-gemini-on-shopping-tool.html" target="_blank">CNBC</a></span>
-      </div>
-      <h4>Walmart Partners with Google Gemini for AI-Powered Shopping</h4>
-      <p><strong>Summary:</strong> Walmart and Google announced a partnership pairing Google's Gemini AI with Walmart and Sam's Club product assortments to make shopping more intuitive and personalized.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>Gemini AI integration across Walmart and Sam's Club for product discovery</li>
-          <li>New AI shopping assistant "Sparky" suggests products, surfaces reviews, locates items</li>
-          <li>Part of Walmart's broader tech-first retail strategy under new CEO Furner</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="article-card retailer" id="art-wmt-4">
-      <div class="article-meta">
-        <span class="article-tag retailer">Retailer – Walmart</span>
-        <span class="impact-badge impact-medium">MEDIUM</span>
-        <span class="article-date">February 8, 2026</span>
-        <span class="article-source"><a href="https://whatnow.com/news/retail/4-important-changes-hitting-walmart-stores-in-2026/" target="_blank">WhatNow</a></span>
-      </div>
-      <h4>Walmart to Eliminate Synthetic Food Dyes; Digital Shelf Labels Rolling Out</h4>
-      <p><strong>Summary:</strong> Walmart announced plans to remove synthetic food dyes and artificial ingredients across all products, while rolling out digital shelf labels across thousands of U.S. locations.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>All synthetic food dyes and artificial ingredients to be eliminated from Walmart products</li>
-          <li>Digital shelf labels replacing paper tags across thousands of U.S. stores</li>
-          <li>Price updates can now happen within minutes rather than hours</li>
-          <li>4 new Florida locations planned in early 2026 as part of national expansion</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- KOHL'S -->
-  <div class="company-section">
-    <div class="company-section-header">
-      <div class="company-avatar" style="background:linear-gradient(135deg,#c8102e,#9a0c23)">KSS</div>
-      <h3>Kohl's</h3>
-    </div>
-
-    <div class="article-card retailer" id="art-kss-1">
-      <div class="article-meta">
-        <span class="article-tag retailer">Retailer – Kohl's</span>
-        <span class="impact-badge impact-high">HIGH</span>
-        <span class="article-date">February 6, 2026</span>
-        <span class="article-source"><a href="https://retailwire.com/kohls-27-stores-closed-fulfillment-center-shutdown/" target="_blank">RetailWire</a></span>
-      </div>
-      <h4>Kohl's Closed 27 Stores in 2025; Experts Fear More Closures</h4>
-      <p><strong>Summary:</strong> Kohl's shuttered 27 underperforming stores across 15 states by April 2025, reducing total locations to 1,123. E-commerce fulfillment centers also shut down, raising concerns about further closures.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>27 stores closed across 15 states by April 2025; total down to 1,123 stores</li>
-          <li>San Bernardino e-commerce fulfillment center closed May 2025</li>
-          <li>Monroe e-Fulfillment Center in Middletown, Ohio also announced for closure</li>
-          <li>Industry experts warn more closures possible in 2026 in oversaturated markets</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="article-card retailer" id="art-kss-2">
-      <div class="article-meta">
-        <span class="article-tag retailer">Retailer – Kohl's</span>
-        <span class="impact-badge impact-high">HIGH</span>
-        <span class="article-date">February 2026</span>
-        <span class="article-source"><a href="https://www.cbsnews.com/news/kohls-store-closures-list/" target="_blank">CBS News</a></span>
-      </div>
-      <h4>12 Consecutive Quarters of Declining Sales; Interim CEO Leads Turnaround</h4>
-      <p><strong>Summary:</strong> Kohl's has posted 12 consecutive fiscal quarters of decreasing sales with stock price dropping over 50% in 2024 alone. Interim CEO Michael Bender is attempting a strategic pivot.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>12 straight quarters of declining or weak sales</li>
-          <li>Stock price dropped &gt; 50% in 2024</li>
-          <li>Interim CEO Michael Bender leading turnaround strategy</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- AEO -->
-  <div class="company-section">
-    <div class="company-section-header">
-      <div class="company-avatar" style="background:linear-gradient(135deg,#2d4a3e,#1a2f26)">AEO</div>
-      <h3>American Eagle Outfitters</h3>
-    </div>
-
-    <div class="article-card retailer" id="art-aeo-1">
-      <div class="article-meta">
-        <span class="article-tag retailer">Retailer – AEO</span>
-        <span class="impact-badge impact-medium">MEDIUM</span>
-        <span class="article-date">February 9, 2026</span>
-        <span class="article-source"><a href="https://www.stocktitan.net/news/AEO/nyse-content-update-american-eagle-outfitters-sydney-sweeney-to-ring-drzvv0m30epl.html" target="_blank">Stock Titan</a></span>
-      </div>
-      <h4>Sydney Sweeney Rings NYSE Bell with AEO CEO; Brand Visibility Push</h4>
-      <p><strong>Summary:</strong> On Feb 9, actress Sydney Sweeney joined AEO Chairman & CEO Jay Schottenstein to ring the NYSE opening bell, highlighting AEO's investment in celebrity partnerships and brand visibility.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>NYSE opening bell event on February 9, 2026</li>
-          <li>AE Creator Community ambassador program actively expanding</li>
-          <li>Market cap: $4.58B as of February 2026</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="article-card retailer" id="art-aeo-2">
-      <div class="article-meta">
-        <span class="article-tag retailer">Retailer – AEO</span>
-        <span class="impact-badge impact-medium">MEDIUM</span>
-        <span class="article-date">February 2026</span>
-        <span class="article-source"><a href="https://finance.yahoo.com/news/american-eagle-outfitters-aeo-valuation-081227200.html" target="_blank">Yahoo Finance</a></span>
-      </div>
-      <h4>AEO Exits Quiet Logistics; Closes Boston &amp; Dallas Fulfillment Centers</h4>
-      <p><strong>Summary:</strong> AEO wound down Quiet Logistics for third-party clients and closed Boston and Dallas fulfillment centers, retaining only its Atlanta site for internal distribution while partnering with Stord.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>Quiet Logistics wound down for third-party clients</li>
-          <li>Boston and Dallas fulfillment centers closed; only Atlanta retained</li>
-          <li>New logistics partnership with Stord to improve inventory flow and cut fulfillment costs</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="article-card retailer" id="art-aeo-3">
-      <div class="article-meta">
-        <span class="article-tag retailer">Retailer – AEO</span>
-        <span class="impact-badge impact-low">LOW</span>
-        <span class="article-date">February 6, 2026</span>
-        <span class="article-source"><a href="https://www.defenseworld.net/2026/02/09/zacks-research-issues-optimistic-forecast-for-aeo-earnings.html" target="_blank">Defense World</a></span>
-      </div>
-      <h4>Zacks Raises FY2026 EPS Estimate to $1.38; Q4 Earnings Due Mar 4</h4>
-      <p><strong>Summary:</strong> Zacks Research raised AEO's FY2026 EPS estimate from $1.33 to $1.38 and issued a "Strong-Buy" rating. Q4 FY2025 results will be released March 4 after market close.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>FY2026 EPS estimate: $1.38 (up from $1.33)</li>
-          <li>FY full-year consensus: $1.70/share</li>
-          <li>Q4 FY2025 results: March 4, 2026 after market close, call at 4:30 PM ET</li>
-          <li>Shares returned -16.8% past month vs S&P 500's -1.5%</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- TARGET -->
-  <div class="company-section">
-    <div class="company-section-header">
-      <div class="company-avatar" style="background:linear-gradient(135deg,#cc0000,#990000)">TGT</div>
-      <h3>Target</h3>
-    </div>
-
-    <div class="article-card retailer" id="art-tgt-1">
-      <div class="article-meta">
-        <span class="article-tag retailer">Retailer – Target</span>
-        <span class="impact-badge impact-high">HIGH</span>
-        <span class="article-date">February 9, 2026</span>
-        <span class="article-source"><a href="https://www.cnbc.com/2026/02/09/target-store-investment-job-cuts-customer-experience.html" target="_blank">CNBC</a></span>
-      </div>
-      <h4>New CEO Fiddelke Takes Helm; Cuts 500 Jobs, Invests $1B in Store Remodels</h4>
-      <p><strong>Summary:</strong> Michael Fiddelke became Target's 4th-ever CEO on Feb 1. He immediately restructured, cutting ~500 roles while announcing $1B+ in store remodels, amid 12 consecutive quarters of weak sales.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>~400 supply chain + ~100 district-level positions eliminated; no store-level cuts</li>
-          <li>$1B+ investment in store remodels, merchandise refresh, and technology</li>
-          <li>12 consecutive quarters of weak or declining sales; stock down &gt;20% past year</li>
-          <li>FY adjusted EPS guidance: $7–$8; Q4 sales expected to decline low single digits</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="article-card retailer" id="art-tgt-2">
-      <div class="article-meta">
-        <span class="article-tag retailer">Retailer – Target</span>
-        <span class="impact-badge impact-medium">MEDIUM</span>
-        <span class="article-date">February 2026</span>
-        <span class="article-source"><a href="https://corporate.target.com/press/release/2026/02/target-announces-executive-leadership-changes-to-accelerate-growth,-confirms-q4-financial-guidance" target="_blank">Target Corporate</a></span>
-      </div>
-      <h4>Ulta Beauty Partnership Ends Aug 2026; Major Executive Reshuffling</h4>
-      <p><strong>Summary:</strong> Target's partnership with Ulta Beauty will end in August 2026. The company also announced executive changes: Cara Sylvester becomes CMO, Lisa Roath becomes COO, and Rick Gomez departs.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>Ulta Beauty shop-in-shop partnership mutually ending August 2026</li>
-          <li>Cara Sylvester: Chief Guest Experience Officer → Chief Merchandising Officer</li>
-          <li>Lisa Roath succeeds Fiddelke as COO; Rick Gomez (Chief Commercial Officer) leaving</li>
-          <li>Target fell off Fortune's Most Admired Companies All-Star list for first time since 2001</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- TJX / OFF-PRICE -->
-  <div class="company-section">
-    <div class="company-section-header">
-      <div class="company-avatar" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">TJX</div>
-      <h3>TJX / Off-Price Retailers</h3>
-    </div>
-
-    <div class="article-card retailer" id="art-tjx-1">
-      <div class="article-meta">
-        <span class="article-tag retailer">Retailer – TJX</span>
-        <span class="impact-badge impact-medium">MEDIUM</span>
-        <span class="article-date">February 2026</span>
-        <span class="article-source"><a href="https://markets.financialcontent.com/wral/article/marketminute-2025-12-23-tjx-surges-as-off-price-retail-becomes-the-consumer-anchor-for-2026" target="_blank">Financial Content</a></span>
-      </div>
-      <h4>TJX Surges to Record Highs; Targets 7,000 Global Stores</h4>
-      <p><strong>Summary:</strong> TJX stock hit record highs following stellar Q3 results. Management set a long-term target of 7,000 stores globally, with expansion planned for Spain (T.K. Maxx), Mexico, and the Middle East.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>Long-term target: 7,000 stores globally (currently expanding)</li>
-          <li>Expansion into Spain, deeper footprint in Mexico and Middle East via joint ventures</li>
-          <li>Middle-income households increasingly prioritizing discount shopping</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="article-card retailer" id="art-tjx-2">
-      <div class="article-meta">
-        <span class="article-tag retailer">Retailer – Off-Price</span>
-        <span class="impact-badge impact-medium">MEDIUM</span>
-        <span class="article-date">February 2026</span>
-        <span class="article-source"><a href="https://www.retaildive.com/news/off-price-retailers-tjx-ross-burlington-q2-take-market-share-department-stores-macys/725711/" target="_blank">Retail Dive</a></span>
-      </div>
-      <h4>Off-Price Dominance Continues; Macy's to Close 150 Stores by 2026</h4>
-      <p><strong>Summary:</strong> Off-price retailers continue gaining market share as department stores retreat. Ross opened 24 new locations recently; Macy's plans to shutter 150 underperforming stores; Nordstrom Rack expands with 5 new locations.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>Ross Stores: 1,795 locations; Q2 net sales +7.1% YoY to $5.3B, comps +4%</li>
-          <li>Macy's shuttering 150 stores by 2026; more layoffs planned</li>
-          <li>Nordstrom Rack: 5 new locations in 2026; "largest source of new customers" per CEO</li>
-          <li>Burlington lagged peers: 1% comp growth, stock dropped ~12% on modest revenue miss</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========== SUPPLY CHAIN SECTION ========== -->
-  <div class="section-divider supply">
-    <div class="section-icon supply">S</div>
-    <h2 style="margin-bottom:0">Supply Chain &amp; Trade Policy</h2>
-  </div>
-
-  <!-- TRADE -->
-  <div class="company-section">
-    <div class="company-section-header">
-      <div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">TR</div>
-      <h3>Trade / Tariffs</h3>
-    </div>
-
-    <div class="article-card supply" id="art-sc-1">
-      <div class="article-meta">
-        <span class="article-tag supply">Trade</span>
-        <span class="impact-badge impact-critical">CRITICAL</span>
-        <span class="article-date">February 2026</span>
-        <span class="article-source"><a href="https://www.businessoffashion.com/articles/global-markets/the-state-of-fashion-2026-report-tariffs-trade-us-market/" target="_blank">Business of Fashion</a></span>
-      </div>
-      <h4>US Apparel Tariff Rates Spike to 23.8%; China at Unprecedented 69.1%</h4>
-      <p><strong>Summary:</strong> The weighted average tariff on US apparel and footwear imports spiked from 13% to 36% (peaked at 54%). China-origin apparel faces 69.1% tariffs. Over 80% of fashion companies plan to further reduce China sourcing by 2027.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>Average US apparel tariff: 23.8% (May 2025), up from 13.9% a year prior</li>
-          <li>China tariff: 69.1% (May 2025), up from 22.1% in January 2025</li>
-          <li>Vietnam tariff negotiated down from 46% to 20%</li>
-          <li>Bangladesh tariff: reduced from 37% → 35% → 20% → now 19% under new trade deal</li>
-          <li>Key sourcing hubs (China, Vietnam, India, Bangladesh, Indonesia) = 63% of US imports, ~75% of tariff impact</li>
-          <li>Supreme Court reviewing tariff legality; experts expect possible rollback</li>
-        </ul>
-      </div>
-      <table class="data-table">
-        <tr><th>Country</th><th>Previous Tariff</th><th>Current Tariff</th><th>Change</th></tr>
-        <tr><td>China</td><td>22.1%</td><td>69.1%</td><td>+47.0%p</td></tr>
-        <tr><td>Vietnam</td><td>~15%</td><td>20%</td><td>+5.0%p</td></tr>
-        <tr><td>Bangladesh</td><td>~15%</td><td>19%</td><td>+4.0%p</td></tr>
-        <tr><td>US Average (Apparel)</td><td>13.9%</td><td>23.8%</td><td>+9.9%p</td></tr>
-      </table>
-    </div>
-
-    <div class="article-card supply" id="art-sc-2">
-      <div class="article-meta">
-        <span class="article-tag supply">Trade</span>
-        <span class="impact-badge impact-critical">CRITICAL</span>
-        <span class="article-date">February 2026</span>
-        <span class="article-source"><a href="https://www.supplychainbrain.com/articles/43004-eu-to-end-de-minimis-with-new-customs-fee-in-2026" target="_blank">SupplyChainBrain</a></span>
-      </div>
-      <h4>De Minimis Exemption Abolished: US Parcels Drop 54%; EU Imposes €3 Duty from July 2026</h4>
-      <p><strong>Summary:</strong> The US eliminated the $800 de minimis exemption that fueled Shein and Temu's growth. Parcels under $800 to the US dropped 54%. The EU will impose a €3 customs fee on sub-€150 parcels starting July 2026.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>US: de minimis eliminated for China/Hong Kong in May 2025, later extended globally</li>
-          <li>Sub-$800 parcels to the US fell 54% (Universal Postal Union data)</li>
-          <li>EU: €3 flat customs duty on parcels &lt; €150 from July 1, 2026 — two years ahead of schedule</li>
-          <li>France lobbying for €5 per parcel; citing inaccurate value declarations by Chinese exporters</li>
-          <li>Shein and Temu adapted: shifted to US/EU warehouse-based distribution models</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- PRODUCTION COUNTRIES -->
-  <div class="company-section">
-    <div class="company-section-header">
-      <div class="company-avatar" style="background:linear-gradient(135deg,#ea580c,#c2410c)">BD</div>
-      <h3>Production Countries</h3>
-    </div>
-
-    <div class="article-card supply" id="art-sc-3">
-      <div class="article-meta">
-        <span class="article-tag supply">Production</span>
-        <span class="impact-badge impact-high">HIGH</span>
-        <span class="article-date">February 12, 2026</span>
-        <span class="article-source"><a href="https://www.tbsnews.net/bangladesh-election-2026/bangladesh-election-offers-hope-garment-sector-battered-tariffs-and-unrest" target="_blank">The Business Standard</a></span>
-      </div>
-      <h4>Bangladesh Election Amid Garment Crisis; Textile Mills Shut Down</h4>
-      <p><strong>Summary:</strong> Bangladesh held elections on Feb 12 as its garment sector — 80% of exports — suffered six straight months of declining exports due to US tariffs. Textile mills went on indefinite shutdown over duty-free import disputes.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>Garments = 80% of Bangladesh's exports, &gt;10% of GDP</li>
-          <li>Six consecutive months of falling exports due to US tariffs (19% current rate)</li>
-          <li>BTMA announced indefinite shutdown of all textile mills from Feb 1 — duty-free yarn import dispute</li>
-          <li>Up to 1 million workers in spinning operations could be affected</li>
-          <li>Bangladesh leads green manufacturing: 268 LEED-certified garment factories (world's most)</li>
-          <li>Export target FY2025-26: $44.49B from textiles/garments (total $63.5B)</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- RAW MATERIALS -->
-  <div class="company-section">
-    <div class="company-section-header">
-      <div class="company-avatar" style="background:linear-gradient(135deg,#d97706,#b45309)">RM</div>
-      <h3>Raw Materials</h3>
-    </div>
-
-    <div class="article-card supply" id="art-sc-4">
-      <div class="article-meta">
-        <span class="article-tag supply">Raw Materials</span>
-        <span class="impact-badge impact-medium">MEDIUM</span>
-        <span class="article-date">February 11, 2026</span>
-        <span class="article-source"><a href="https://tradingeconomics.com/commodity/cotton" target="_blank">Trading Economics</a></span>
-      </div>
-      <h4>Cotton Prices Fall to 59–62 Cents/lb; USDA Cuts US Production Forecast</h4>
-      <p><strong>Summary:</strong> Cotton prices dropped to near multi-month lows of 59–62 cents/lb, pressured by a strong US dollar and weak demand. The USDA cut US production forecasts, while India raised its crop estimate by 2.5%.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>Cotton price: 61.89 USd/lb (Feb 11), down 4.65% monthly, down 8.16% YoY</li>
-          <li>USDA weekly spot average: 58.96 cents/lb (week ending Feb 5), down from 60.00 cents prior week</li>
-          <li>USDA cut US production forecast vs previous estimate and 2024 crop</li>
-          <li>India Cotton Association raised FY2025-26 crop estimate by 2.5% to 317 lakh bales</li>
-          <li>US cotton exports forecast: 12.2M bales in MY2025/26 (+300K bales vs prior year)</li>
-        </ul>
-      </div>
-      <table class="data-table">
-        <tr><th>Metric</th><th>Current</th><th>Prior Week</th><th>Year Ago</th></tr>
-        <tr><td>Cotton Price (USd/lb)</td><td>61.89</td><td>~63.0</td><td>67.4</td></tr>
-        <tr><td>USDA Spot Average</td><td>58.96¢</td><td>60.00¢</td><td>62.29¢</td></tr>
-      </table>
-    </div>
-  </div>
-
-  <!-- SUSTAINABILITY -->
-  <div class="company-section">
-    <div class="company-section-header">
-      <div class="company-avatar" style="background:linear-gradient(135deg,#059669,#047857)">ES</div>
-      <h3>Sustainability</h3>
-    </div>
-
-    <div class="article-card supply" id="art-sc-5">
-      <div class="article-meta">
-        <span class="article-tag supply">Sustainability</span>
-        <span class="impact-badge impact-high">HIGH</span>
-        <span class="article-date">February 2026</span>
-        <span class="article-source"><a href="https://www.carbonfact.com/blog/policy/eu-regulations-for-textile-brands" target="_blank">Carbonfact</a></span>
-      </div>
-      <h4>EU ESPR Bans Unsold Product Destruction July 2026; France Eco-Score Enforcement Oct 2026</h4>
-      <p><strong>Summary:</strong> Critical EU sustainability deadlines approach: ESPR prohibits destruction of unsold products for large enterprises from July 19, 2026. France's eco-score enforcement begins October 2026 with penalties up to 5% of annual revenue.</p>
-      <div class="details-list">
-        <p><strong>Details:</strong></p>
-        <ul>
-          <li>EU ESPR: Unsold product destruction ban for large enterprises effective July 19, 2026</li>
-          <li>Digital Product Passport (DPP) delegated act for textiles: January 2026 publish, July 2027 enforcement</li>
-          <li>France eco-score: Full enforcement October 2026; non-compliance fines up to 5% of annual revenue</li>
-          <li>EU Empowering Consumers Directive: National implementation by March 2026, effective September 2026</li>
-          <li>California SB 253: Scope 1 & 2 emissions reporting starts 2026 for companies &gt;$1B revenue</li>
-          <li>California SB 707: Textile producers must participate in approved PRO by July 1, 2026</li>
-        </ul>
-      </div>
-      <table class="data-table">
-        <tr><th>Regulation</th><th>Region</th><th>Deadline</th><th>Impact</th></tr>
-        <tr><td>ESPR – Unsold Destruction Ban</td><td>EU</td><td>Jul 19, 2026</td><td>Large enterprises</td></tr>
-        <tr><td>France Eco-Score</td><td>France</td><td>Oct 2026</td><td>Up to 5% revenue fine</td></tr>
-        <tr><td>ECGT Directive</td><td>EU</td><td>Sep 2026</td><td>Greenwashing ban</td></tr>
-        <tr><td>SB 253 Emissions Reporting</td><td>California</td><td>2026</td><td>Companies &gt;$1B rev</td></tr>
-        <tr><td>SB 707 Textile EPR</td><td>California</td><td>Jul 2026</td><td>All textile producers</td></tr>
-      </table>
-    </div>
-  </div>
-
-</div>
-
-<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
-
-<script>
-function scrollToArticle(articleId) {
-  const el = document.getElementById(articleId);
-  if (!el) return;
-  const toast = document.getElementById('toast');
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 1200);
-  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  el.classList.remove('flash');
-  void el.offsetWidth;
-  el.classList.add('flash');
-}
-
-function filterTable(level, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const table = document.getElementById('summaryTable');
-  const newsRows = table.querySelectorAll('.news-row');
-  const groupHeaders = table.querySelectorAll('.group-header');
-  if (level === 'all') {
-    newsRows.forEach(r => r.style.display = '');
-    groupHeaders.forEach(h => h.style.display = '');
-    return;
-  }
-  newsRows.forEach(row => {
-    row.style.display = row.dataset.impact === level ? '' : 'none';
-  });
-  groupHeaders.forEach(header => {
-    const company = header.dataset.company;
-    const visibleRows = table.querySelectorAll(`.news-row[data-company="${company}"][data-impact="${level}"]`);
-    header.style.display = visibleRows.length > 0 ? '' : 'none';
-  });
-}
-
-window.addEventListener('scroll', () => {
-  const btn = document.getElementById('backToTop');
-  btn.classList.toggle('visible', window.scrollY > 300);
-});
-</script>
-
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backToTop');
+            btn.classList.toggle('visible', window.scrollY > 300);
+        });
+    </script>
 </body>
 </html>
