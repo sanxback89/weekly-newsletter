@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weekly Retail Industry Newsletter - Feb 7-13, 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Weekly Newsletter - Apparel Industry News Updates</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --color-primary: #1a2332;
@@ -12,10 +12,17 @@
             --color-supply: #dc2626;
             --color-bg: #fafbfc;
             --color-surface: #ffffff;
-            --color-critical: #dc2626;
-            --color-high: #ea580c;
-            --color-medium: #2563eb;
-            --color-low: #6b7280;
+            --color-text: #1f2937;
+            --color-text-light: #6b7280;
+            --color-border: #e5e7eb;
+            --color-critical-bg: #fef2f2;
+            --color-critical-text: #dc2626;
+            --color-high-bg: #fff7ed;
+            --color-high-text: #ea580c;
+            --color-medium-bg: #eff6ff;
+            --color-medium-text: #2563eb;
+            --color-low-bg: #f3f4f6;
+            --color-low-text: #6b7280;
         }
 
         * {
@@ -27,16 +34,13 @@
         body {
             font-family: 'DM Sans', sans-serif;
             background-color: var(--color-bg);
-            color: #333;
+            color: var(--color-text);
             line-height: 1.6;
         }
 
+        /* Language Toggle */
         .lang-kr {
             display: none;
-        }
-
-        .lang-kr.active {
-            display: inline;
         }
 
         /* Header */
@@ -44,304 +48,395 @@
             background: linear-gradient(135deg, #1a2332 0%, #2d3748 100%);
             color: white;
             padding: 2rem;
-            margin-bottom: 2rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .header-container {
             max-width: 1200px;
             margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        h1 {
+        .header-title {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-title h1 {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
         }
 
-        .date-range {
-            font-size: 1.1rem;
+        .header-title p {
+            font-size: 0.95rem;
             opacity: 0.9;
-            margin-bottom: 1.5rem;
         }
 
-        .header-controls {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .lang-toggle {
+        .language-toggle {
             display: flex;
             gap: 0.5rem;
-            background-color: rgba(255, 255, 255, 0.15);
-            padding: 0.25rem;
-            border-radius: 20px;
         }
 
         .lang-btn {
-            background-color: transparent;
+            background-color: rgba(255, 255, 255, 0.2);
             color: white;
-            border: none;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 0.5rem 1rem;
-            border-radius: 18px;
+            border-radius: 20px;
             cursor: pointer;
+            font-size: 0.85rem;
             font-weight: 600;
-            font-size: 0.9rem;
             transition: all 0.3s ease;
         }
 
         .lang-btn.active {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.9);
             color: var(--color-primary);
         }
 
         .lang-btn:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.3);
         }
 
-        .lang-btn.active:hover {
-            background-color: white;
-        }
-
-        /* Main Content */
+        /* Main Container */
         .container {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
 
-        /* Filter Buttons */
-        .filter-section {
-            margin-bottom: 2rem;
+        /* Navigation */
+        .nav-sections {
             display: flex;
-            gap: 0.75rem;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-link {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--color-text);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        /* Summary Table */
+        .summary-section {
+            background-color: var(--color-surface);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .summary-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-primary);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
         }
 
         .filter-btn {
-            background-color: var(--color-surface);
-            border: 2px solid #ddd;
             padding: 0.5rem 1rem;
+            border: 1px solid var(--color-border);
+            background-color: var(--color-bg);
             border-radius: 20px;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            font-weight: 500;
             transition: all 0.3s ease;
         }
 
-        .filter-btn:hover,
         .filter-btn.active {
-            border-color: var(--color-primary);
             background-color: var(--color-primary);
             color: white;
+            border-color: var(--color-primary);
         }
 
-        /* Summary Table */
         .summary-table {
             width: 100%;
-            margin-bottom: 2rem;
             border-collapse: collapse;
-            background-color: var(--color-surface);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-size: 0.9rem;
         }
 
         .summary-table thead {
-            background-color: var(--color-primary);
-            color: white;
+            background-color: var(--color-bg);
+            border-bottom: 2px solid var(--color-border);
         }
 
         .summary-table th {
             padding: 1rem;
             text-align: left;
             font-weight: 600;
-            border-bottom: 2px solid #ddd;
+            color: var(--color-text);
         }
 
         .summary-table td {
-            padding: 0.75rem 1rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .company-group-header {
-            background-color: #f8fafc;
-            font-weight: 600;
-        }
-
-        .company-group-header td {
             padding: 1rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .summary-table tbody tr {
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .summary-table tbody tr:hover {
+            background-color: var(--color-bg);
+        }
+
+        .company-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
         .company-avatar {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            margin-right: 0.75rem;
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        .article-row {
-            cursor: pointer;
-        }
-
-        .article-row:hover {
-            background-color: #f8fafc;
-        }
-
-        .article-row td:first-child {
-            padding-left: 3rem;
-            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            flex-shrink: 0;
         }
 
         .impact-badge {
             display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-size: 0.85rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 600;
-            color: white;
+            text-align: center;
+            width: 80px;
         }
 
         .impact-critical {
-            background-color: var(--color-critical);
+            background-color: var(--color-critical-bg);
+            color: var(--color-critical-text);
         }
 
         .impact-high {
-            background-color: var(--color-high);
+            background-color: var(--color-high-bg);
+            color: var(--color-high-text);
         }
 
         .impact-medium {
-            background-color: var(--color-medium);
+            background-color: var(--color-medium-bg);
+            color: var(--color-medium-text);
         }
 
         .impact-low {
-            background-color: var(--color-low);
+            background-color: var(--color-low-bg);
+            color: var(--color-low-text);
         }
 
-        /* Section Dividers */
+        /* Section Divider */
         .section-divider {
+            display: flex;
+            align-items: center;
             margin: 3rem 0 2rem 0;
-            padding: 1rem 0 0 0;
-            border-top: 4px solid;
-            padding-top: 1rem;
+            gap: 1rem;
         }
 
-        .section-divider.retailer {
-            border-top-color: var(--color-retailer);
+        .section-divider::before {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background-color: var(--color-border);
         }
 
-        .section-divider.supply {
-            border-top-color: var(--color-supply);
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .section-icon.retailer {
+            background-color: var(--color-retailer);
+        }
+
+        .section-icon.supply {
+            background-color: var(--color-supply);
         }
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
+            font-size: 1.6rem;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background-color: var(--color-border);
         }
 
         /* Article Cards */
-        .article-card {
-            background-color: var(--color-surface);
-            border-left: 5px solid;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            scroll-margin-top: 100px;
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
 
-        .article-card.retailer-section {
+        .article-card {
+            background-color: var(--color-surface);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--color-border);
+            scroll-margin-top: 120px;
+        }
+
+        .article-card.retailer {
             border-left-color: var(--color-retailer);
         }
 
-        .article-card.supply-section {
+        .article-card.supply {
             border-left-color: var(--color-supply);
         }
 
-        .article-headline {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            margin-bottom: 0.75rem;
-            color: var(--color-primary);
+        .article-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .article-card.flash {
+            animation: flash-highlight 0.8s ease;
+        }
+
+        @keyframes flash-highlight {
+            0% {
+                background-color: #fef3c7;
+            }
+            100% {
+                background-color: var(--color-surface);
+            }
+        }
+
+        .article-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--color-border);
         }
 
         .article-meta {
             display: flex;
+            justify-content: space-between;
+            align-items: start;
             gap: 1rem;
-            align-items: center;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-company {
+            font-weight: 600;
+            color: var(--color-primary);
             font-size: 0.9rem;
         }
 
-        .article-tag {
-            background-color: #f0f0f0;
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-weight: 600;
-            color: var(--color-primary);
-        }
-
         .article-date {
-            color: #666;
+            color: var(--color-text-light);
+            font-size: 0.8rem;
+            white-space: nowrap;
         }
 
-        .article-source {
+        .article-impact {
+            text-align: right;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
             color: var(--color-primary);
+            line-height: 1.3;
+            margin-bottom: 0.75rem;
         }
 
-        .article-source a {
-            color: var(--color-primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .article-source a:hover {
-            text-decoration: underline;
+        .article-content {
+            padding: 1.5rem;
         }
 
         .article-summary {
             margin-bottom: 1rem;
-            font-size: 1rem;
-            line-height: 1.7;
-            color: #333;
+            color: var(--color-text);
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         .article-details {
-            background-color: #f8fafc;
-            padding: 1rem;
-            border-radius: 4px;
-            margin-top: 1rem;
+            margin-bottom: 1rem;
         }
 
         .article-details h4 {
             font-weight: 600;
-            margin-bottom: 0.75rem;
             color: var(--color-primary);
-            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
         }
 
         .article-details ul {
             list-style: none;
-            padding-left: 1rem;
+            padding: 0;
         }
 
         .article-details li {
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #555;
+            padding: 0.4rem 0;
+            color: var(--color-text);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 1.25rem;
         }
 
-        .article-details li:before {
-            content: "• ";
-            color: var(--color-primary);
-            font-weight: bold;
-            margin-right: 0.5rem;
+        .article-details li::before {
+            content: '▪';
+            position: absolute;
+            left: 0;
+            color: var(--color-text-light);
+        }
+
+        .article-source {
+            font-size: 0.75rem;
+            color: var(--color-text-light);
+            word-break: break-all;
         }
 
         /* Back to Top Button */
@@ -352,14 +447,17 @@
             background-color: var(--color-primary);
             color: white;
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             cursor: pointer;
             display: none;
-            font-weight: 600;
+            align-items: center;
+            justify-content: center;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
             z-index: 99;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
         }
 
         .back-to-top:hover {
@@ -368,1079 +466,992 @@
         }
 
         .back-to-top.show {
-            display: block;
+            display: flex;
         }
 
         /* Toast Notification */
         .toast {
             position: fixed;
-            top: 2rem;
-            right: 2rem;
+            bottom: 2rem;
+            left: 2rem;
             background-color: var(--color-primary);
             color: white;
             padding: 1rem 1.5rem;
-            border-radius: 8px;
+            border-radius: 6px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            display: none;
-            z-index: 100;
-            animation: slideIn 0.3s ease;
+            z-index: 98;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            max-width: 300px;
         }
 
         .toast.show {
-            display: block;
+            opacity: 1;
+            pointer-events: auto;
         }
 
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
-            h1 {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .header-title h1 {
                 font-size: 1.8rem;
             }
 
-            .header-controls {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .article-meta {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-
-            .back-to-top {
-                bottom: 1rem;
-                right: 1rem;
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
-            }
-
-            .toast {
-                right: 1rem;
-                left: 1rem;
+            .articles-grid {
+                grid-template-columns: 1fr;
             }
 
             .summary-table {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
 
             .summary-table th,
             .summary-table td {
-                padding: 0.75rem 0.5rem;
+                padding: 0.75rem;
             }
 
-            .article-row td:first-child {
-                padding-left: 2rem;
-                font-size: 0.85rem;
+            .company-avatar {
+                width: 30px;
+                height: 30px;
+                font-size: 0.7rem;
             }
 
-            .article-headline {
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 1rem;
+                right: 1rem;
                 font-size: 1.2rem;
+            }
+
+            .toast {
+                left: 1rem;
+                right: 1rem;
+                max-width: none;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="header-container">
-            <h1><span class="lang-en">Weekly Newsletter</span><span class="lang-kr" style="display: none;">주간 뉴스레터</span></h1>
-            <div class="date-range">
-                <span class="lang-en">February 7 – February 13, 2026</span>
-                <span class="lang-kr" style="display: none;">2026년 2월 7일 ~ 2월 13일</span>
+            <div class="header-title">
+                <h1><span class="lang-en">Weekly Newsletter</span><span class="lang-kr">주간 뉴스레터</span></h1>
+                <p><span class="lang-en">February 13 – February 19, 2026</span><span class="lang-kr">2026년 2월 13일 – 2월 19일</span></p>
             </div>
-            <div class="header-controls">
-                <div class="lang-toggle">
-                    <button class="lang-btn active" onclick="toggleLanguage('en')">ENG</button>
-                    <button class="lang-btn" onclick="toggleLanguage('kr')">KOR</button>
-                </div>
+            <div class="language-toggle">
+                <button class="lang-btn active" data-lang="en" onclick="toggleLanguage('en')">ENG</button>
+                <button class="lang-btn" data-lang="kr" onclick="toggleLanguage('kr')">KOR</button>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Filter Section -->
-        <div class="filter-section">
-            <span class="lang-en"><strong>Impact Filter:</strong></span>
-            <span class="lang-kr" style="display: none;"><strong>영향도 필터:</strong></span>
-            <button class="filter-btn active" onclick="filterTable('all', this)">
-                <span class="lang-en">All</span>
-                <span class="lang-kr" style="display: none;">모두</span>
-            </button>
-            <button class="filter-btn" onclick="filterTable('critical', this)">
-                <span class="lang-en">Critical</span>
-                <span class="lang-kr" style="display: none;">긴급</span>
-            </button>
-            <button class="filter-btn" onclick="filterTable('high', this)">
-                <span class="lang-en">High</span>
-                <span class="lang-kr" style="display: none;">높음</span>
-            </button>
-            <button class="filter-btn" onclick="filterTable('medium', this)">
-                <span class="lang-en">Medium</span>
-                <span class="lang-kr" style="display: none;">중간</span>
-            </button>
-            <button class="filter-btn" onclick="filterTable('low', this)">
-                <span class="lang-en">Low</span>
-                <span class="lang-kr" style="display: none;">낮음</span>
-            </button>
+    <div class="container">
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <h2><span class="lang-en">News Summary by Company</span><span class="lang-kr">기업별 뉴스 요약</span></h2>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterTable('all')"><span class="lang-en">All</span><span class="lang-kr">전체</span></button>
+                <button class="filter-btn" onclick="filterTable('critical')"><span class="lang-en">Critical</span><span class="lang-kr">긴급</span></button>
+                <button class="filter-btn" onclick="filterTable('high')"><span class="lang-en">High</span><span class="lang-kr">높음</span></button>
+                <button class="filter-btn" onclick="filterTable('medium')"><span class="lang-en">Medium</span><span class="lang-kr">중간</span></button>
+                <button class="filter-btn" onclick="filterTable('low')"><span class="lang-en">Low</span><span class="lang-kr">낮음</span></button>
+            </div>
+
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th><span class="lang-en">Company</span><span class="lang-kr">기업</span></th>
+                        <th><span class="lang-en">Article</span><span class="lang-kr">기사</span></th>
+                        <th><span class="lang-en">Impact</span><span class="lang-kr">영향</span></th>
+                    </tr>
+                </thead>
+                <tbody id="summaryTable">
+                    <!-- Populated by JavaScript -->
+                </tbody>
+            </table>
         </div>
-
-        <!-- Summary Table -->
-        <table class="summary-table" id="summaryTable">
-            <thead>
-                <tr>
-                    <th><span class="lang-en">Company</span><span class="lang-kr" style="display: none;">회사</span></th>
-                    <th><span class="lang-en">Articles</span><span class="lang-kr" style="display: none;">기사</span></th>
-                    <th><span class="lang-en">Top Impact</span><span class="lang-kr" style="display: none;">주요 영향도</span></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Gap Inc -->
-                <tr class="company-group-header" data-company="Gap Inc">
-                    <td><span style="background: linear-gradient(135deg, #00549e 0%, #003d75 100%);" class="company-avatar"></span>Gap Inc</td>
-                    <td>4</td>
-                    <td><span class="impact-badge impact-high">High</span></td>
-                </tr>
-                <tr class="article-row" data-impact="medium" onclick="scrollToArticle('art-gap-1')">
-                    <td><span class="lang-en">Gap Inc Appoints Pam Kaufman as Chief Entertainment Officer</span><span class="lang-kr" style="display: none;">Gap Inc, Pam Kaufman을 최고 엔터테인먼트 책임자로 임명</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-medium">Medium</span></td>
-                </tr>
-                <tr class="article-row" data-impact="low" onclick="scrollToArticle('art-gap-2')">
-                    <td><span class="lang-en">Gap and Harlem's Fashion Row Reunite for Denim Collaboration</span><span class="lang-kr" style="display: none;">Gap과 Harlem's Fashion Row, 데님 콜라보레이션</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-low">Low</span></td>
-                </tr>
-                <tr class="article-row" data-impact="low" onclick="scrollToArticle('art-gap-3')">
-                    <td><span class="lang-en">Gap Inc. Partners with Water.org to Launch Get Blue Initiative</span><span class="lang-kr" style="display: none;">Gap Inc., Water.org과 Get Blue 이니셔티브 출범</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-low">Low</span></td>
-                </tr>
-                <tr class="article-row" data-impact="high" onclick="scrollToArticle('art-gap-4')">
-                    <td><span class="lang-en">Gap Inc. Expands into Beauty Market with Old Navy Leading Launch</span><span class="lang-kr" style="display: none;">Gap Inc., Old Navy 주도로 뷰티 시장 진출</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-high">High</span></td>
-                </tr>
-
-                <!-- Walmart -->
-                <tr class="company-group-header" data-company="Walmart">
-                    <td><span style="background: linear-gradient(135deg, #0071ce 0%, #004c91 100%);" class="company-avatar"></span>Walmart</td>
-                    <td>4</td>
-                    <td><span class="impact-badge impact-high">High</span></td>
-                </tr>
-                <tr class="article-row" data-impact="high" onclick="scrollToArticle('art-wmt-1')">
-                    <td><span class="lang-en">Walmart Completes CEO Transition: John Furner Takes the Helm</span><span class="lang-kr" style="display: none;">Walmart CEO 교체 완료: John Furner 취임</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-high">High</span></td>
-                </tr>
-                <tr class="article-row" data-impact="high" onclick="scrollToArticle('art-wmt-2')">
-                    <td><span class="lang-en">Walmart Q4 Earnings Set for February 19, Stock Hits All-Time High</span><span class="lang-kr" style="display: none;">Walmart, 2월 19일 Q4 실적 발표, 주가 사상 최고</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-high">High</span></td>
-                </tr>
-                <tr class="article-row" data-impact="medium" onclick="scrollToArticle('art-wmt-3')">
-                    <td><span class="lang-en">Walmart Expands AI and Store Modernization in 2026</span><span class="lang-kr" style="display: none;">Walmart, 2026년 AI 및 매장 현대화 확대</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-medium">Medium</span></td>
-                </tr>
-                <tr class="article-row" data-impact="medium" onclick="scrollToArticle('art-wmt-4')">
-                    <td><span class="lang-en">Walmart Partners with OpenAI for Employee AI Training</span><span class="lang-kr" style="display: none;">Walmart, OpenAI와 직원 AI 교육 파트너십</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-medium">Medium</span></td>
-                </tr>
-
-                <!-- Kohl's -->
-                <tr class="company-group-header" data-company="Kohl's">
-                    <td><span style="background: linear-gradient(135deg, #c8102e 0%, #9a0c23 100%);" class="company-avatar"></span>Kohl's</td>
-                    <td>2</td>
-                    <td><span class="impact-badge impact-medium">Medium</span></td>
-                </tr>
-                <tr class="article-row" data-impact="medium" onclick="scrollToArticle('art-kss-1')">
-                    <td><span class="lang-en">Kohl's Reports Q4 Revenue of $3.58B, Down 3.6% YoY</span><span class="lang-kr" style="display: none;">Kohl's, Q4 매출 $35.8억 보고, 전년 대비 3.6% 감소</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-medium">Medium</span></td>
-                </tr>
-                <tr class="article-row" data-impact="medium" onclick="scrollToArticle('art-kss-2')">
-                    <td><span class="lang-en">Kohl's Faces Store Closure Uncertainty Amid Turnaround Efforts</span><span class="lang-kr" style="display: none;">Kohl's, 턴어라운드 노력 속 매장 폐쇄 불확실성</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-medium">Medium</span></td>
-                </tr>
-
-                <!-- American Eagle Outfitters -->
-                <tr class="company-group-header" data-company="American Eagle Outfitters">
-                    <td><span style="background: linear-gradient(135deg, #2d4a3e 0%, #1a2f26 100%);" class="company-avatar"></span>American Eagle Outfitters</td>
-                    <td>3</td>
-                    <td><span class="impact-badge impact-high">High</span></td>
-                </tr>
-                <tr class="article-row" data-impact="low" onclick="scrollToArticle('art-aeo-1')">
-                    <td><span class="lang-en">Sydney Sweeney Rings NYSE Bell with AEO Chairman</span><span class="lang-kr" style="display: none;">Sydney Sweeney, AEO 회장과 NYSE 오프닝 벨</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-low">Low</span></td>
-                </tr>
-                <tr class="article-row" data-impact="high" onclick="scrollToArticle('art-aeo-2')">
-                    <td><span class="lang-en">AEO Winds Down Quiet Logistics, Closes Boston and Dallas Fulfillment Centers</span><span class="lang-kr" style="display: none;">AEO, Quiet Logistics 정리 및 Boston·Dallas 물류센터 폐쇄</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-high">High</span></td>
-                </tr>
-                <tr class="article-row" data-impact="low" onclick="scrollToArticle('art-aeo-3')">
-                    <td><span class="lang-en">AEO Launches Creator Community Ambassador Program</span><span class="lang-kr" style="display: none;">AEO, 크리에이터 커뮤니티 앰버서더 프로그램 출시</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-low">Low</span></td>
-                </tr>
-
-                <!-- Target -->
-                <tr class="company-group-header" data-company="Target">
-                    <td><span style="background: linear-gradient(135deg, #cc0000 0%, #990000 100%);" class="company-avatar"></span>Target</td>
-                    <td>3</td>
-                    <td><span class="impact-badge impact-high">High</span></td>
-                </tr>
-                <tr class="article-row" data-impact="high" onclick="scrollToArticle('art-tgt-1')">
-                    <td><span class="lang-en">Target Announces Major Executive Leadership Shakeup Under New CEO</span><span class="lang-kr" style="display: none;">Target, 신임 CEO 하에 대규모 경영진 개편</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-high">High</span></td>
-                </tr>
-                <tr class="article-row" data-impact="medium" onclick="scrollToArticle('art-tgt-2')">
-                    <td><span class="lang-en">Target Invests in Store Staffing, Cuts ~500 Non-Store Roles</span><span class="lang-kr" style="display: none;">Target, 매장 인력 투자 및 비매장 인력 감축</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-medium">Medium</span></td>
-                </tr>
-                <tr class="article-row" data-impact="low" onclick="scrollToArticle('art-tgt-3')">
-                    <td><span class="lang-en">Target Celebrates 10th Year of 1 Million Volunteer Hours</span><span class="lang-kr" style="display: none;">Target, 100만 봉사시간 10주년 달성</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-low">Low</span></td>
-                </tr>
-
-                <!-- H&M -->
-                <tr class="company-group-header" data-company="H&M">
-                    <td><span style="background: linear-gradient(135deg, #e50010 0%, #b3000d 100%);" class="company-avatar"></span>H&M</td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-medium">Medium</span></td>
-                </tr>
-                <tr class="article-row" data-impact="medium" onclick="scrollToArticle('art-hm-1')">
-                    <td><span class="lang-en">H&M Targets Middle Market Positioning, Reduces Low-Price SKUs by 15-25%</span><span class="lang-kr" style="display: none;">H&M, 중가 시장 포지셔닝으로 저가 SKU 15-25% 축소</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-medium">Medium</span></td>
-                </tr>
-
-                <!-- Uniqlo / Fast Retailing -->
-                <tr class="company-group-header" data-company="Uniqlo / Fast Retailing">
-                    <td><span style="background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);" class="company-avatar"></span>Uniqlo</td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-high">High</span></td>
-                </tr>
-                <tr class="article-row" data-impact="high" onclick="scrollToArticle('art-unq-1')">
-                    <td><span class="lang-en">Fast Retailing Posts Record Q1 2026 Profit, Plans 11 New U.S. Stores</span><span class="lang-kr" style="display: none;">Fast Retailing, Q1 2026 사상 최고 수익 및 미국 11개점 계획</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-high">High</span></td>
-                </tr>
-
-                <!-- Shein -->
-                <tr class="company-group-header" data-company="Shein">
-                    <td><span style="background: linear-gradient(135deg, #000000 0%, #333333 100%);" class="company-avatar"></span>Shein</td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-medium">Medium</span></td>
-                </tr>
-                <tr class="article-row" data-impact="medium" onclick="scrollToArticle('art-shein-1')">
-                    <td><span class="lang-en">Shein Drops "Net Zero" Language in Germany After Greenwashing Accusation</span><span class="lang-kr" style="display: none;">Shein, 독일에서 그린워싱 비난 후 "넷제로" 표현 중단</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-medium">Medium</span></td>
-                </tr>
-
-                <!-- Macy's -->
-                <tr class="company-group-header" data-company="Macy's">
-                    <td><span style="background: linear-gradient(135deg, #e21836 0%, #b3122b 100%);" class="company-avatar"></span>Macy's</td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-high">High</span></td>
-                </tr>
-                <tr class="article-row" data-impact="high" onclick="scrollToArticle('art-mcy-1')">
-                    <td><span class="lang-en">Macy's Announces 14 Store Closures in 2026 Under "Bold New Chapter" Plan</span><span class="lang-kr" style="display: none;">Macy's, "Bold New Chapter" 계획에 따라 2026년 14개 매장 폐쇄</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-high">High</span></td>
-                </tr>
-
-                <!-- TJX Companies -->
-                <tr class="company-group-header" data-company="TJX Companies">
-                    <td><span style="background: linear-gradient(135deg, #e31837 0%, #b3122b 100%);" class="company-avatar"></span>TJX Companies</td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-medium">Medium</span></td>
-                </tr>
-                <tr class="article-row" data-impact="medium" onclick="scrollToArticle('art-tjx-1')">
-                    <td><span class="lang-en">TJX Posts Revenue of $14.4B (+6.9%), Outperforms Department Stores</span><span class="lang-kr" style="display: none;">TJX, 매출 $144억 기록, 백화점 실적 앞서</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-medium">Medium</span></td>
-                </tr>
-
-                <!-- Lululemon -->
-                <tr class="company-group-header" data-company="Lululemon">
-                    <td><span style="background: linear-gradient(135deg, #d31334 0%, #a60f29 100%);" class="company-avatar"></span>Lululemon</td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-high">High</span></td>
-                </tr>
-                <tr class="article-row" data-impact="high" onclick="scrollToArticle('art-lulu-1')">
-                    <td><span class="lang-en">Lululemon CEO to Step Down, Elliott Pushes for Ralph Lauren Executive</span><span class="lang-kr" style="display: none;">Lululemon CEO 퇴임, Elliott이 Ralph Lauren 임원 추진</span></td>
-                    <td>1</td>
-                    <td><span class="impact-badge impact-high">High</span></td>
-                </tr>
-            </tbody>
-        </table>
 
         <!-- Retailer Section -->
-        <div class="section-divider retailer">
-            <h2 class="section-title">Retailer</h2>
+        <div class="section-divider">
+            <div class="section-icon retailer">●</div>
+            <h2 class="section-title"><span class="lang-en">Retailer</span><span class="lang-kr">소매</span></h2>
         </div>
 
-        <!-- Gap Inc Articles -->
-        <article class="article-card retailer-section" id="art-gap-1">
-            <h3 class="article-headline">[RETAIL] <span class="lang-en">Gap Inc Appoints Pam Kaufman as Chief Entertainment Officer</span><span class="lang-kr" style="display: none;">Gap Inc, Pam Kaufman을 최고 엔터테인먼트 책임자로 임명</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">RETAIL</span>
-                <span class="impact-badge impact-medium">Medium</span>
-                <span class="article-date">February 2, 2026</span>
-                <span class="article-source"><a href="https://variety.com/2026/biz/news/gap-inc-pam-kaufman-chief-entertainment-officer-1236631059/" target="_blank">Variety</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Gap Inc. has created a new Chief Entertainment Officer role, appointing former Paramount executive Pam Kaufman to lead its "Fashiontainment" strategy across music, TV, film, sports, and gaming.</span>
-                <span class="lang-kr" style="display: none;">Gap Inc.가 새로운 최고 엔터테인먼트 책임자(Chief Entertainment Officer) 직책을 신설하고, 전 Paramount 임원 Pam Kaufman을 임명하여 음악, TV, 영화, 스포츠, 게이밍 전반의 "패션테인먼트(Fashiontainment)" 전략을 이끌게 됨.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Kaufman started on February 2, overseeing entertainment, content, and licensing initiatives</span><span class="lang-kr" style="display: none;">Kaufman은 2월 2일부터 엔터테인먼트, 콘텐츠, 라이선싱 이니셔티브 총괄</span></li>
-                    <li><span class="lang-en">Gap Inc. will establish a Los Angeles-based office on Sunset Boulevard beginning spring 2026</span><span class="lang-kr" style="display: none;">2026년 봄부터 LA 선셋 블러바드에 사무실 설립 예정</span></li>
-                    <li><span class="lang-en">Strategy spans all four brands: Gap, Old Navy, Banana Republic, and Athleta</span><span class="lang-kr" style="display: none;">Gap, Old Navy, Banana Republic, Athleta 4개 브랜드 전체 적용 전략</span></li>
-                    <li><span class="lang-en">Kaufman previously served as President and CEO of Paramount's International Markets division</span><span class="lang-kr" style="display: none;">Kaufman은 이전에 Paramount 국제 시장 부문 사장 겸 CEO 역임</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <article class="article-card retailer-section" id="art-gap-2">
-            <h3 class="article-headline">[RETAIL] <span class="lang-en">Gap and Harlem's Fashion Row Reunite for Denim Collaboration</span><span class="lang-kr" style="display: none;">Gap과 Harlem's Fashion Row, 데님 콜라보레이션으로 재결합</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">RETAIL</span>
-                <span class="impact-badge impact-low">Low</span>
-                <span class="article-date">February 11, 2026</span>
-                <span class="article-source"><a href="https://www.gapinc.com/en-us/news" target="_blank">Gap Inc. Newsroom</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Gap has partnered with Harlem's Fashion Row for a denim collaboration, continuing the brand's strategy of culturally relevant partnerships.</span>
-                <span class="lang-kr" style="display: none;">Gap이 Harlem's Fashion Row와 데님 콜라보레이션을 진행하며, 문화적으로 의미 있는 파트너십 전략을 이어감.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Partnership reimagines classic denim silhouettes</span><span class="lang-kr" style="display: none;">클래식 데님 실루엣을 새롭게 재해석</span></li>
-                    <li><span class="lang-en">Builds on Gap's ongoing strategy of cultural collaborations</span><span class="lang-kr" style="display: none;">Gap의 문화 콜라보레이션 전략 지속</span></li>
-                    <li><span class="lang-en">Supports Gap's brand repositioning under CEO Richard Dickson</span><span class="lang-kr" style="display: none;">CEO Richard Dickson 하의 브랜드 재포지셔닝 지원</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <article class="article-card retailer-section" id="art-gap-3">
-            <h3 class="article-headline">[BUSINESS] <span class="lang-en">Gap Inc. Partners with Water.org to Launch "Get Blue™" Initiative</span><span class="lang-kr" style="display: none;">Gap Inc., Water.org과 파트너십으로 "Get Blue™" 이니셔티브 출범</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">BUSINESS</span>
-                <span class="impact-badge impact-low">Low</span>
-                <span class="article-date">February 11, 2026</span>
-                <span class="article-source"><a href="https://www.gapinc.com/en-us/news" target="_blank">Gap Inc.</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Gap Inc. joined Amazon, Starbucks, and Ecolab in partnering with Water.org to launch the "Get Blue™" initiative, advancing the goal of reaching 200 million people with safe water access by 2030.</span>
-                <span class="lang-kr" style="display: none;">Gap Inc.가 Amazon, Starbucks, Ecolab과 함께 Water.org의 "Get Blue™" 이니셔티브에 참여, 2030년까지 2억 명에게 안전한 식수 접근 목표 달성 추진.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Multi-corporate partnership with major global brands</span><span class="lang-kr" style="display: none;">글로벌 주요 브랜드들과의 다중 기업 파트너십</span></li>
-                    <li><span class="lang-en">Aligns with Gap Inc.'s ESG and sustainability commitments</span><span class="lang-kr" style="display: none;">Gap Inc.의 ESG 및 지속가능성 목표와 부합</span></li>
-                    <li><span class="lang-en">Water.org's mission: provide safe water and sanitation access globally</span><span class="lang-kr" style="display: none;">Water.org 미션: 전 세계 안전한 식수 및 위생 접근 제공</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <article class="article-card retailer-section" id="art-gap-4">
-            <h3 class="article-headline">[RETAIL] <span class="lang-en">Gap Inc. Expands into Beauty Market with Old Navy Leading Launch</span><span class="lang-kr" style="display: none;">Gap Inc., Old Navy를 선두로 뷰티 시장 진출</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">RETAIL</span>
-                <span class="impact-badge impact-high">High</span>
-                <span class="article-date">February 2026</span>
-                <span class="article-source"><a href="https://www.gapinc.com/en-us/news" target="_blank">Gap Inc.</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Gap Inc. announced strategic expansion into the $100 billion U.S. beauty and personal care market, with Old Navy launching beauty products across 150 stores and Gap brand planning its own beauty line in 2026.</span>
-                <span class="lang-kr" style="display: none;">Gap Inc.가 1,000억 달러 규모의 미국 뷰티 및 퍼스널 케어 시장에 전략적으로 진출, Old Navy가 150개 매장에서 뷰티 제품을 출시하고 Gap 브랜드도 2026년 자체 뷰티 라인을 계획.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Old Navy beauty expanding to 150 stores initially</span><span class="lang-kr" style="display: none;">Old Navy 뷰티, 초기 150개 매장으로 확대</span></li>
-                    <li><span class="lang-en">Gap brand beauty line planned for 2026 launch</span><span class="lang-kr" style="display: none;">Gap 브랜드 뷰티 라인 2026년 출시 계획</span></li>
-                    <li><span class="lang-en">Entering the $100 billion U.S. beauty and personal care market</span><span class="lang-kr" style="display: none;">1,000억 달러 규모의 미국 뷰티·퍼스널케어 시장 진입</span></li>
-                    <li><span class="lang-en">AI-powered unified platform built with Google Cloud across all four brands</span><span class="lang-kr" style="display: none;">Google Cloud와 AI 기반 통합 플랫폼 구축 (4개 브랜드 전체)</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <!-- Walmart Articles -->
-        <article class="article-card retailer-section" id="art-wmt-1">
-            <h3 class="article-headline">[BUSINESS] <span class="lang-en">Walmart Completes CEO Transition: John Furner Takes the Helm</span><span class="lang-kr" style="display: none;">Walmart CEO 교체 완료: John Furner 취임</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">BUSINESS</span>
-                <span class="impact-badge impact-high">High</span>
-                <span class="article-date">February 1, 2026</span>
-                <span class="article-source"><a href="https://corporate.walmart.com/news/2026/01/16/walmart-announces-leadership-changes" target="_blank">Walmart Corporate</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Doug McMillon retired as Walmart CEO on January 31 after nearly 12 years and 40+ years with the company. John Furner officially became CEO on February 1, 2026, marking a major leadership transition.</span>
-                <span class="lang-kr" style="display: none;">Doug McMillon이 약 12년간의 CEO 직과 40년 이상의 근속 후 1월 31일 퇴임. John Furner가 2월 1일 공식적으로 CEO에 취임하며 주요 리더십 전환을 완료.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Doug McMillon served as CEO since February 2014</span><span class="lang-kr" style="display: none;">Doug McMillon, 2014년 2월부터 CEO 역임</span></li>
-                    <li><span class="lang-en">David Guggina appointed President and CEO of Walmart U.S.</span><span class="lang-kr" style="display: none;">David Guggina, Walmart U.S. 사장 겸 CEO로 임명</span></li>
-                    <li><span class="lang-en">Chris Nicholas became President and CEO of Walmart International</span><span class="lang-kr" style="display: none;">Chris Nicholas, Walmart International 사장 겸 CEO로 취임</span></li>
-                    <li><span class="lang-en">Latriece Watkins named President and CEO of Sam's Club U.S.</span><span class="lang-kr" style="display: none;">Latriece Watkins, Sam's Club U.S. 사장 겸 CEO로 임명</span></li>
-                    <li><span class="lang-en">Seth Dallaire appointed EVP and Chief Growth Officer</span><span class="lang-kr" style="display: none;">Seth Dallaire, EVP 겸 최고 성장 책임자로 임명</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <article class="article-card retailer-section" id="art-wmt-2">
-            <h3 class="article-headline">[BUSINESS] <span class="lang-en">Walmart Q4 Earnings Set for February 19, Stock Hits All-Time High</span><span class="lang-kr" style="display: none;">Walmart, 2월 19일 Q4 실적 발표 예정, 주가 사상 최고치</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">BUSINESS</span>
-                <span class="impact-badge impact-high">High</span>
-                <span class="article-date">February 12, 2026</span>
-                <span class="article-source"><a href="https://www.businesswire.com/news/home/20260212080792/en/Walmart-To-Host-Fourth-Quarter-Earnings-Conference-Call-February-19-2026" target="_blank">BusinessWire</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Walmart announced its Q4 FY2026 earnings release for February 19. The stock hit an all-time high above $129 per share, with 75% of market share gains in 2025 coming from households earning over $100,000 annually.</span>
-                <span class="lang-kr" style="display: none;">Walmart이 2월 19일 Q4 FY2026 실적을 발표할 예정. 주가는 $129 이상으로 사상 최고치를 경신했으며, 2025년 시장 점유율 확대의 75%가 연소득 $100,000 이상 가구에서 발생.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Q4 earnings release: February 19, 2026 at 6 a.m. CST</span><span class="lang-kr" style="display: none;">Q4 실적 발표: 2026년 2월 19일 오전 6시 (CST)</span></li>
-                    <li><span class="lang-en">Stock price hit all-time high above $129</span><span class="lang-kr" style="display: none;">주가 $129 이상 사상 최고치 기록</span></li>
-                    <li><span class="lang-en">75% of market share gains came from households earning $100K+</span><span class="lang-kr" style="display: none;">시장 점유율 확대의 75%가 연소득 $100K+ 가구에서 발생</span></li>
-                    <li><span class="lang-en">U.S. retail sales for December remained flat (0.0%), missing 0.4% forecast</span><span class="lang-kr" style="display: none;">12월 미국 소매 매출 전월 대비 0.0% 성장 (예상 0.4% 미달)</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <article class="article-card retailer-section" id="art-wmt-3">
-            <h3 class="article-headline">[RETAIL] <span class="lang-en">Walmart Expands AI and Store Modernization in 2026</span><span class="lang-kr" style="display: none;">Walmart, 2026년 AI 및 매장 현대화 확대</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">RETAIL</span>
-                <span class="impact-badge impact-medium">Medium</span>
-                <span class="article-date">February 2026</span>
-                <span class="article-source"><a href="https://www.mashed.com/2058955/major-walmart-changes-expect-2026/" target="_blank">CNBC / Mashed</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Walmart is accelerating technology deployment with AI shopping assistant "Sparky," digital shelf labels across thousands of stores, and plans to update or construct over 100 "Store of the Future" locations.</span>
-                <span class="lang-kr" style="display: none;">Walmart이 AI 쇼핑 어시스턴트 "Sparky", 수천 개 매장의 디지털 선반 라벨, 100개 이상의 "미래형 매장(Store of the Future)" 건설/리모델링 계획으로 기술 도입을 가속화.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">AI shopping assistant "Sparky" suggests products, surfaces reviews, locates items</span><span class="lang-kr" style="display: none;">AI 쇼핑 어시스턴트 "Sparky": 상품 추천, 리뷰 표시, 상품 위치 안내</span></li>
-                    <li><span class="lang-en">Digital shelf labels replacing paper tags across thousands of U.S. stores</span><span class="lang-kr" style="display: none;">미국 수천 개 매장에 디지털 선반 라벨 도입 (종이 태그 대체)</span></li>
-                    <li><span class="lang-en">100+ "Store of the Future" locations planned for construction/renovation</span><span class="lang-kr" style="display: none;">100개 이상 "미래형 매장" 건설/리모델링 계획</span></li>
-                    <li><span class="lang-en">New fulfillment center with autonomous mobile robots breaking ground in 2026</span><span class="lang-kr" style="display: none;">자율 이동 로봇 장착 새 물류센터 2026년 착공</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <article class="article-card retailer-section" id="art-wmt-4">
-            <h3 class="article-headline">[BUSINESS] <span class="lang-en">Walmart Partners with OpenAI for Employee AI Training</span><span class="lang-kr" style="display: none;">Walmart, OpenAI와 직원 AI 교육 파트너십</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">BUSINESS</span>
-                <span class="impact-badge impact-medium">Medium</span>
-                <span class="article-date">February 2026</span>
-                <span class="article-source"><a href="https://www.yahoo.com/news/articles/walmart-unveils-major-store-changes-150059255.html" target="_blank">Yahoo News</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Walmart announced a partnership with OpenAI providing all employees free access to AI training and certification programs, while enabling ChatGPT users to purchase Walmart products during chat sessions.</span>
-                <span class="lang-kr" style="display: none;">Walmart이 OpenAI와 파트너십을 체결하여 전 직원에게 무료 AI 교육 및 인증 프로그램을 제공하고, ChatGPT 사용자가 채팅 중 Walmart 제품을 구매할 수 있도록 통합.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">All Walmart workers receive free AI training and certification from OpenAI</span><span class="lang-kr" style="display: none;">전 Walmart 직원에게 OpenAI의 무료 AI 교육 및 인증 프로그램 제공</span></li>
-                    <li><span class="lang-en">ChatGPT integration allows product purchasing during chat sessions</span><span class="lang-kr" style="display: none;">ChatGPT 내 Walmart 제품 구매 기능 통합</span></li>
-                    <li><span class="lang-en">Part of Walmart's broader AI transformation strategy</span><span class="lang-kr" style="display: none;">Walmart의 광범위한 AI 전환 전략의 일환</span></li>
-                    <li><span class="lang-en">Walmart also plans to eliminate synthetic food dyes across all products</span><span class="lang-kr" style="display: none;">모든 제품에서 합성 식용 색소 제거 계획도 발표</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <!-- Kohl's Articles -->
-        <article class="article-card retailer-section" id="art-kss-1">
-            <h3 class="article-headline">[BUSINESS] <span class="lang-en">Kohl's Reports Q4 Revenue of $3.58B, Down 3.6% YoY</span><span class="lang-kr" style="display: none;">Kohl's, Q4 매출 $35.8억 보고, 전년 대비 3.6% 감소</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">BUSINESS</span>
-                <span class="impact-badge impact-medium">Medium</span>
-                <span class="article-date">February 2026</span>
-                <span class="article-source"><a href="https://finance.yahoo.com/quote/KSS/press-releases/" target="_blank">Yahoo Finance</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Kohl's posted Q4 revenue of $3.58 billion, beating analyst estimates of $3.37 billion but down 3.6% year-over-year, with net margin at 1.23% and ROE at 4.30%.</span>
-                <span class="lang-kr" style="display: none;">Kohl's가 Q4 매출 $35.8억을 기록하여 애널리스트 예상 $33.7억을 상회했으나, 전년 대비 3.6% 감소. 순이익률 1.23%, 자기자본이익률(ROE) 4.30%.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Q4 revenue: $3.58 billion (beat estimate of $3.37B)</span><span class="lang-kr" style="display: none;">Q4 매출: $35.8억 (예상 $33.7억 상회)</span></li>
-                    <li><span class="lang-en">Revenue down 3.6% YoY</span><span class="lang-kr" style="display: none;">매출 전년 대비 3.6% 감소</span></li>
-                    <li><span class="lang-en">Net margin: 1.23%</span><span class="lang-kr" style="display: none;">순이익률: 1.23%</span></li>
-                    <li><span class="lang-en">Return on equity: 4.30%</span><span class="lang-kr" style="display: none;">ROE: 4.30%</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <article class="article-card retailer-section" id="art-kss-2">
-            <h3 class="article-headline">[RETAIL] <span class="lang-en">Kohl's Faces Store Closure Uncertainty Amid Turnaround Efforts</span><span class="lang-kr" style="display: none;">Kohl's, 턴어라운드 노력 속 매장 폐쇄 불확실성</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">RETAIL</span>
-                <span class="impact-badge impact-medium">Medium</span>
-                <span class="article-date">February 2026</span>
-                <span class="article-source"><a href="https://www.the-sun.com/money/15645382/kohls-ceo-unveils-changes-shoppers-expect-kohls-cash/" target="_blank">The Sun</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">New Kohl's CEO is implementing key changes while reports circulate about potential store closures in 2026 across its approximately 1,100 store network in 49 states.</span>
-                <span class="lang-kr" style="display: none;">신임 Kohl's CEO가 핵심 전략 변화를 추진하는 가운데, 49개 주 약 1,100개 매장 네트워크에서 2026년 일부 매장 폐쇄 가능성 보도.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Approximately 1,100 stores across 49 states currently operating</span><span class="lang-kr" style="display: none;">현재 49개 주에서 약 1,100개 매장 운영 중</span></li>
-                    <li><span class="lang-en">New CEO unveiling strategic changes including Kohl's Cash restructuring</span><span class="lang-kr" style="display: none;">신임 CEO, Kohl's Cash 구조 개편 포함 전략적 변화 발표</span></li>
-                    <li><span class="lang-en">Store closure reports circulating but details remain limited</span><span class="lang-kr" style="display: none;">매장 폐쇄 보도 있으나 세부 사항은 제한적</span></li>
-                    <li><span class="lang-en">February promotions heavy with Valentine's and Presidents' Day events</span><span class="lang-kr" style="display: none;">2월 발렌타인데이 및 Presidents' Day 프로모션 집중</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <!-- American Eagle Outfitters Articles -->
-        <article class="article-card retailer-section" id="art-aeo-1">
-            <h3 class="article-headline">[RETAIL] <span class="lang-en">Sydney Sweeney Rings NYSE Bell with AEO Chairman, Boosting Brand Visibility</span><span class="lang-kr" style="display: none;">Sydney Sweeney, AEO 회장과 함께 NYSE 오프닝 벨 울려</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">RETAIL</span>
-                <span class="impact-badge impact-low">Low</span>
-                <span class="article-date">February 9, 2026</span>
-                <span class="article-source"><a href="https://www.stocktitan.net/news/AEO/nyse-content-update-american-eagle-outfitters-sydney-sweeney-to-ring-drzvv0m30epl.html" target="_blank">Stock Titan</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Actress Sydney Sweeney joined AEO Chairman and CEO Jay Schottenstein to ring the NYSE opening bell on February 9, reinforcing the brand's celebrity partnership strategy.</span>
-                <span class="lang-kr" style="display: none;">배우 Sydney Sweeney가 AEO 회장 겸 CEO Jay Schottenstein과 함께 2월 9일 NYSE 오프닝 벨을 울리며, 브랜드의 셀러브리티 파트너십 전략을 강화.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Part of AEO's ongoing brand visibility strategy</span><span class="lang-kr" style="display: none;">AEO의 지속적인 브랜드 가시성 전략의 일환</span></li>
-                    <li><span class="lang-en">Sydney Sweeney partnership deepens Gen Z and millennial engagement</span><span class="lang-kr" style="display: none;">Sydney Sweeney 파트너십으로 Gen Z 및 밀레니얼 참여도 강화</span></li>
-                    <li><span class="lang-en">AEO market cap stands at $4.58 billion as of February 2026</span><span class="lang-kr" style="display: none;">AEO 시가총액 2026년 2월 기준 $45.8억</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <article class="article-card retailer-section" id="art-aeo-2">
-            <h3 class="article-headline">[BUSINESS] <span class="lang-en">AEO Winds Down Quiet Logistics, Closes Boston and Dallas Fulfillment Centers</span><span class="lang-kr" style="display: none;">AEO, Quiet Logistics 정리 및 Boston·Dallas 물류센터 폐쇄</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">BUSINESS</span>
-                <span class="impact-badge impact-high">High</span>
-                <span class="article-date">February 2026</span>
-                <span class="article-source"><a href="https://finance.yahoo.com/news/american-eagle-outfitters-aeo-valuation-081227200.html" target="_blank">Yahoo Finance</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">American Eagle Outfitters decided to wind down its Quiet Logistics third-party operations and close fulfillment centers in Boston and Dallas, retaining only the Atlanta site for internal distribution.</span>
-                <span class="lang-kr" style="display: none;">American Eagle Outfitters가 Quiet Logistics 서드파티 운영을 종료하고 Boston과 Dallas 물류센터를 폐쇄, Atlanta 시설만 내부 유통용으로 유지.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Quiet Logistics third-party client operations wound down</span><span class="lang-kr" style="display: none;">Quiet Logistics 서드파티 클라이언트 운영 종료</span></li>
-                    <li><span class="lang-en">Boston and Dallas fulfillment centers closing</span><span class="lang-kr" style="display: none;">Boston, Dallas 물류센터 폐쇄</span></li>
-                    <li><span class="lang-en">Atlanta facility retained for internal distribution only</span><span class="lang-kr" style="display: none;">Atlanta 시설만 내부 유통용으로 유지</span></li>
-                    <li><span class="lang-en">Strategic refocus on core retail operations</span><span class="lang-kr" style="display: none;">핵심 리테일 운영에 전략적 재집중</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <article class="article-card retailer-section" id="art-aeo-3">
-            <h3 class="article-headline">[RETAIL] <span class="lang-en">AEO Launches Creator Community Ambassador Program</span><span class="lang-kr" style="display: none;">AEO, 크리에이터 커뮤니티 앰버서더 프로그램 출시</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">RETAIL</span>
-                <span class="impact-badge impact-low">Low</span>
-                <span class="article-date">February 2026</span>
-                <span class="article-source"><a href="https://simplywall.st/stocks/us/retail/nyse-aeo/american-eagle-outfitters/news/a-look-at-american-eagle-outfitters-aeo-valuation-after-crea" target="_blank">Simply Wall St</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">American Eagle launched the AE Creator Community, a nationwide ambassador program partnering with U.S.-based content creators with 1,000+ followers, shifting marketing toward grassroots creator networks.</span>
-                <span class="lang-kr" style="display: none;">American Eagle가 1,000명 이상의 팔로워를 보유한 미국 기반 콘텐츠 크리에이터와의 전국 앰버서더 프로그램인 AE Creator Community를 출시, 전통 광고에서 풀뿌리 크리에이터 네트워크로 마케팅 전환.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Nationwide ambassador program for creators with 1,000+ followers</span><span class="lang-kr" style="display: none;">1,000+ 팔로워 크리에이터 대상 전국 앰버서더 프로그램</span></li>
-                    <li><span class="lang-en">Formalizes long-term partnerships with content creators</span><span class="lang-kr" style="display: none;">콘텐츠 크리에이터와의 장기 파트너십 공식화</span></li>
-                    <li><span class="lang-en">Shift from traditional advertising to grassroots marketing</span><span class="lang-kr" style="display: none;">전통 광고에서 풀뿌리 마케팅으로 전환</span></li>
-                    <li><span class="lang-en">Lamine Yamal ambassador deal also announced (January 2026)</span><span class="lang-kr" style="display: none;">Lamine Yamal 앰버서더 계약도 발표 (2026년 1월)</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <!-- Target Articles -->
-        <article class="article-card retailer-section" id="art-tgt-1">
-            <h3 class="article-headline">[BUSINESS] <span class="lang-en">Target Announces Major Executive Leadership Shakeup Under New CEO</span><span class="lang-kr" style="display: none;">Target, 신임 CEO 하에 대규모 경영진 개편 발표</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">BUSINESS</span>
-                <span class="impact-badge impact-high">High</span>
-                <span class="article-date">February 10, 2026</span>
-                <span class="article-source"><a href="https://www.cnbc.com/2026/02/09/target-store-investment-job-cuts-customer-experience.html" target="_blank">CNBC</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">New CEO Michael Fiddelke, who took over February 1 from Brian Cornell, announced sweeping executive changes: Lisa Roath as COO, Cara Sylvester as Chief Merchandising Officer, while Rick Gomez exits and Jill Sando retires.</span>
-                <span class="lang-kr" style="display: none;">2월 1일 Brian Cornell로부터 CEO를 인수한 Michael Fiddelke가 대대적인 경영진 변경을 발표: Lisa Roath를 COO로, Cara Sylvester를 최고 머천다이징 책임자로 임명, Rick Gomez는 퇴임, Jill Sando는 은퇴.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Michael Fiddelke became CEO on February 1, 2026 (replacing Brian Cornell)</span><span class="lang-kr" style="display: none;">Michael Fiddelke, 2026년 2월 1일 CEO 취임 (Brian Cornell 후임)</span></li>
-                    <li><span class="lang-en">Lisa Roath appointed EVP and COO effective February 15</span><span class="lang-kr" style="display: none;">Lisa Roath, EVP 겸 COO로 2월 15일 임명</span></li>
-                    <li><span class="lang-en">Cara Sylvester moves from Chief Guest Experience Officer to Chief Merchandising Officer</span><span class="lang-kr" style="display: none;">Cara Sylvester, 최고 고객 경험 책임자에서 최고 머천다이징 책임자로 이동</span></li>
-                    <li><span class="lang-en">Rick Gomez (EVP, Chief Commercial Officer) moving to advisory role until April 17</span><span class="lang-kr" style="display: none;">Rick Gomez (EVP, 최고 상업 책임자), 4월 17일까지 자문역</span></li>
-                    <li><span class="lang-en">Jill Sando (CMO for apparel/accessories) retiring</span><span class="lang-kr" style="display: none;">Jill Sando (의류/액세서리 CMO) 은퇴</span></li>
-                    <li><span class="lang-en">Q4 2025 sales and full-year EPS confirmed in line with prior guidance</span><span class="lang-kr" style="display: none;">Q4 2025 매출 및 연간 EPS, 기존 가이던스와 일치 확인</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <article class="article-card retailer-section" id="art-tgt-2">
-            <h3 class="article-headline">[BUSINESS] <span class="lang-en">Target Invests in Store Staffing, Cuts ~500 Non-Store Roles</span><span class="lang-kr" style="display: none;">Target, 매장 인력 투자 확대 및 비매장 인력 ~500명 감축</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">BUSINESS</span>
-                <span class="impact-badge impact-medium">Medium</span>
-                <span class="article-date">February 9, 2026</span>
-                <span class="article-source"><a href="https://www.cnbc.com/2026/02/09/target-store-investment-job-cuts-customer-experience.html" target="_blank">CNBC</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Target will invest more in store labor while cutting approximately 500 roles at distribution centers and regional offices to address customer complaints about store conditions and checkout wait times.</span>
-                <span class="lang-kr" style="display: none;">Target이 매장 상태와 계산대 대기 시간에 대한 고객 불만을 해결하기 위해 매장 인력에 더 많은 투자를 하면서 물류센터와 지역 사무소에서 약 500명을 감축.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">~500 job cuts at distribution centers and regional offices</span><span class="lang-kr" style="display: none;">물류센터 및 지역 사무소에서 ~500명 감축</span></li>
-                    <li><span class="lang-en">Increased investment in front-line store employee hours</span><span class="lang-kr" style="display: none;">현장 매장 직원 근무 시간 투자 증대</span></li>
-                    <li><span class="lang-en">Response to customer complaints about sloppy stores and out-of-stock items</span><span class="lang-kr" style="display: none;">매장 관리 불량 및 품절 문제에 대한 고객 불만 대응</span></li>
-                    <li><span class="lang-en">Reducing number of store districts for streamlined management</span><span class="lang-kr" style="display: none;">관리 효율화를 위한 매장 지구 수 축소</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <article class="article-card retailer-section" id="art-tgt-3">
-            <h3 class="article-headline">[RETAIL] <span class="lang-en">Target Celebrates 10th Year of 1 Million Volunteer Hours</span><span class="lang-kr" style="display: none;">Target, 100만 봉사시간 10주년 달성</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">RETAIL</span>
-                <span class="impact-badge impact-low">Low</span>
-                <span class="article-date">February 4, 2026</span>
-                <span class="article-source"><a href="https://corporate.target.com/press/release/2026/02/target-celebrates-10th-year-of-1-million-volunteer-hours,-deepens-community-vitalization-efforts-for" target="_blank">Target Corporate</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Target reached its 1 million volunteer hours goal for the 10th consecutive year and committed to deepening community efforts with $1 million investment in Bullseye Builds across 13 neighborhoods.</span>
-                <span class="lang-kr" style="display: none;">Target이 10년 연속 100만 봉사시간 목표를 달성하고, 2026년 13개 지역에서 Bullseye Builds 프로그램에 100만 달러 투자를 약속.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">10th consecutive year achieving 1 million volunteer hours</span><span class="lang-kr" style="display: none;">10년 연속 100만 봉사시간 달성</span></li>
-                    <li><span class="lang-en">$1 million investment in Bullseye Builds program</span><span class="lang-kr" style="display: none;">Bullseye Builds 프로그램에 100만 달러 투자</span></li>
-                    <li><span class="lang-en">13 neighborhoods selected for reimagined community spaces in 2026</span><span class="lang-kr" style="display: none;">2026년 13개 지역에서 커뮤니티 공간 재구성 예정</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <!-- H&M Articles -->
-        <article class="article-card retailer-section" id="art-hm-1">
-            <h3 class="article-headline">[RETAIL] <span class="lang-en">H&M Targets Middle Market Positioning, Reduces Low-Price SKUs by 15-25%</span><span class="lang-kr" style="display: none;">H&M, 중가 시장 포지셔닝 목표로 저가 SKU 15-25% 축소</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">RETAIL</span>
-                <span class="impact-badge impact-medium">Medium</span>
-                <span class="article-date">February 2026</span>
-                <span class="article-source"><a href="https://www.businessoffashion.com/articles/retail/the-state-of-fashion-2026-report-brand-elevation-pricing-strategy-value-mid-market/" target="_blank">Business of Fashion</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">According to the BoF-McKinsey State of Fashion 2026 report, H&M has reduced SKUs in its lowest price tiers in the UK by 15-25% between 2023 and 2025, positioning itself between Zara's premium appeal and Shein's ultra-low pricing.</span>
-                <span class="lang-kr" style="display: none;">BoF-McKinsey 2026 패션 현황 보고서에 따르면, H&M이 2023년에서 2025년 사이 영국 내 최저 가격대 SKU를 15-25% 축소하며, Zara의 프리미엄 매력과 Shein의 초저가 사이에 포지셔닝.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Lowest price tier SKUs reduced 15-25% in UK between 2023-2025</span><span class="lang-kr" style="display: none;">영국 내 최저 가격대 SKU 15-25% 축소 (2023-2025)</span></li>
-                    <li><span class="lang-en">New CEO's strategy: more affordable than Zara, higher quality than Shein</span><span class="lang-kr" style="display: none;">신임 CEO 전략: Zara보다 저렴하되 Shein보다 고품질</span></li>
-                    <li><span class="lang-en">BoF analyst: "H&M has been stuck in the middle with a muddled identity"</span><span class="lang-kr" style="display: none;">BoF 분석가: "H&M은 모호한 정체성으로 중간에 끼어있다"</span></li>
-                    <li><span class="lang-en">76% of fashion executives cite trade/tariff responses as top 2026 concern</span><span class="lang-kr" style="display: none;">패션 경영진의 76%가 무역/관세 대응을 2026년 최대 관심사로 꼽음</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <!-- Uniqlo / Fast Retailing Articles -->
-        <article class="article-card retailer-section" id="art-unq-1">
-            <h3 class="article-headline">[BUSINESS] <span class="lang-en">Fast Retailing Posts Record Q1 2026 Profit, Plans 11 New U.S. Stores</span><span class="lang-kr" style="display: none;">Fast Retailing, Q1 2026 사상 최고 수익 기록 및 미국 신규 11개점 계획</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">BUSINESS</span>
-                <span class="impact-badge impact-high">High</span>
-                <span class="article-date">February 2026</span>
-                <span class="article-source"><a href="https://www.just-style.com/news/fast-retailing-boasts-strong-q1-2026-with-uniqlo-growing-globally/" target="_blank">Just-Style</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Fast Retailing reported Q1 FY2026 profit up 13% to ¥158.5 billion, with Uniqlo International revenue rising 20.3% YoY to ¥603.8 billion. The company plans to open 11 new U.S. stores in 2026.</span>
-                <span class="lang-kr" style="display: none;">Fast Retailing이 Q1 FY2026 수익 13% 증가한 ¥1,585억을 보고, Uniqlo International 매출이 전년 대비 20.3% 증가한 ¥6,038억 기록. 2026년 미국에 11개 신규 매장 오픈 예정.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Q1 profit: ¥158.5 billion (+13% YoY)</span><span class="lang-kr" style="display: none;">Q1 순이익: ¥1,585억 (+13% YoY)</span></li>
-                    <li><span class="lang-en">Profit before income taxes: ¥226.7 billion (+15.3%)</span><span class="lang-kr" style="display: none;">세전이익: ¥2,267억 (+15.3%)</span></li>
-                    <li><span class="lang-en">Uniqlo International revenue: ¥603.8 billion (+20.3% YoY)</span><span class="lang-kr" style="display: none;">Uniqlo International 매출: ¥6,038억 (+20.3% YoY)</span></li>
-                    <li><span class="lang-en">Uniqlo International business profit: ¥117.3 billion (+38% YoY)</span><span class="lang-kr" style="display: none;">Uniqlo International 사업이익: ¥1,173억 (+38% YoY)</span></li>
-                    <li><span class="lang-en">11 new U.S. stores planned: Chicago, San Francisco, NYC, Boston, Seattle, D.C.</span><span class="lang-kr" style="display: none;">미국 11개 신규 매장: Chicago, San Francisco, NYC, Boston, Seattle, D.C.</span></li>
-                    <li><span class="lang-en">FY2026 revenue projection: ¥3.800 trillion (+11.7%)</span><span class="lang-kr" style="display: none;">FY2026 매출 전망: ¥3조 8,000억 (+11.7%)</span></li>
-                    <li><span class="lang-en">U.S. tariff impact expected at 2-3% on H2 operating profit</span><span class="lang-kr" style="display: none;">미국 관세가 하반기 영업이익에 2-3% 영향 전망</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <!-- Shein Articles -->
-        <article class="article-card retailer-section" id="art-shein-1">
-            <h3 class="article-headline">[SUSTAINABILITY] <span class="lang-en">Shein Drops "Net Zero" Language in Germany After Greenwashing Accusation</span><span class="lang-kr" style="display: none;">Shein, 독일에서 그린워싱 비난 후 "넷제로(Net Zero)" 표현 중단</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">SUSTAINABILITY</span>
-                <span class="impact-badge impact-medium">Medium</span>
-                <span class="article-date">February 13, 2026</span>
-                <span class="article-source"><a href="https://trellis.net/article/shein-net-zero-greenwashing-germany/" target="_blank">Trellis</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Shein will no longer use "net zero" in its German consumer communications after watchdog DUH accused the ultra-fast fashion brand of deception, noting Shein's emissions rose 23% in 2024 while releasing up to 9,000 new designs daily.</span>
-                <span class="lang-kr" style="display: none;">Shein이 독일 감시단체 DUH의 기만 비난 이후 독일 내 소비자 커뮤니케이션에서 "넷제로" 표현 사용을 중단. DUH는 Shein의 2024년 배출량이 23% 증가했으며, 하루 최대 9,000개 신상품을 출시한다고 지적.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">DUH (German watchdog) accused Shein of greenwashing</span><span class="lang-kr" style="display: none;">DUH (독일 감시단체)가 Shein의 그린워싱 비난</span></li>
-                    <li><span class="lang-en">Shein's emissions rose 23% in 2024</span><span class="lang-kr" style="display: none;">Shein의 2024년 배출량 23% 증가</span></li>
-                    <li><span class="lang-en">Up to 9,000 new designs released daily</span><span class="lang-kr" style="display: none;">하루 최대 9,000개 신상품 출시</span></li>
-                    <li><span class="lang-en">75% of products made from virgin polyester</span><span class="lang-kr" style="display: none;">제품의 75%가 버진 폴리에스터 소재</span></li>
-                    <li><span class="lang-en">Shein surpassed Inditex in total emissions</span><span class="lang-kr" style="display: none;">Shein이 총 배출량에서 Inditex를 초과</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <!-- Macy's Articles -->
-        <article class="article-card retailer-section" id="art-mcy-1">
-            <h3 class="article-headline">[BUSINESS] <span class="lang-en">Macy's Announces 14 Store Closures in 2026 Under "Bold New Chapter" Plan</span><span class="lang-kr" style="display: none;">Macy's, "Bold New Chapter" 계획에 따라 2026년 14개 매장 폐쇄 발표</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">BUSINESS</span>
-                <span class="impact-badge impact-high">High</span>
-                <span class="article-date">February 2026</span>
-                <span class="article-source"><a href="https://www.axios.com/2025/01/09/macys-store-closing-list-2025" target="_blank">Axios</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Macy's will close 14 stores across 11 states in 2026 as part of its "Bold New Chapter" restructuring plan launched in 2024, following 66 store closures in 2025.</span>
-                <span class="lang-kr" style="display: none;">Macy's가 2024년 시작한 "Bold New Chapter" 구조조정 계획에 따라 2026년 11개 주에서 14개 매장을 폐쇄할 예정. 2025년에는 이미 66개 매장을 폐쇄.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">14 stores closing in 11 states in 2026</span><span class="lang-kr" style="display: none;">2026년 11개 주에서 14개 매장 폐쇄</span></li>
-                    <li><span class="lang-en">Part of plan to close up to 150 underperforming locations</span><span class="lang-kr" style="display: none;">최대 150개 저실적 매장 폐쇄 계획의 일환</span></li>
-                    <li><span class="lang-en">66 stores already closed in 2025</span><span class="lang-kr" style="display: none;">2025년 이미 66개 매장 폐쇄</span></li>
-                    <li><span class="lang-en">Closures in CA, GA, MD, MI, MN, NH, NJ, NY, NC, PA, TX, WA</span><span class="lang-kr" style="display: none;">폐쇄 대상: CA, GA, MD, MI, MN, NH, NJ, NY, NC, PA, TX, WA</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <!-- TJX Companies Articles -->
-        <article class="article-card retailer-section" id="art-tjx-1">
-            <h3 class="article-headline">[BUSINESS] <span class="lang-en">TJX Posts Revenue of $14.4B (+6.9%), Outperforms Department Stores</span><span class="lang-kr" style="display: none;">TJX, 매출 $144억 (+6.9%) 기록, 백화점 실적 앞서</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">BUSINESS</span>
-                <span class="impact-badge impact-medium">Medium</span>
-                <span class="article-date">February 2026</span>
-                <span class="article-source"><a href="https://www.retaildive.com/topic/department-stores/" target="_blank">Retail Dive</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">TJX Companies (TJ Maxx, Marshalls, HomeGoods) reported revenue of $14.4 billion (+6.9%) and EPS of $1.10, beating forecasts as bargain hunting drives consumer behavior and off-price retailers gain market share.</span>
-                <span class="lang-kr" style="display: none;">TJX Companies (TJ Maxx, Marshalls, HomeGoods)가 매출 $144억 (+6.9%), EPS $1.10을 기록하여 예상치를 상회. 소비자 알뜰 구매 행태가 오프프라이스 리테일러의 시장 점유율 확대를 견인.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Revenue: $14.4 billion (+6.9% YoY)</span><span class="lang-kr" style="display: none;">매출: $144억 (+6.9% YoY)</span></li>
-                    <li><span class="lang-en">EPS: $1.10, beating forecasts</span><span class="lang-kr" style="display: none;">EPS: $1.10, 예상치 상회</span></li>
-                    <li><span class="lang-en">75% of Walmart's market share gains from $100K+ households</span><span class="lang-kr" style="display: none;">소비자들의 "트레이드 다운" 행태가 오프프라이스 성장 견인</span></li>
-                    <li><span class="lang-en">Off-price gaining from consumers trading down</span><span class="lang-kr" style="display: none;">오프프라이스가 소비자 "다운그레이드"로부터 확대</span></li>
-                    <li><span class="lang-en">Marshalls closed 2 stores (LA and San Jose) in early January 2026</span><span class="lang-kr" style="display: none;">Marshalls, 2026년 1월 초 LA 및 San Jose 2개 매장 폐쇄</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <!-- Lululemon Articles -->
-        <article class="article-card retailer-section" id="art-lulu-1">
-            <h3 class="article-headline">[BUSINESS] <span class="lang-en">Lululemon CEO to Step Down, Elliott Pushes for Ralph Lauren Executive as Replacement</span><span class="lang-kr" style="display: none;">Lululemon CEO 퇴임 예정, Elliott이 Ralph Lauren 임원을 후임으로 추진</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">BUSINESS</span>
-                <span class="impact-badge impact-high">High</span>
-                <span class="article-date">February 2026</span>
-                <span class="article-source"><a href="https://www.retaildive.com/news/lululemon-enters-six-international-markets-greece-austria-india-2026/808480/" target="_blank">Retail Dive</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Lululemon CEO Calvin McDonald is set to step down after 7 years. Elliott Investment Management (with $1B+ stake) is pushing for Ralph Lauren executive Jane Nielsen as next CEO, while the brand expands into 6 new international markets.</span>
-                <span class="lang-kr" style="display: none;">Lululemon CEO Calvin McDonald가 7년 만에 퇴임 예정. Elliott Investment Management ($10억 이상 지분 보유)가 Ralph Lauren 임원 Jane Nielsen을 차기 CEO로 추진 중이며, 브랜드는 6개 신규 국제 시장으로 확장.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Calvin McDonald stepping down as CEO</span><span class="lang-kr" style="display: none;">Calvin McDonald, CEO에서 퇴임 예정</span></li>
-                    <li><span class="lang-en">Elliott Investment Management holds $1B+ stake</span><span class="lang-kr" style="display: none;">Elliott Investment Management, $10억 이상 지분 보유</span></li>
-                    <li><span class="lang-en">Pushing for Jane Nielsen (Ralph Lauren executive) as next CEO</span><span class="lang-kr" style="display: none;">Jane Nielsen (Ralph Lauren 임원)을 차기 CEO로 추진</span></li>
-                    <li><span class="lang-en">Founder Chip Wilson nominating 3 board candidates</span><span class="lang-kr" style="display: none;">창업자 Chip Wilson, 이사회 후보 3명 지명</span></li>
-                    <li><span class="lang-en">Americas revenue fell 2% in most recent quarter</span><span class="lang-kr" style="display: none;">미주 지역 매출 최근 분기 2% 감소</span></li>
-                    <li><span class="lang-en">Expanding into Greece, Austria, Poland, Hungary, Romania, India via franchise</span><span class="lang-kr" style="display: none;">그리스, 오스트리아, 폴란드, 헝가리, 루마니아, 인도에 프랜차이즈 진출</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <!-- Supply Chain & Trade Policy Section -->
-        <div class="section-divider supply">
-            <h2 class="section-title">Supply Chain & Trade Policy</h2>
+        <div class="articles-grid" id="retailerGrid">
+            <!-- Articles will be populated by JavaScript -->
         </div>
 
-        <!-- Trade / Tariffs Articles -->
-        <article class="article-card supply-section" id="art-sc-1">
-            <h3 class="article-headline">[TRADE] <span class="lang-en">De Minimis Exemption Phase 2 Takes Effect March 1, Ending Flat-Rate Postal Duties</span><span class="lang-kr" style="display: none;">De Minimis 면세 Phase 2, 3월 1일 시행 - 정액 우편 관세 종료</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">TRADE</span>
-                <span class="impact-badge impact-critical">Critical</span>
-                <span class="article-date">February 2026</span>
-                <span class="article-source"><a href="https://www.cbp.gov/sites/default/files/2025-08/factsheet_suspension_of_duty-free_de_minimis_treatment.pdf" target="_blank">CBP</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">The de minimis exemption Phase 2 transition begins March 1, 2026, requiring all international postal shipments to use ad valorem duty methodology only, ending the flat per-item duty ($80-$200) used during Phase 1 since August 29, 2025.</span>
-                <span class="lang-kr" style="display: none;">De minimis 면세의 Phase 2 전환이 2026년 3월 1일부터 시행되어, 모든 국제 우편 배송에 종가세(ad valorem) 방식만 적용. 2025년 8월 29일부터 사용된 건당 정액 관세($80-$200)가 종료.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Phase 1 (Aug 29, 2025 – Feb 28, 2026): flat per-item duty of $80-$200</span><span class="lang-kr" style="display: none;">Phase 1 (2025.8.29 – 2026.2.28): 건당 $80-$200 정액 관세</span></li>
-                    <li><span class="lang-en">Phase 2 (from March 1, 2026): ad valorem duty methodology only</span><span class="lang-kr" style="display: none;">Phase 2 (2026.3.1부터): 종가세 방식만 적용</span></li>
-                    <li><span class="lang-en">1.36 billion de minimis packages entered U.S. in FY2024 (900% increase from 2015)</span><span class="lang-kr" style="display: none;">FY2024 미국에 13.6억 건의 de minimis 소포 반입 (2015년 대비 900% 증가)</span></li>
-                    <li><span class="lang-en">90% of all cargo seizures in 2024 originated as de minimis shipments</span><span class="lang-kr" style="display: none;">2024년 전체 화물 압류의 90%가 de minimis 배송에서 발생</span></li>
-                    <li><span class="lang-en">EU also planning to remove its €150 de minimis exemption in 2026</span><span class="lang-kr" style="display: none;">EU도 2026년 €150 de minimis 면세 폐지 예정</span></li>
-                </ul>
-            </div>
-        </article>
+        <!-- Supply Chain Section -->
+        <div class="section-divider">
+            <div class="section-icon supply">●</div>
+            <h2 class="section-title"><span class="lang-en">Supply Chain &amp; Trade Policy</span><span class="lang-kr">공급망 및 무역정책</span></h2>
+        </div>
 
-        <article class="article-card supply-section" id="art-sc-2">
-            <h3 class="article-headline">[TRADE] <span class="lang-en">U.S. Apparel Tariff Rates Remain Elevated at 26.4%, Supreme Court Case Pending</span><span class="lang-kr" style="display: none;">미국 의류 관세율 26.4% 고수준 유지, 대법원 판결 대기 중</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">TRADE</span>
-                <span class="impact-badge impact-high">High</span>
-                <span class="article-date">February 2026</span>
-                <span class="article-source"><a href="https://www.businessoffashion.com/articles/global-markets/the-state-of-fashion-2026-report-tariffs-trade-us-market/" target="_blank">BoF / FASH455</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Average U.S. apparel import tariff rates remain at 26.4% (up from 14.7% in January 2025), while the Supreme Court deliberates on the legality of the "reciprocal tariff" policy. China-specific rates reach up to 69.1%.</span>
-                <span class="lang-kr" style="display: none;">미국 의류 수입 평균 관세율이 26.4% (2025년 1월 14.7%에서 상승)로 유지되는 가운데, 대법원이 "상호 관세" 정책의 합법성을 심리 중. 중국 특정 세율은 최대 69.1%에 달함.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Average tariff rate: 26.4% (was 14.7% in January 2025)</span><span class="lang-kr" style="display: none;">평균 관세율: 26.4% (2025년 1월 14.7%)</span></li>
-                    <li><span class="lang-en">China-specific tariff rate: up to 69.1%</span><span class="lang-kr" style="display: none;">중국 특정 관세율: 최대 69.1%</span></li>
-                    <li><span class="lang-en">55% of executives expect further price increases in 2026</span><span class="lang-kr" style="display: none;">경영진의 55%가 2026년 추가 가격 인상 예상</span></li>
-                    <li><span class="lang-en">76% of fashion executives say trade/tariff response is the #1 factor for 2026</span><span class="lang-kr" style="display: none;">패션 경영진의 76%가 무역/관세 대응을 2026년 1순위 요소로 평가</span></li>
-                    <li><span class="lang-en">Supreme Court hearing arguments on tariff legality; experts expect possible rollback</span><span class="lang-kr" style="display: none;">대법원 관세 합법성 심리 중; 전문가들은 철회 가능성 전망</span></li>
-                    <li><span class="lang-en">Several companies planning to be "substantially out of China" by H2 2026</span><span class="lang-kr" style="display: none;">여러 기업이 2026년 하반기까지 "중국에서 실질적 철수" 계획</span></li>
-                </ul>
-            </div>
-        </article>
+        <div class="articles-grid" id="supplyGrid">
+            <!-- Articles will be populated by JavaScript -->
+        </div>
+    </div>
 
-        <!-- Production Countries Articles -->
-        <article class="article-card supply-section" id="art-sc-3">
-            <h3 class="article-headline">[PRODUCTION] <span class="lang-en">Vietnam Gains Ground on Bangladesh in Garment Exports, Competition Intensifies</span><span class="lang-kr" style="display: none;">베트남, 의류 수출에서 방글라데시 추격, 경쟁 심화</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">PRODUCTION</span>
-                <span class="impact-badge impact-medium">Medium</span>
-                <span class="article-date">February 2026</span>
-                <span class="article-source"><a href="https://www.thedailystar.net/business/economy/news/vietnam-may-surpass-bangladesh-garment-export-report-3785366" target="_blank">The Daily Star</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">Vietnam's garment exports reached $39.6 billion in 2025 (+9.34% growth rate) versus Bangladesh's $38.48 billion (+0.21%), narrowing the gap as Vietnam targets $48-49 billion for 2026.</span>
-                <span class="lang-kr" style="display: none;">베트남의 2025년 의류 수출이 $396억 (성장률 +9.34%)을 기록하여 방글라데시의 $384.8억 (성장률 +0.21%)과의 격차가 좁혀지고 있으며, 2026년 $480-490억을 목표.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">Vietnam 2025 exports: $39.6 billion (+9.34% growth)</span><span class="lang-kr" style="display: none;">베트남 2025년 수출: $396억 (+9.34%)</span></li>
-                    <li><span class="lang-en">Bangladesh 2024 exports: $38.48 billion (+0.21% growth)</span><span class="lang-kr" style="display: none;">방글라데시 2024년 수출: $384.8억 (+0.21%)</span></li>
-                    <li><span class="lang-en">Vietnam targeting $48-49 billion in 2026</span><span class="lang-kr" style="display: none;">베트남 2026년 목표: $480-490억</span></li>
-                    <li><span class="lang-en">Bangladesh targeting $44.49 billion from textiles/garments in FY2025-26</span><span class="lang-kr" style="display: none;">방글라데시 FY2025-26 섬유·의류 목표: $444.9억</span></li>
-                    <li><span class="lang-en">Bangladesh faces LDC graduation in 2026 (losing duty-free access after 2029)</span><span class="lang-kr" style="display: none;">방글라데시 2026년 LDC 졸업 (2029년 이후 면세 접근 상실)</span></li>
-                    <li><span class="lang-en">Vietnam benefits from EU-Vietnam FTA and CPTPP trade agreements</span><span class="lang-kr" style="display: none;">베트남, EU-베트남 FTA 및 CPTPP 무역 협정 혜택</span></li>
-                    <li><span class="lang-en">Vietnam investing in automation, technology, and R&D for higher value-add</span><span class="lang-kr" style="display: none;">베트남, 고부가가치를 위한 자동화, 기술, R&D 투자</span></li>
-                </ul>
-            </div>
-        </article>
-
-        <!-- Sustainability Articles -->
-        <article class="article-card supply-section" id="art-sc-4">
-            <h3 class="article-headline">[SUSTAINABILITY] <span class="lang-en">Shein Emissions Rose 23% While Using "Net Zero" Claims; Industry ESG Tightens</span><span class="lang-kr" style="display: none;">Shein 배출량 23% 증가에도 "넷제로" 주장; 산업 전반 ESG 강화</span></h3>
-            <div class="article-meta">
-                <span class="article-tag">SUSTAINABILITY</span>
-                <span class="impact-badge impact-medium">Medium</span>
-                <span class="article-date">February 13, 2026</span>
-                <span class="article-source"><a href="https://trellis.net/article/shein-net-zero-greenwashing-germany/" target="_blank">Trellis / Earth.Org</a></span>
-            </div>
-            <div class="article-summary">
-                <span class="lang-en">As Shein faces greenwashing accusations in Germany, the broader textile industry sees ESG frameworks tightening with GOTS Version 8.0 in development and the EU's green claims directive advancing.</span>
-                <span class="lang-kr" style="display: none;">Shein이 독일에서 그린워싱 비난에 직면한 가운데, 섬유 산업 전반에서 GOTS Version 8.0 개발과 EU 그린클레임 지침 진행으로 ESG 프레임워크가 강화되고 있음.</span>
-            </div>
-            <div class="article-details">
-                <h4><span class="lang-en">Details:</span><span class="lang-kr" style="display: none;">세부사항:</span></h4>
-                <ul>
-                    <li><span class="lang-en">GOTS Version 8.0 in development with circular economy provisions</span><span class="lang-kr" style="display: none;">GOTS Version 8.0 개발 중 (순환경제 조항 포함)</span></li>
-                    <li><span class="lang-en">EU green claims directive advancing to prevent greenwashing</span><span class="lang-kr" style="display: none;">EU 그린클레임 지침 진행으로 그린워싱 방지 강화</span></li>
-                    <li><span class="lang-en">Global organic cotton market projected to grow from $3.25B (2026) to $50.78B (2034)</span><span class="lang-kr" style="display: none;">글로벌 유기농 면화 시장, 2026년 $32.5억에서 2034년 $507.8억으로 성장 전망</span></li>
-                    <li><span class="lang-en">U.S. cotton exports forecast at 12.2 million bales in marketing year 2025/26</span><span class="lang-kr" style="display: none;">미국 면화 수출, 2025/26 마케팅 연도 1,220만 베일 전망</span></li>
-                    <li><span class="lang-en">Industry shifting toward recycled cotton and regenerated fibers</span><span class="lang-kr" style="display: none;">산업 전반 재활용 면화 및 재생 섬유로의 전환 가속</span></li>
-                </ul>
-            </div>
-        </article>
-    </main>
-
-    <!-- Back to Top Button -->
-    <button class="back-to-top" onclick="scrollToTop()">
-        <span class="lang-en">Back to Top</span>
-        <span class="lang-kr" style="display: none;">맨 위로</span>
-    </button>
-
-    <!-- Toast Notification -->
+    <button class="back-to-top" onclick="backToTop()" aria-label="Back to top">↑</button>
     <div class="toast" id="toast"></div>
 
     <script>
-        // Language Toggle
-        function toggleLanguage(lang) {
-            const buttons = document.querySelectorAll('.lang-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
+        // Data
+        const articles = [
+            // Gap Inc
+            {
+                id: 'gap-1',
+                company: 'Gap',
+                section: 'retailer',
+                category: 'Retail',
+                title: 'Old Navy Launches "Little Navy" Newborn Collection',
+                date: 'February 18, 2026',
+                impact: 'low',
+                summaryEN: 'Old Navy launched "Little Navy," a new newborn collection offering essential baby items at accessible Old Navy value pricing.',
+                summaryKR: 'Old Navy가 합리적인 가격의 신생아 필수 아이템을 제공하는 "Little Navy" 컬렉션을 출시했다.',
+                detailsEN: [
+                    'The collection targets the baby and toddler market with affordable basics',
+                    'Positioned as "everything newborns need" at Old Navy\'s signature value pricing',
+                    'Expands Old Navy\'s family-oriented product range'
+                ],
+                detailsKR: [
+                    '합리적인 가격의 기본 아이템으로 유아 시장을 타겟',
+                    'Old Navy의 시그니처 가성비 가격으로 "신생아에게 필요한 모든 것" 포지셔닝',
+                    'Old Navy의 가족 중심 제품 라인 확대'
+                ],
+                source: 'https://www.gapinc.com/en-us/news'
+            },
+            {
+                id: 'gap-2',
+                company: 'Gap',
+                section: 'retailer',
+                category: 'Retail',
+                title: 'Gap x Harlem\'s Fashion Row Denim Collaboration',
+                date: 'February 11, 2026',
+                impact: 'medium',
+                summaryEN: 'Gap reunited with Harlem\'s Fashion Row for a collaboration to reimagine denim, reinforcing the brand\'s cultural positioning strategy.',
+                summaryKR: 'Gap이 Harlem\'s Fashion Row와 재협업하여 데님을 재해석하는 컬라보레이션을 발표, 브랜드의 문화적 포지셔닝 전략을 강화했다.',
+                detailsEN: [
+                    'Continuation of Gap\'s partnership with Harlem\'s Fashion Row (HFR), a platform supporting designers of color',
+                    'Focus on reimagining denim as part of Gap\'s brand reinvigoration under CEO Richard Dickson',
+                    'Aligns with Gap\'s strategy of embedding the brand within cultural and entertainment ecosystems'
+                ],
+                detailsKR: [
+                    '유색인종 디자이너를 지원하는 플랫폼 HFR과의 파트너십 지속',
+                    'CEO Richard Dickson 하에서 브랜드 혁신의 일환으로 데님 재해석에 집중',
+                    '문화 및 엔터테인먼트 생태계 내 브랜드 포지셔닝 전략과 일치'
+                ],
+                source: 'https://www.gapinc.com/en-us/news'
+            },
+            {
+                id: 'gap-3',
+                company: 'Gap',
+                section: 'retailer',
+                category: 'Business',
+                title: 'Gap Inc to Report Q4 and Fiscal 2025 Results on March 5',
+                date: 'February 12, 2026',
+                impact: 'medium',
+                summaryEN: 'Gap Inc announced it will report fourth quarter and fiscal year 2025 financial results on March 5, 2026, following seven consecutive quarters of positive comparable sales.',
+                summaryKR: 'Gap Inc는 7분기 연속 양의 비교 매출 성장 이후, 2026년 3월 5일에 2025 회계연도 4분기 실적을 발표할 예정이다.',
+                detailsEN: [
+                    'Q4 and FY2025 results to be released March 5, 2026 at approximately 1:15 PM PT',
+                    'Conference call scheduled for 2:00 PM PT on the same day',
+                    'Company has delivered seven consecutive quarters of positive comparable sales growth',
+                    'Q3 FY2025 results exceeded net sales and margin expectations, and full-year outlook was raised'
+                ],
+                detailsKR: [
+                    '2026년 3월 5일 오후 1:15(PT)에 4분기 및 FY2025 실적 발표 예정',
+                    '같은 날 오후 2:00(PT)에 컨퍼런스 콜 예정',
+                    '7분기 연속 양의 비교 매출 성장 달성',
+                    '3분기 FY2025 실적이 순매출 및 마진 기대치를 초과, 연간 전망 상향 조정'
+                ],
+                source: 'https://www.gapinc.com/en-us/articles/2026/02/gap-inc-to-report-fourth-quarter-and-fiscal-2025-r'
+            },
+            // Walmart
+            {
+                id: 'wmt-1',
+                company: 'Walmart',
+                section: 'retailer',
+                category: 'Business',
+                title: 'John Furner Takes the Helm as Walmart CEO',
+                date: 'February 2026',
+                impact: 'high',
+                summaryEN: 'John Furner officially succeeded Doug McMillon as Walmart\'s President and CEO effective February 1, 2026, marking a major leadership transition for the world\'s largest retailer.',
+                summaryKR: 'John Furner가 2026년 2월 1일부로 Doug McMillon의 후임으로 Walmart CEO에 공식 취임, 세계 최대 리테일러의 주요 리더십 전환이 이루어졌다.',
+                detailsEN: [
+                    'Furner, 51, selected partly for his success expanding Walmart\'s digital business',
+                    'In a memo to employees, he stated the "next era will unlock new ways to bring our people-led, tech-powered vision to life"',
+                    'Over 32 years of experience at Walmart',
+                    'Introduced additional organizational changes including new Chief Growth Officer role'
+                ],
+                detailsKR: [
+                    '51세의 Furner는 Walmart 디지털 사업 확장 성공으로 선임',
+                    '직원 메모에서 "다음 시대는 사람 중심, 기술 기반 비전을 실현할 새로운 방법을 열 것"이라고 발표',
+                    'Walmart에서 32년 이상 근무',
+                    'Chief Growth Officer 신설 등 추가 조직 변경 단행'
+                ],
+                source: 'https://www.cnbc.com/2026/02/18/walmart-target-earnings-new-ceos-furner-fiddelke.html'
+            },
+            {
+                id: 'wmt-2',
+                company: 'Walmart',
+                section: 'retailer',
+                category: 'Business',
+                title: 'Major Leadership Restructuring at Walmart',
+                date: 'February 2026',
+                impact: 'high',
+                summaryEN: 'Walmart announced sweeping executive leadership changes, including Chris Nicholas moving to lead Walmart International and Latriece Watkins named President and CEO of Sam\'s Club U.S.',
+                summaryKR: 'Walmart가 대규모 임원 리더십 변경을 발표, Chris Nicholas가 Walmart International을 이끌고 Latriece Watkins가 Sam\'s Club U.S. CEO로 임명되었다.',
+                detailsEN: [
+                    'Chris Nicholas, President and CEO of Sam\'s Club U.S., succeeds Kath McLay as President and CEO of Walmart International',
+                    'Latriece Watkins, EVP and Chief Merchandising Officer for Walmart U.S., named President and CEO of Sam\'s Club U.S.',
+                    'New roles created focused on innovation, operations, and global enterprise platforms',
+                    'Changes designed to advance the company\'s next phase of retail transformation'
+                ],
+                detailsKR: [
+                    'Sam\'s Club U.S. CEO Chris Nicholas가 Kath McLay 후임으로 Walmart International CEO 취임',
+                    'Walmart U.S. EVP 겸 CMO Latriece Watkins가 Sam\'s Club U.S. CEO로 임명',
+                    '혁신, 운영, 글로벌 엔터프라이즈 플랫폼에 집중하는 새 직책 신설',
+                    '리테일 혁신의 다음 단계를 위한 조직 변경'
+                ],
+                source: 'https://corporate.walmart.com/news/2026/01/16/walmart-announces-leadership-changes'
+            },
+            {
+                id: 'wmt-3',
+                company: 'Walmart',
+                section: 'retailer',
+                category: 'Retail',
+                title: 'Walmart Expands AI and Store Modernization',
+                date: 'February 2026',
+                impact: 'medium',
+                summaryEN: 'Walmart is accelerating AI deployment with the "Sparky" shopping assistant, digital shelf labels across thousands of locations, and expects 65% of stores to be serviced by automated fulfillment by 2026.',
+                summaryKR: 'Walmart가 "Sparky" 쇼핑 어시스턴트, 수천 개 매장의 디지털 가격표, 2026년까지 65% 매장 자동화 풀필먼트 서비스로 AI 도입을 가속화하고 있다.',
+                detailsEN: [
+                    'GenAI shopping assistant "Sparky" suggests products, surfaces reviews, and locates items',
+                    'Digital shelf labels replacing paper tags across thousands of U.S. stores, allowing price updates within minutes',
+                    '65% of stores expected to be serviced by automated fulfillment systems by end of 2026',
+                    'Automated fulfillment reduces unit handling costs by approximately 20%',
+                    '"Store of the Future" concept: updating or constructing over 100 new locations'
+                ],
+                detailsKR: [
+                    'GenAI 쇼핑 어시스턴트 "Sparky"가 제품 추천, 리뷰 표시, 아이템 위치 안내',
+                    '수천 개 미국 매장에서 종이 가격표를 디지털 가격표로 교체, 몇 분 내 가격 업데이트 가능',
+                    '2026년 말까지 65% 매장에 자동화 풀필먼트 시스템 적용 예상',
+                    '자동화 풀필먼트로 단위 처리 비용 약 20% 절감',
+                    '"미래형 매장" 컨셉: 100개 이상 매장 신규/리뉴얼'
+                ],
+                source: 'https://www.yahoo.com/news/articles/walmart-unveils-major-store-changes-150059255.html'
+            },
+            {
+                id: 'wmt-4',
+                company: 'Walmart',
+                section: 'retailer',
+                category: 'Retail',
+                title: 'Walmart Captures High-Income Shoppers',
+                date: 'February 2026',
+                impact: 'medium',
+                summaryEN: 'Approximately 75% of Walmart\'s market share gains came from households earning over $100,000 annually, with store traffic up 2.3% in Q4 2025.',
+                summaryKR: 'Walmart 시장 점유율 증가의 약 75%가 연소득 $100,000 이상 가구에서 발생했으며, 2025년 4분기 매장 방문객이 2.3% 증가했다.',
+                detailsEN: [
+                    '75% of market share gains from households with annual incomes exceeding $100,000',
+                    'Store traffic strengthened at end of 2025, up 2.3% YoY in Q4, momentum accelerated in January 2026',
+                    'Walmart\'s market cap recently crossed $1 trillion — first retailer to reach that milestone',
+                    'Q4 FY2026 earnings report scheduled for release'
+                ],
+                detailsKR: [
+                    '연소득 $100,000 이상 가구에서 시장 점유율 증가의 75% 발생',
+                    '2025년 말 매장 방문 강세, 4분기 YoY 2.3% 증가, 2026년 1월에도 성장세 지속',
+                    'Walmart 시가총액이 최근 $1 trillion 돌파 — 리테일러 최초',
+                    'FY2026 4분기 실적 발표 예정'
+                ],
+                source: 'https://markets.financialcontent.com/stocks/article/marketminute-2026-2-18-the-great-upscale-walmart-prepares-for-q4-2026-reveal-as-affluent-shift-reshapes-retail-dominance'
+            },
+            // Kohl's
+            {
+                id: 'kss-1',
+                company: 'Kohl\'s',
+                section: 'retailer',
+                category: 'Retail',
+                title: 'Kohl\'s Launches "Deal Bar" in All 1,100+ Stores',
+                date: 'February 18, 2026',
+                impact: 'medium',
+                summaryEN: 'Kohl\'s expanded its "Deal Bar" — a collection of items priced under $10 positioned at the front of stores — to all 1,100+ locations, betting on impulse purchases to drive traffic.',
+                summaryKR: 'Kohl\'s가 $10 미만 상품을 매장 입구에 배치하는 "Deal Bar"를 전체 1,100개 이상 매장으로 확대, 충동 구매를 통한 고객 유입을 노리고 있다.',
+                detailsEN: [
+                    'Collection includes party supplies, serving dishes, candles, craft projects, vases, seasonal decor, meal prep dishes, yoga blocks',
+                    'Located at the front of the store to capture impulse shoppers',
+                    'Expansion from pilot to all stores nationwide',
+                    'Part of CEO Michael Bender\'s turnaround strategy'
+                ],
+                detailsKR: [
+                    '파티 용품, 식기, 캔들, 공예 키트, 화병, 시즌 데코, 밀프렙 용품, 요가 블록 등 포함',
+                    '충동 구매를 유도하기 위해 매장 입구에 배치',
+                    '파일럿에서 전국 전 매장으로 확대',
+                    'CEO Michael Bender의 턴어라운드 전략의 일환'
+                ],
+                source: 'https://www.retaildive.com/news/kohls-launches-deal-bar-all-stores/812303/'
+            },
+            {
+                id: 'kss-2',
+                company: 'Kohl\'s',
+                section: 'retailer',
+                category: 'Business',
+                title: 'Kohl\'s Turnaround Progress Under New CEO',
+                date: 'February 2026',
+                impact: 'medium',
+                summaryEN: 'Under CEO Michael Bender, Kohl\'s is reversing past decisions by expanding coupons and private labels, though analysts remain divided on the turnaround outlook.',
+                summaryKR: 'CEO Michael Bender 하에서 Kohl\'s는 쿠폰과 자체 브랜드 확대 등 과거 결정을 되돌리고 있으나, 애널리스트들의 턴어라운드 전망은 엇갈리고 있다.',
+                detailsEN: [
+                    'Bender has had the permanent CEO role since late 2025',
+                    'Reversed previous decisions: expanded coupons and private label offerings',
+                    'Evercore ISI analyst: "encouraged that improvement comes from simply listening to the consumer"',
+                    'Concerns remain about Kohl\'s core customer being under financial pressure'
+                ],
+                detailsKR: [
+                    'Bender는 2025년 말부터 정식 CEO로 재직',
+                    '이전 결정 번복: 쿠폰 및 자체 브랜드 확대',
+                    'Evercore ISI 애널리스트: "소비자 의견을 경청한 개선이 고무적"',
+                    'Kohl\'s 핵심 고객층의 재정 압박 우려 지속'
+                ],
+                source: 'https://www.the-sun.com/money/15645382/kohls-ceo-unveils-changes-shoppers-expect-kohls-cash/'
+            },
+            {
+                id: 'kss-3',
+                company: 'Kohl\'s',
+                section: 'retailer',
+                category: 'Retail',
+                title: 'Kohl\'s 2026 "Goods for Good" Charitable Collection',
+                date: 'February 2026',
+                impact: 'low',
+                summaryEN: 'Kohl\'s unveiled its 2026 "Goods for Good" merchandise collections priced under $10, featuring Bluey, Space Jam, and Disney characters, with 100% of net profit reinvested in philanthropy.',
+                summaryKR: 'Kohl\'s가 $10 이하 가격의 2026 "Goods for Good" 상품 컬렉션을 공개, Bluey, Space Jam, Disney 캐릭터를 포함하며 순이익 100%를 사회공헌에 재투자한다.',
+                detailsEN: [
+                    'Priced under $10 featuring popular characters (Bluey, Space Jam, Disney classics)',
+                    '100% of net profit reinvested in Kohl\'s philanthropic initiatives',
+                    'Program has raised more than $440 million since its inception in 2000'
+                ],
+                detailsKR: [
+                    '$10 이하 가격, 인기 캐릭터(Bluey, Space Jam, Disney 클래식) 포함',
+                    '순이익 100% Kohl\'s 사회공헌 사업에 재투자',
+                    '2000년 프로그램 시작 이래 $440 million 이상 기부'
+                ],
+                source: 'https://corporate.kohls.com/news/2026-kohls-cares-goods-for-good-merchandise-collections-unveilednbsp'
+            },
+            // American Eagle Outfitters
+            {
+                id: 'aeo-1',
+                company: 'AEO',
+                section: 'retailer',
+                category: 'Business',
+                title: 'AEO Closes Fulfillment Centers, Winds Down Quiet Logistics',
+                date: 'February 17, 2026',
+                impact: 'high',
+                summaryEN: 'American Eagle Outfitters is winding down Quiet Logistics for third-party clients and closing its Boston (Devens) and Dallas fulfillment centers, keeping only its Atlanta site for internal distribution. Layoffs at the Devens facility start April 12.',
+                summaryKR: 'American Eagle Outfitters가 서드파티 고객 대상 Quiet Logistics를 종료하고 Boston(Devens)과 Dallas 풀필먼트 센터를 폐쇄, Atlanta 사이트만 내부 유통용으로 유지한다. Devens 시설 감원은 4월 12일 시작.',
+                detailsEN: [
+                    'Closing Boston (Devens, MA) and Dallas fulfillment centers',
+                    'Only Atlanta site retained for internal brand distribution',
+                    '103 jobs to be cut at Devens facility, layoffs beginning April 12',
+                    'AEO stated: "strategic decision will enable AEO to prioritize growth and focus on its portfolio of leading lifestyle brands"',
+                    'Will help existing clients transition to new logistics providers'
+                ],
+                detailsKR: [
+                    'Boston(Devens, MA)과 Dallas 풀필먼트 센터 폐쇄',
+                    'Atlanta 사이트만 내부 브랜드 유통용으로 유지',
+                    'Devens 시설에서 103명 감원, 4월 12일 감원 시작',
+                    'AEO: "성장에 우선순위를 두고 주력 라이프스타일 브랜드 포트폴리오에 집중하기 위한 전략적 결정"',
+                    '기존 고객의 새 물류 제공업체 전환 지원'
+                ],
+                source: 'https://www.boston.com/news/business/2026/02/17/american-eagle-outfitters-to-close-devens-distribution-facility-cutting-103-jobs/'
+            },
+            {
+                id: 'aeo-2',
+                company: 'AEO',
+                section: 'retailer',
+                category: 'Retail',
+                title: 'AEO Announces Celebrity Partnerships with Lamine Yamal, Sydney Sweeney, Travis Kelce',
+                date: 'February 2026',
+                impact: 'medium',
+                summaryEN: 'AEO announced a new five-year promotional partnership with Spanish footballer Lamine Yamal, renewed campaigns with Sydney Sweeney and Travis Kelce. Sweeney rang the NYSE opening bell with AEO\'s CEO on Feb 9.',
+                summaryKR: 'AEO가 스페인 축구선수 Lamine Yamal과 5년 프로모션 파트너십을 발표하고, Sydney Sweeney, Travis Kelce와의 캠페인을 갱신했다. 2월 9일 Sweeney가 AEO CEO와 NYSE 개장벨을 울렸다.',
+                detailsEN: [
+                    'Five-year promotional deal with Spanish footballer Lamine Yamal',
+                    'Renewed marketing campaigns with Sydney Sweeney and Travis Kelce',
+                    'Sydney Sweeney and CEO Jay Schottenstein rang NYSE opening bell on February 9, 2026',
+                    'Highlights broader push into globally recognized celebrity talent across AEO\'s brand portfolio'
+                ],
+                detailsKR: [
+                    '스페인 축구선수 Lamine Yamal과 5년 프로모션 계약',
+                    'Sydney Sweeney, Travis Kelce와 마케팅 캠페인 갱신',
+                    '2월 9일 Sydney Sweeney와 CEO Jay Schottenstein이 NYSE 개장벨 타종',
+                    'AEO 브랜드 포트폴리오 전반의 글로벌 셀럽 인재 활용 전략 강화'
+                ],
+                source: 'https://simplywall.st/stocks/us/retail/nyse-aeo/american-eagle-outfitters/news/american-eagle-taps-celebrity-partners-as-investors-weigh-un'
+            },
+            {
+                id: 'aeo-3',
+                company: 'AEO',
+                section: 'retailer',
+                category: 'Business',
+                title: 'AEO Earnings Outlook: Strong Q4 Expected',
+                date: 'February 2026',
+                impact: 'low',
+                summaryEN: 'AEO is expected to post Q4 earnings of $0.71 per share, representing a +31.5% YoY increase, with full-year FY2026 EPS estimate raised to $1.38.',
+                summaryKR: 'AEO는 4분기 EPS $0.71(YoY +31.5%)을 기록할 것으로 예상되며, FY2026 연간 EPS 전망은 $1.38로 상향 조정되었다.',
+                detailsEN: [
+                    'Expected Q4 EPS: $0.71, up 31.5% YoY',
+                    'FY2026 full-year EPS estimate raised from $1.33 to $1.38',
+                    'Institutional investors own 97.33% of AEO stock'
+                ],
+                detailsKR: [
+                    '예상 4분기 EPS: $0.71, YoY 31.5% 증가',
+                    'FY2026 연간 EPS 전망 $1.33에서 $1.38로 상향',
+                    '기관투자자가 AEO 주식의 97.33% 보유'
+                ],
+                source: 'https://www.defenseworld.net/2026/02/09/zacks-research-issues-optimistic-forecast-for-aeo-earnings.html'
+            },
+            // Target
+            {
+                id: 'tgt-1',
+                company: 'Target',
+                section: 'retailer',
+                category: 'Business',
+                title: 'Target\'s New CEO Michael Fiddelke Launches Turnaround Strategy',
+                date: 'February 2026',
+                impact: 'high',
+                summaryEN: 'Target\'s new CEO Michael Fiddelke took charge on February 1, 2026, outlining four strategic priorities — merchandising, guest experience, technology, and team — while announcing ~500 job cuts and major executive leadership changes.',
+                summaryKR: 'Target의 새 CEO Michael Fiddelke가 2026년 2월 1일 취임, 머천다이징, 고객 경험, 기술, 팀의 4대 전략 우선순위를 제시하며 약 500명 감원과 대규모 임원 리더십 변경을 발표했다.',
+                detailsEN: [
+                    'Fiddelke became CEO after a year in which Target shares dropped 28%',
+                    'Plans to invest $5 billion in new larger stores and revamp existing locations',
+                    'Lisa Roath named COO; Chief Commercial Officer Rick Gomez departing; CMO Jill Sando retiring',
+                    '~500 roles eliminated as part of organizational restructuring',
+                    'Plans at least 48 new store openings in 2026'
+                ],
+                detailsKR: [
+                    'Target 주가가 28% 하락한 해에 CEO 취임',
+                    '대형 신규 매장 및 기존 매장 리뉴얼에 $5 billion 투자 계획',
+                    'Lisa Roath COO 임명; CCO Rick Gomez 퇴사; CMO Jill Sando 은퇴',
+                    '조직 개편의 일환으로 약 500개 직책 감원',
+                    '2026년 최소 48개 신규 매장 오픈 계획'
+                ],
+                source: 'https://www.cnbc.com/2026/02/18/walmart-target-earnings-new-ceos-furner-fiddelke.html'
+            },
+            // Inditex/Zara
+            {
+                id: 'idia-1',
+                company: 'Inditex/Zara',
+                section: 'retailer',
+                category: 'Retail',
+                title: 'Zara Moves Upmarket; Inditex Launches Lefties in UK to Counter Shein',
+                date: 'February 2026',
+                impact: 'high',
+                summaryEN: 'Inditex pursues a dual strategy: Zara is moving upmarket with a new Fifth Avenue flagship and San Francisco store, while launching its budget brand Lefties in the UK in 2026 to counter Shein. Bershka will debut in the U.S. with two Miami stores.',
+                summaryKR: 'Inditex가 이중 전략을 추진: Zara는 Fifth Avenue 플래그십과 San Francisco 매장으로 상향 이동하면서, 2026년 UK에 저가 브랜드 Lefties를 론칭하여 Shein에 대응한다. Bershka는 Miami 2개 매장으로 미국에 진출한다.',
+                detailsEN: [
+                    'Zara to open a flagship in San Francisco and revamp its Fifth Avenue flagship in New York City in 2026',
+                    'Lefties (ultra-low-cost brand) launching in UK in 2026, posing a threat to Primark',
+                    'Bershka to debut in the U.S. with two stores in Miami in 2026',
+                    'Marks Zara\'s 50th anniversary push led by Marta Ortega',
+                    'Inditex 2024 profit hit record €5.87 billion — topping combined earnings of Shein, H&M, and Fast Retailing'
+                ],
+                detailsKR: [
+                    'Zara, 2026년 San Francisco 플래그십 오픈 및 뉴욕 Fifth Avenue 플래그십 리뉴얼',
+                    '초저가 브랜드 Lefties 2026년 UK 론칭, Primark에 위협',
+                    'Bershka 2026년 Miami 2개 매장으로 미국 첫 진출',
+                    'Marta Ortega 주도의 Zara 50주년 전략',
+                    'Inditex 2024년 순이익 €5.87 billion 사상 최대 — Shein, H&M, Fast Retailing 합산 이익 초과'
+                ],
+                source: 'https://www.businessoffashion.com/articles/retail/zara-inditex-upmarket-competition-shein-temu/'
+            },
+            // Uniqlo
+            {
+                id: 'frla-1',
+                company: 'Uniqlo',
+                section: 'retailer',
+                category: 'Retail',
+                title: 'Uniqlo Plans 11 New U.S. Stores, Targets 200 North American Stores by 2027',
+                date: 'February 2026',
+                impact: 'medium',
+                summaryEN: 'Uniqlo will open 11 new U.S. stores in 2026, including first flagship stores in Chicago and San Francisco, targeting 200 North American stores by 2027. Q1 FY2026 operating profit jumped 34% YoY.',
+                summaryKR: 'Uniqlo가 2026년 미국에 11개 신규 매장을 열며, Chicago와 San Francisco 첫 플래그십 포함, 2027년까지 북미 200개 매장을 목표로 한다. FY2026 1분기 영업이익 YoY 34% 증가.',
+                detailsEN: [
+                    '11 new stores across seven U.S. cities in spring/summer 2026',
+                    'Four new stores in New York City (3 Manhattan + 1 Brooklyn)',
+                    'First flagship stores outside NYC in Chicago and San Francisco',
+                    'Will bring total U.S. store count to nearly 90',
+                    'Target: 200 North American stores by 2027',
+                    'RFID self-checkout in all new stores',
+                    'Q1 FY2026: operating profit up 34% YoY; annual operating profit projected at ¥650 billion (+15.2%)'
+                ],
+                detailsKR: [
+                    '2026년 봄/여름 미국 7개 도시에 11개 신규 매장',
+                    '뉴욕 4개 매장(맨해튼 3 + 브루클린 1) 추가',
+                    'NYC 외 첫 플래그십: Chicago, San Francisco',
+                    '미국 매장 총 약 90개로 확대',
+                    '목표: 2027년까지 북미 200개 매장',
+                    '모든 신규 매장에 RFID 셀프 체크아웃 도입',
+                    'FY2026 1분기: 영업이익 YoY 34% 증가; 연간 영업이익 ¥650 billion(+15.2%) 전망'
+                ],
+                source: 'https://www.retaildive.com/news/uniqlo-expands-us-footprint-store-openings/802361/'
+            },
+            // Lululemon
+            {
+                id: 'lulu-1',
+                company: 'Lululemon',
+                section: 'retailer',
+                category: 'Business',
+                title: 'Lululemon CEO Departs Amid Activist Investor Pressure',
+                date: 'February 2026',
+                impact: 'high',
+                summaryEN: 'Lululemon CEO Calvin McDonald left his post at the end of January. Elliott Investment Management ($1B+ stake) is pushing for Ralph Lauren executive Jane Nielsen as next CEO, while founder Chip Wilson has nominated three board candidates.',
+                summaryKR: 'Lululemon CEO Calvin McDonald가 1월 말 퇴임했다. Elliott Investment Management($1B+ 지분)가 Ralph Lauren 임원 Jane Nielsen을 차기 CEO로 추진 중이며, 창립자 Chip Wilson은 이사회 후보 3명을 지명했다.',
+                detailsEN: [
+                    'CEO Calvin McDonald left at end of January 2026, staying as advisor through March',
+                    'Elliott Investment Management (>$1 billion stake) pushing for Jane Nielsen from Ralph Lauren as next CEO',
+                    'Founder Chip Wilson submitted notice to nominate three director candidates for 2026 annual meeting',
+                    'Despite leadership turmoil, Lululemon raised Q4 outlook after strong holiday trading',
+                    'Plans to expand into 6 new international markets in 2026 (Greece, Austria, Poland, Hungary, Romania, India)'
+                ],
+                detailsKR: [
+                    'CEO Calvin McDonald 1월 말 퇴임, 3월까지 어드바이저로 유지',
+                    'Elliott Investment Management($1 billion 이상 지분)가 Ralph Lauren의 Jane Nielsen을 차기 CEO로 추진',
+                    '창립자 Chip Wilson이 2026년 주주총회에 이사 후보 3명 지명 통보',
+                    '리더십 혼란에도 불구하고 연말 호실적으로 4분기 전망 상향',
+                    '2026년 6개 신규 해외 시장 진출 계획(그리스, 오스트리아, 폴란드, 헝가리, 루마니아, 인도)'
+                ],
+                source: 'https://globalnews.ca/news/11587644/lululemon-stock-company-future-2026/'
+            },
+            // TJX
+            {
+                id: 'tjx-1',
+                company: 'TJX',
+                section: 'retailer',
+                category: 'Retail',
+                title: 'Off-Price Retail Dominance: TJX, Ross, and Burlington Lead Value Migration',
+                date: 'February 2026',
+                impact: 'medium',
+                summaryEN: 'Off-price retailers are dominating the 2026 retail landscape as the "Value Migration" becomes permanent. TJX targets 7,000 global stores; Ross pursuing 3,600 stores; Nordstrom Rack opening 5 new locations.',
+                summaryKR: '"가치 이동(Value Migration)"이 고착화되면서 오프프라이스 리테일러가 2026년 소매 시장을 주도하고 있다. TJX는 글로벌 7,000개, Ross는 3,600개 매장을 목표로 하며, Nordstrom Rack은 5개 신규 매장을 오픈한다.',
+                detailsEN: [
+                    'TJX: long-term target of 7,000 stores globally; expanding T.K. Maxx into Spain; deepening presence in Mexico and Middle East',
+                    'Ross: pursuing 3,600 store target; "Branded Strategy" with more national brands to capture trade-down shoppers from Macy\'s',
+                    'Burlington: most aggressive store-count growth but lagging execution; 1% comp sales growth',
+                    'Nordstrom Rack: 5 new locations opening in 2026',
+                    'Macy\'s and Kohl\'s losing core customers to off-price giants'
+                ],
+                detailsKR: [
+                    'TJX: 글로벌 7,000개 매장 장기 목표; 스페인에 T.K. Maxx 확장; 멕시코, 중동 진출 심화',
+                    'Ross: 3,600개 매장 목표; Macy\'s 이탈 고객 확보를 위한 "브랜드 전략"으로 내셔널 브랜드 확대',
+                    'Burlington: 가장 적극적인 매장 확장이나 실행력 부진; 동일매장매출 1% 성장',
+                    'Nordstrom Rack: 2026년 5개 신규 매장 오픈',
+                    'Macy\'s, Kohl\'s 핵심 고객이 오프프라이스로 이동 중'
+                ],
+                source: 'https://www.retaildive.com/news/off-price-retailers-tjx-ross-burlington-q2-take-market-share-department-stores-macys/725711/'
+            },
+            // Supply Chain
+            {
+                id: 'trade-1',
+                company: 'Trade',
+                section: 'supply',
+                category: 'Trade',
+                title: 'India-US Interim Trade Deal: Tariff Reduced from 25% to 18%',
+                date: 'February 6, 2026',
+                impact: 'critical',
+                summaryEN: 'The U.S. and India announced an interim trade agreement on February 6, 2026, reducing the reciprocal tariff on Indian goods from 25% to 18%, giving India a more favorable rate than Vietnam (20%), Bangladesh (20%), and China (30-35%) for apparel exports.',
+                summaryKR: '미국과 인도가 2026년 2월 6일 중간 무역 협정을 발표, 인도산 제품에 대한 상호 관세를 25%에서 18%로 인하했다. 이로써 인도는 의류 수출에서 베트남(20%), 방글라데시(20%), 중국(30-35%)보다 유리한 세율을 확보했다.',
+                detailsEN: [
+                    'Reciprocal tariff on Indian goods reduced from 25% to 18%',
+                    'Covers textiles, apparel, leather, footwear, and other goods',
+                    'India commits to tariff cuts on U.S. industrial and agricultural products',
+                    '$500 billion purchase commitment from India over five years',
+                    'India now faces lower tariff than Vietnam (20%), Bangladesh (20%), China (30-35%)',
+                    'Full Bilateral Trade Agreement (BTA) expected by late 2026 or 2027'
+                ],
+                detailsKR: [
+                    '인도산 제품 상호 관세 25%에서 18%로 인하',
+                    '섬유, 의류, 가죽, 신발 등 포함',
+                    '인도, 미국산 산업재 및 농산물에 대한 관세 인하 약속',
+                    '인도의 5년간 $500 billion 구매 약속',
+                    '인도 관세율이 베트남(20%), 방글라데시(20%), 중국(30-35%)보다 낮아짐',
+                    '완전한 양자무역협정(BTA) 2026년 말~2027년 예상'
+                ],
+                source: 'https://www.whitehouse.gov/fact-sheets/2026/02/fact-sheet-the-united-states-and-india-announce-historic-trade-deal/'
+            },
+            {
+                id: 'trade-2',
+                company: 'Trade',
+                section: 'supply',
+                category: 'Trade',
+                title: 'U.S. Apparel Tariffs at Historic Highs; Industry Diversifying Supply Chains',
+                date: 'February 2026',
+                impact: 'high',
+                summaryEN: 'U.S. apparel import tariffs remain at historic highs — average 26.4% across HS61/62, with China-specific rates reaching 69.1%. 76% of fashion executives say tariff response is the #1 factor shaping 2026.',
+                summaryKR: '미국 의류 수입 관세가 역사적 고점을 유지 — HS61/62 평균 26.4%, 중국 특정 세율 69.1%. 패션 경영진의 76%가 관세 대응이 2026년을 결정짓는 최대 요인이라고 답했다.',
+                detailsEN: [
+                    'Average U.S. apparel tariff (HS 61/62): 26.4%, up from 14.7% in January 2025',
+                    'Weighted average tariffs on apparel/footwear: spiked to 54% in spring 2025, eased to 36%',
+                    'China-specific tariff: 69.1% average on apparel imports',
+                    '76% of fashion executives say tariff response is the single most important factor for 2026',
+                    'Major brands plan to be substantially out of China by H2 2026',
+                    'Only 3% of apparel sold in the U.S. is manufactured domestically',
+                    'If import values unchanged from 2024: ~$35 billion in total tariff duties, up $19.9 billion'
+                ],
+                detailsKR: [
+                    '미국 의류 평균 관세(HS 61/62): 26.4%, 2025년 1월 14.7%에서 상승',
+                    '의류/신발 가중평균 관세: 2025년 봄 54%까지 급등, 36%로 완화',
+                    '중국 특정 관세: 의류 수입 평균 69.1%',
+                    '패션 경영진 76%가 관세 대응을 2026년 최대 핵심 요인으로 꼽음',
+                    '주요 브랜드들 2026년 하반기까지 중국 소싱 대폭 축소 계획',
+                    '미국 내 판매 의류 중 국내 제조 비중 3%에 불과',
+                    '2024년 수입액 기준: 총 관세 약 $35 billion, $19.9 billion 증가'
+                ],
+                source: 'https://www.businessoffashion.com/articles/global-markets/the-state-of-fashion-2026-report-tariffs-trade-us-market/'
+            },
+            {
+                id: 'trade-3',
+                company: 'Trade',
+                section: 'supply',
+                category: 'Trade',
+                title: 'De Minimis Exemption Eliminated: Shein & Temu Adapt',
+                date: 'February 2026',
+                impact: 'high',
+                summaryEN: 'Following the elimination of the de minimis exemption, parcels under $800 coming to the U.S. have fallen 54%. Temu shifted to U.S.-based distributors; Shein secured 100,000+ sqm of warehouse space in Vietnam. The EU plans a €3/package customs charge from July 2026.',
+                summaryKR: 'De minimis 면세 폐지 후 미국으로 오는 $800 미만 소포가 54% 감소했다. Temu는 미국 기반 유통으로 전환, Shein은 베트남에 100,000sqm 이상 창고 공간을 확보했다. EU는 2026년 7월부터 패키지당 €3 관세를 계획 중이다.',
+                detailsEN: [
+                    'Number of sub-$800 parcels to U.S. down 54% since de minimis elimination',
+                    'Temu overhauled shipping: all American orders now via U.S.-based distributors',
+                    'Shein secured 100,000+ sqm warehouse space in Vietnam as new distribution hub',
+                    'EU planning €3 per package customs charge on e-commerce parcels under €150, effective July 1, 2026',
+                    'De minimis shipments had risen from 140 million (2014) to 1 billion (2023)',
+                    'Packages previously shipped in 5-10 days may now take up to 20 days'
+                ],
+                detailsKR: [
+                    'De minimis 폐지 이후 $800 미만 소포 미국 도착 54% 감소',
+                    'Temu 배송 모델 전환: 모든 미국 주문 미국 기반 유통업체 경유',
+                    'Shein 베트남에 100,000sqm 이상 창고 확보, 새 유통 허브로 활용',
+                    'EU, 2026년 7월 1일부터 €150 미만 전자상거래 소포에 패키지당 €3 관세 계획',
+                    'De minimis 배송 2014년 1.4억 건에서 2023년 10억 건으로 급증했었음',
+                    '기존 5~10일 배송이 최대 20일로 지연 가능'
+                ],
+                source: 'https://www.npr.org/2025/02/05/g-s1-46670/de-minimis-trade-china-temu-shein-trump'
+            },
+            {
+                id: 'prod-1',
+                company: 'Production',
+                section: 'supply',
+                category: 'Production',
+                title: 'Vietnam Gains as Bangladesh Faces Supply Chain Shifts',
+                date: 'February 2026',
+                impact: 'medium',
+                summaryEN: 'Vietnam\'s garment sector continues to gain momentum with 2025 exports reaching $46 billion (+5.6% YoY), while Bangladesh faces a "Bangladesh-plus-one" diversification strategy from buyers due to political turmoil and gas crisis, potentially losing 10-15% of garment exports.',
+                summaryKR: '베트남 의류 부문이 2025년 수출 $46 billion(YoY +5.6%)으로 성장세를 이어가는 반면, 방글라데시는 정치 불안과 가스 위기로 바이어들의 "방글라데시+1" 다변화 전략에 직면, 의류 수출의 10-15% 손실 가능성이 있다.',
+                detailsEN: [
+                    'Vietnam 2025 garment exports: $46 billion, up 5.6% from 2024; trade surplus $21 billion',
+                    'Vietnam targeting $48-49 billion exports in 2026, $64.5 billion by 2030',
+                    'Vinatex members have orders secured through Q1 2026',
+                    'Bangladesh facing "Bangladesh-plus-one" strategy from international buyers',
+                    'Bangladesh could lose 10-15% of garment exports to Vietnam, Cambodia, India',
+                    'Cost gap: Bangladesh average pay $80/month vs. Vietnam $130/month',
+                    'Vietnam labor + land costs: 32% of total costs vs. 12% in Bangladesh/Cambodia'
+                ],
+                detailsKR: [
+                    '베트남 2025년 의류 수출: $46 billion, 2024년 대비 5.6% 증가; 무역 흑자 $21 billion',
+                    '베트남 2026년 수출 목표 $48-49 billion, 2030년까지 $64.5 billion',
+                    'Vinatex 회원사 2026년 1분기까지 주문 확보',
+                    '방글라데시, 국제 바이어들의 "방글라데시+1" 전략에 직면',
+                    '방글라데시 의류 수출 10-15%를 베트남, 캄보디아, 인도에 빼앗길 가능성',
+                    '비용 격차: 방글라데시 평균 임금 $80/월 vs. 베트남 $130/월',
+                    '베트남 인건비+토지 비용: 총 비용의 32% vs. 방글라데시/캄보디아 12%'
+                ],
+                source: 'https://www.businessoffashion.com/news/global-markets/vietnam-overtakes-bangladesh-in-garment-exports/'
+            },
+            {
+                id: 'raw-1',
+                company: 'Raw Materials',
+                section: 'supply',
+                category: 'Raw Materials',
+                title: 'Cotton Prices Slide to Near-Lows Around 61-62 Cents/lb',
+                date: 'February 2026',
+                impact: 'low',
+                summaryEN: 'Cotton prices fell to 61.55 USd/lb, the lowest since November 2025, down 8.16% YoY, pressured by a strong U.S. dollar and weak demand. USDA spot market averaged 58.96 cents/lb for the week ending February 5.',
+                summaryKR: '면화 가격이 강달러와 수요 부진에 눌려 2025년 11월 이후 최저치인 61.55 USd/lb까지 하락, YoY 8.16% 하락했다. USDA 현물 시장은 2월 5일 주간 평균 58.96 cents/lb를 기록했다.',
+                detailsEN: [
+                    'Cotton at 61.55 USd/lb, lowest since November 2025',
+                    'Down 4.65% over past month, down 8.16% YoY',
+                    'USDA spot market: 58.96 cents/lb weekly average (week ending Feb 5), down from 60.00 cents prior week',
+                    'Weekly spot transactions: 49,607 bales vs. 59,025 prior week',
+                    'USDA cut U.S. production forecasts; India raised crop estimate by 2.5% to 317 lakh bales',
+                    'U.S. cotton exports forecast at 12.2 million bales in 2025/26 marketing year',
+                    '2026/27 outlook: tighter supply-demand balance expected as global production declines'
+                ],
+                detailsKR: [
+                    '면화 61.55 USd/lb, 2025년 11월 이후 최저치',
+                    '최근 1개월간 4.65% 하락, YoY 8.16% 하락',
+                    'USDA 현물 시장: 2월 5일 주간 평균 58.96 cents/lb, 전주 60.00 cents에서 하락',
+                    '주간 현물 거래량: 49,607 bales vs. 전주 59,025 bales',
+                    'USDA 미국 생산 전망 하향; 인도 작물 추정 2.5% 상향 317 lakh bales',
+                    '2025/26 마케팅 연도 미국 면화 수출 12.2 million bales 전망',
+                    '2026/27 전망: 글로벌 생산 감소로 공급-수요 밸런스 타이트화 예상'
+                ],
+                source: 'https://tradingeconomics.com/commodity/cotton'
+            },
+            {
+                id: 'sus-1',
+                company: 'Sustainability',
+                section: 'supply',
+                category: 'Sustainability',
+                title: 'EU Bans Destruction of Unsold Clothing from July 2026; California Textile EPR Kicks In',
+                date: 'February 2026',
+                impact: 'high',
+                summaryEN: 'The EU\'s formal ban on destroying unsold apparel takes effect July 19, 2026 for large companies. In the U.S., California\'s SB 707 textile EPR law requires brands to join a state-approved PRO by July 1, 2026 or face penalties up to $10,000/day.',
+                summaryKR: 'EU의 미판매 의류 폐기 금지가 2026년 7월 19일부터 대기업에 적용된다. 미국에서는 California SB 707 섬유 EPR법에 따라 브랜드들이 2026년 7월 1일까지 주 승인 PRO에 가입해야 하며, 미이행 시 일일 $10,000 과태료가 부과된다.',
+                detailsEN: [
+                    'EU ban on destroying unsold apparel effective July 19, 2026 for large companies; medium companies by 2030',
+                    'Companies must publicly disclose how much unsold inventory they discard',
+                    'California SB 707: brands selling apparel/footwear/household textiles must join a state-approved PRO by July 1, 2026',
+                    'Non-compliance penalties up to $10,000 per day',
+                    'California SB 253: Scope 1 & 2 emissions reporting begins 2026; Scope 3 from 2027',
+                    'EU Digital Product Passports (DPP) for textiles by mid-2027',
+                    'EU Green Claims Directive transposition due 2026'
+                ],
+                detailsKR: [
+                    'EU 미판매 의류 폐기 금지 2026년 7월 19일부터 대기업 적용; 중기업 2030년',
+                    '기업은 미판매 재고 폐기량을 공개적으로 공시해야 함',
+                    'California SB 707: 의류/신발/가정용 섬유 판매 브랜드, 2026년 7월 1일까지 주 승인 PRO 가입 필수',
+                    '미이행 시 일일 최대 $10,000 과태료',
+                    'California SB 253: Scope 1 & 2 배출 보고 2026년 시작; Scope 3은 2027년부터',
+                    'EU 디지털 제품 여권(DPP) 섬유 제품 2027년 중반 시행',
+                    'EU 그린 클레임 지침 2026년 국내법 전환 예정'
+                ],
+                source: 'https://esgnews.com/eu-moves-to-ban-destruction-of-unsold-clothing-under-new-circular-economy-rules/'
+            }
+        ];
+
+        // Company avatars
+        const companies = {
+            'Gap': { color: '#00549e', darkColor: '#003d75', initials: 'GP' },
+            'Walmart': { color: '#0071ce', darkColor: '#004c91', initials: 'WMT' },
+            'Kohl\'s': { color: '#c8102e', darkColor: '#9a0c23', initials: 'KSS' },
+            'AEO': { color: '#2d4a3e', darkColor: '#1a2f26', initials: 'AEO' },
+            'Target': { color: '#cc0000', darkColor: '#990000', initials: 'TGT' },
+            'Uniqlo': { color: '#ff0000', darkColor: '#cc0000', initials: 'UNQ' },
+            'Inditex/Zara': { color: '#000000', darkColor: '#333333', initials: 'ZRA' },
+            'Lululemon': { color: '#d31334', darkColor: '#a00f28', initials: 'LULU' },
+            'TJX': { color: '#e31837', darkColor: '#b3132c', initials: 'TJX' },
+            'Trade': { color: '#dc2626', darkColor: '#991b1b', initials: 'TRD' },
+            'Production': { color: '#dc2626', darkColor: '#991b1b', initials: 'PROD' },
+            'Raw Materials': { color: '#dc2626', darkColor: '#991b1b', initials: 'RAW' },
+            'Sustainability': { color: '#dc2626', darkColor: '#991b1b', initials: 'SUS' }
+        };
+
+        // Initialize
+        function init() {
+            renderSummaryTable();
+            renderArticles();
+            updateBackToTopVisibility();
+        }
+
+        // Render summary table
+        function renderSummaryTable() {
+            const tbody = document.getElementById('summaryTable');
+            tbody.innerHTML = '';
+
+            const grouped = {};
+            articles.forEach(article => {
+                if (!grouped[article.company]) {
+                    grouped[article.company] = [];
+                }
+                grouped[article.company].push(article);
+            });
+
+            Object.keys(grouped).forEach(company => {
+                grouped[company].forEach(article => {
+                    const row = document.createElement('tr');
+                    row.className = `filter-row impact-${article.impact}`;
+                    row.onclick = () => scrollToArticle(article.id);
+
+                    const companyInfo = companies[article.company] || companies['Trade'];
+                    const avatarStyle = `background-color: ${companyInfo.color}; color: white;`;
+
+                    row.innerHTML = `
+                        <td>
+                            <div class="company-badge">
+                                <div class="company-avatar" style="${avatarStyle}">${companyInfo.initials}</div>
+                                <span>${article.company}</span>
+                            </div>
+                        </td>
+                        <td><span class="lang-en">${article.title}</span><span class="lang-kr" style="display:none;">${article.title}</span></td>
+                        <td>
+                            <span class="impact-badge impact-${article.impact}">
+                                <span class="lang-en">${article.impact.charAt(0).toUpperCase() + article.impact.slice(1)}</span>
+                                <span class="lang-kr" style="display:none;">${getKoreanImpact(article.impact)}</span>
+                            </span>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            });
+        }
+
+        // Get Korean impact level
+        function getKoreanImpact(impact) {
+            const impacts = {
+                'critical': '긴급',
+                'high': '높음',
+                'medium': '중간',
+                'low': '낮음'
+            };
+            return impacts[impact] || impact;
+        }
+
+        // Render articles
+        function renderArticles() {
+            const retailerGrid = document.getElementById('retailerGrid');
+            const supplyGrid = document.getElementById('supplyGrid');
+            retailerGrid.innerHTML = '';
+            supplyGrid.innerHTML = '';
+
+            articles.forEach(article => {
+                const card = createArticleCard(article);
+                if (article.section === 'retailer') {
+                    retailerGrid.appendChild(card);
+                } else {
+                    supplyGrid.appendChild(card);
+                }
+            });
+        }
+
+        // Create article card
+        function createArticleCard(article) {
+            const card = document.createElement('div');
+            card.id = article.id;
+            card.className = `article-card ${article.section}`;
+
+            const companyInfo = companies[article.company] || companies['Trade'];
+            const avatarStyle = `background-color: ${companyInfo.color};`;
+
+            let detailsHTML = '<div class="lang-en">';
+            article.detailsEN.forEach(detail => {
+                detailsHTML += `<li>${detail}</li>`;
+            });
+            detailsHTML += '</div><div class="lang-kr" style="display:none;">';
+            article.detailsKR.forEach(detail => {
+                detailsHTML += `<li>${detail}</li>`;
+            });
+            detailsHTML += '</div>';
+
+            card.innerHTML = `
+                <div class="article-header">
+                    <div class="article-meta">
+                        <div>
+                            <div class="article-company">${article.company}</div>
+                            <div class="article-title"><span class="lang-en">${article.title}</span><span class="lang-kr" style="display:none;">${article.title}</span></div>
+                        </div>
+                        <div class="article-impact">
+                            <span class="impact-badge impact-${article.impact}">
+                                <span class="lang-en">${article.impact.charAt(0).toUpperCase() + article.impact.slice(1)}</span>
+                                <span class="lang-kr" style="display:none;">${getKoreanImpact(article.impact)}</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="article-date">${article.date}</div>
+                </div>
+                <div class="article-content">
+                    <div class="article-summary">
+                        <div class="lang-en">${article.summaryEN}</div>
+                        <div class="lang-kr" style="display:none;">${article.summaryKR}</div>
+                    </div>
+                    <div class="article-details">
+                        <h4><span class="lang-en">Details</span><span class="lang-kr" style="display:none;">세부사항</span></h4>
+                        <ul>
+                            ${detailsHTML}
+                        </ul>
+                    </div>
+                    <div class="article-source">Source: <a href="${article.source}" target="_blank" style="color: var(--color-primary);">${article.source}</a></div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Filter table
+        function filterTable(impact) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
-            const enElements = document.querySelectorAll('.lang-en');
-            const krElements = document.querySelectorAll('.lang-kr');
-
-            if (lang === 'en') {
-                enElements.forEach(el => el.style.display = 'inline');
-                krElements.forEach(el => el.style.display = 'none');
-            } else {
-                enElements.forEach(el => el.style.display = 'none');
-                krElements.forEach(el => el.style.display = 'inline');
-            }
+            const rows = document.querySelectorAll('.filter-row');
+            rows.forEach(row => {
+                if (impact === 'all') {
+                    row.style.display = '';
+                } else {
+                    row.style.display = row.className.includes(`impact-${impact}`) ? '' : 'none';
+                }
+            });
         }
 
-        // Filter Table
-        function filterTable(level, btn) {
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(button => button.classList.remove('active'));
-            btn.classList.add('active');
-
-            const rows = document.querySelectorAll('.article-row');
-            const groupHeaders = document.querySelectorAll('.company-group-header');
-
-            if (level === 'all') {
-                rows.forEach(row => row.style.display = 'table-row');
-                groupHeaders.forEach(header => header.style.display = 'table-row');
-            } else {
-                const visibleCompanies = new Set();
-                rows.forEach(row => {
-                    if (row.dataset.impact === level) {
-                        row.style.display = 'table-row';
-                        const index = row.rowIndex;
-                        let headerIndex = index - 1;
-                        while (headerIndex >= 0) {
-                            const potentialHeader = document.querySelector(`tr:nth-child(${headerIndex})`);
-                            if (potentialHeader && potentialHeader.classList.contains('company-group-header')) {
-                                visibleCompanies.add(potentialHeader.dataset.company);
-                                break;
-                            }
-                            headerIndex--;
-                        }
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
-
-                groupHeaders.forEach(header => {
-                    if (visibleCompanies.has(header.dataset.company)) {
-                        header.style.display = 'table-row';
-                    } else {
-                        header.style.display = 'none';
-                    }
-                });
-            }
-        }
-
-        // Scroll to Article
+        // Scroll to article
         function scrollToArticle(id) {
-            const element = document.getElementById(id);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-                element.style.backgroundColor = '#fff9e6';
-                setTimeout(() => {
-                    element.style.backgroundColor = '';
-                }, 2000);
-                showToast(`<span class="lang-en">Navigated to article</span><span class="lang-kr" style="display: none;">해당 기사로 이동했습니다</span>`);
+            const card = document.getElementById(id);
+            if (card) {
+                card.classList.remove('flash');
+                void card.offsetWidth;
+                card.classList.add('flash');
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                showToast(`Navigated to ${document.getElementById(id).querySelector('.article-title').textContent}`);
             }
         }
 
-        // Show Toast
+        // Toggle language
+        function toggleLanguage(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            document.querySelectorAll('.lang-en').forEach(el => {
+                el.style.display = lang === 'en' ? '' : 'none';
+            });
+            document.querySelectorAll('.lang-kr').forEach(el => {
+                el.style.display = lang === 'kr' ? '' : 'none';
+            });
+        }
+
+        // Back to top
+        function backToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Update back to top visibility
+        function updateBackToTopVisibility() {
+            const btn = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        }
+
+        // Show toast
         function showToast(message) {
             const toast = document.getElementById('toast');
-            toast.innerHTML = message;
+            toast.textContent = message;
             toast.classList.add('show');
             setTimeout(() => {
                 toast.classList.remove('show');
             }, 3000);
         }
 
-        // Back to Top
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        // Event listeners
+        window.addEventListener('scroll', updateBackToTopVisibility);
 
-        window.addEventListener('scroll', () => {
-            const backToTop = document.querySelector('.back-to-top');
-            if (window.scrollY > 300) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
-        });
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
