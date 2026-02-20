@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly Newsletter | {{DATE_RANGE_SHORT}}</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--color-primary:#1a2332;--color-retailer:#16a34a;--color-supply:#dc2626;--color-bg:#fafbfc;--color-surface:#ffffff;--color-text:#1f2937;--color-text-light:#6b7280;--color-border:#e5e7eb;--shadow-sm:0 1px 3px rgba(0,0,0,0.05);--shadow-md:0 4px 12px rgba(0,0,0,0.08);--shadow-lg:0 10px 30px rgba(0,0,0,0.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',-apple-system,sans-serif;font-size:16px;line-height:1.7;color:var(--color-text);background:var(--color-bg)}
+h1,h2,h3{font-family:'Playfair Display',serif}
+h1{font-size:3.5rem;font-weight:900;letter-spacing:-0.02em;line-height:1.1;color:#fff}
+h2{font-size:2.2rem;font-weight:700;margin-bottom:30px;color:var(--color-primary)}
+h3{font-size:1.8rem;font-weight:700;margin-bottom:32px;scroll-margin-top:100px;color:var(--color-primary)}
+h4{font-size:1.3rem;font-weight:700;margin:32px 0 16px 0;color:var(--color-text)}
+a{color:#2563eb;text-decoration:none}a:hover{text-decoration:underline}
+header{background:linear-gradient(135deg,#1a2332 0%,#2d3748 100%);padding:60px 20px;margin-bottom:40px;box-shadow:var(--shadow-lg);text-align:center;position:relative}
+.date-range{font-size:1.1rem;opacity:0.9;font-weight:500;letter-spacing:0.05em;color:#cbd5e1;margin-top:12px}
+.lang-toggle{display:flex;justify-content:center;gap:8px;margin-top:20px}
+.lang-btn{padding:8px 24px;border-radius:25px;border:2px solid rgba(255,255,255,0.3);background:transparent;color:rgba(255,255,255,0.7);font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.25s}
+.lang-btn.active{background:rgba(255,255,255,0.15);color:#fff;border-color:rgba(255,255,255,0.6)}
+.lang-btn:hover{border-color:rgba(255,255,255,0.5)}
+.container{max-width:1200px;padding:40px 20px;margin:0 auto}
+/* Language toggle */
+.lang-ko{display:none}
+body.ko-mode .lang-en{display:none}
+body.ko-mode .lang-ko{display:inline}
+body.ko-mode h2.lang-en,body.ko-mode h3.lang-en,body.ko-mode h4.lang-en,body.ko-mode p.lang-en,body.ko-mode li.lang-en,body.ko-mode span.lang-en,body.ko-mode strong.lang-en,body.ko-mode div.lang-en{display:none}
+body.ko-mode h2.lang-ko,body.ko-mode h3.lang-ko,body.ko-mode h4.lang-ko,body.ko-mode p.lang-ko,body.ko-mode li.lang-ko,body.ko-mode span.lang-ko,body.ko-mode strong.lang-ko,body.ko-mode div.lang-ko{display:block}
+body:not(.ko-mode) h2.lang-ko,body:not(.ko-mode) h3.lang-ko,body:not(.ko-mode) h4.lang-ko,body:not(.ko-mode) p.lang-ko,body:not(.ko-mode) li.lang-ko,body:not(.ko-mode) span.lang-ko,body:not(.ko-mode) strong.lang-ko,body:not(.ko-mode) div.lang-ko{display:none}
+/* Summary Table */
+.summary-table{width:100%;border-collapse:collapse;background:var(--color-surface);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-md);margin-bottom:40px}
+.group-header{background:linear-gradient(135deg,#f8fafc,#f1f5f9)}
+.group-header td{padding:16px 24px;border-bottom:2px solid var(--color-border)}
+.group-header-content{display:flex;align-items:center;gap:14px}
+.company-avatar{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.72rem;color:#fff;flex-shrink:0}
+.company-name{font-weight:700;font-size:1rem;color:var(--color-primary)}
+.company-count{font-size:0.75rem;color:var(--color-text-light)}
+.news-row{cursor:pointer;transition:background 0.2s}
+.news-row:hover{background:#eef2ff}
+.news-row:hover .headline-text{text-decoration:underline}
+.news-row td{padding:14px 24px 14px 78px;border-bottom:1px solid #f1f3f7}
+.headline-cell{display:flex;align-items:center;gap:10px}
+.news-bullet{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.news-bullet.retailer{background:var(--color-retailer)}
+.news-bullet.supply{background:var(--color-supply)}
+.headline-text{font-size:0.9rem;font-weight:500;color:var(--color-text)}
+.impact-cell{text-align:right;white-space:nowrap}
+.impact-badge{padding:4px 12px;border-radius:8px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;display:inline-block}
+.impact-critical{background:#fef2f2;color:#dc2626}
+.impact-high{background:#fff7ed;color:#ea580c}
+.impact-medium{background:#eff6ff;color:#2563eb}
+.impact-low{background:#f3f4f6;color:#6b7280}
+/* Filter */
+.filter-bar{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.filter-btn{padding:8px 20px;border-radius:25px;border:2px solid #e2e8f0;background:var(--color-surface);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;color:var(--color-text-light);cursor:pointer;transition:all 0.25s}
+.filter-btn.active{background:var(--color-primary);color:#fff;border-color:var(--color-primary)}
+.filter-btn:hover{border-color:#94a3b8}
+/* Section Divider */
+.section-divider{display:flex;align-items:center;gap:16px;margin:60px 0 40px 0;padding-bottom:16px;border-bottom:3px solid}
+.section-divider.retailer{border-color:var(--color-retailer)}
+.section-divider.supply{border-color:var(--color-supply)}
+.section-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;font-weight:800;font-size:0.85rem}
+.section-icon.retailer{background:linear-gradient(135deg,var(--color-retailer),#0d8a2e)}
+.section-icon.supply{background:linear-gradient(135deg,var(--color-supply),#b91c1c)}
+/* Article Cards */
+.article-card{background:var(--color-surface);border-radius:16px;padding:32px;margin-bottom:24px;box-shadow:var(--shadow-sm);transition:all 0.3s;scroll-margin-top:24px}
+.article-card.retailer{border-left:4px solid var(--color-retailer)}
+.article-card.supply{border-left:4px solid var(--color-supply)}
+.article-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+@keyframes highlightFlash{0%{box-shadow:0 0 0 4px rgba(37,99,235,0.45)}100%{box-shadow:var(--shadow-sm)}}
+.article-card.flash{animation:highlightFlash 2s ease-out}
+.article-meta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-size:0.8rem;color:var(--color-text-light);margin-bottom:8px}
+.article-tag{display:inline-flex;align-items:center;padding:4px 12px;border-radius:8px;font-size:0.75rem;font-weight:600}
+.article-tag.retailer{background:#dcfce7;color:#15803d}
+.article-tag.supply{background:#fee2e2;color:#b91c1c}
+.article-date{color:var(--color-text-light)}
+.article-source a{color:#2563eb}
+.article-source a:hover{text-decoration:underline}
+.details-list{background:#f8fafc;padding:24px;border-radius:8px;margin:20px 0;border-left:3px solid #cbd5e1}
+.details-list ul{list-style:none;padding:0;margin-top:8px}
+.details-list li{padding:8px 0 8px 24px;position:relative;border-bottom:1px solid #eef0f3}
+.details-list li:last-child{border-bottom:none}
+.details-list li::before{content:'▸';position:absolute;left:0;color:var(--color-retailer);font-weight:700}
+.article-card.supply .details-list li::before{color:var(--color-supply)}
+/* Company Section */
+.company-section-header{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.company-section-header h3{margin-bottom:0}
+/* Toast */
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--color-primary);color:#fff;padding:10px 28px;border-radius:30px;font-size:0.82rem;font-weight:600;box-shadow:var(--shadow-lg);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);z-index:200;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* Back to Top */
+.back-to-top{position:fixed;bottom:30px;right:30px;background:var(--color-primary);color:#fff;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-md);border:none;font-size:1.2rem;cursor:pointer;opacity:0;transition:all 0.3s;z-index:100}
+.back-to-top.visible{opacity:1}
+.back-to-top:hover{transform:scale(1.1)}
+/* Responsive */
+@media(max-width:768px){
+h1{font-size:2.2rem}h2{font-size:1.6rem}h3{font-size:1.3rem}
+header{padding:40px 16px}
+.container{padding:24px 16px}
+.article-card{padding:20px}
+.news-row td{padding-left:60px}
+.filter-bar{gap:6px}
+.filter-btn{padding:6px 14px;font-size:0.8rem}
+}
+</style>
+</head>
+<body>
+<div class="toast" id="toast">📍 Scrolling to article...</div>
+
+<header>
+<h1>Weekly Newsletter</h1>
+<p class="date-range">{{DATE_RANGE}}</p>
+<div class="lang-toggle">
+<button class="lang-btn active" onclick="setLanguage('en')">ENG</button>
+<span style="color:rgba(255,255,255,0.3);font-size:1.2rem">|</span>
+<button class="lang-btn" onclick="setLanguage('ko')">KOR</button>
+</div>
+</header>
+
+<div class="container">
+<h2 class="lang-en">Summary</h2>
+<h2 class="lang-ko">Summary</h2>
+
+<div class="filter-bar">
+<button class="filter-btn active" onclick="filterTable('all',this)">All</button>
+<button class="filter-btn" onclick="filterTable('critical',this)">Critical</button>
+<button class="filter-btn" onclick="filterTable('high',this)">High</button>
+<button class="filter-btn" onclick="filterTable('medium',this)">Medium</button>
+<button class="filter-btn" onclick="filterTable('low',this)">Low</button>
+</div>
+
+<table class="summary-table" id="summaryTable"><tbody>
+{{SUMMARY_TABLE_ROWS}}
+</tbody></table>
+</div>
+
+<!-- RETAILER SECTION -->
+<div class="container">
+<div class="section-divider retailer">
+<div class="section-icon retailer">R</div>
+<h2>Retailer</h2>
+</div>
+{{RETAILER_ARTICLES}}
+</div>
+
+<!-- SUPPLY CHAIN & TRADE POLICY SECTION -->
+<div class="container">
+<div class="section-divider supply">
+<div class="section-icon supply">SC</div>
+<h2>Supply Chain & Trade Policy</h2>
+</div>
+{{SUPPLY_ARTICLES}}
+</div>
+
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function setLanguage(lang){
+var btns=document.querySelectorAll('.lang-btn');
+btns.forEach(function(b){b.classList.remove('active')});
+if(lang==='ko'){document.body.classList.add('ko-mode');btns[1].classList.add('active')}
+else{document.body.classList.remove('ko-mode');btns[0].classList.add('active')}
+}
+function scrollToArticle(id){
+var el=document.getElementById(id);if(!el)return;
+var t=document.getElementById('toast');t.classList.add('show');
+setTimeout(function(){t.classList.remove('show')},1200);
+el.scrollIntoView({behavior:'smooth',block:'center'});
+el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');
+}
+function filterTable(level,btn){
+document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
+btn.classList.add('active');
+var table=document.getElementById('summaryTable');
+var rows=table.querySelectorAll('.news-row');
+var headers=table.querySelectorAll('.group-header');
+if(level==='all'){rows.forEach(function(r){r.style.display=''});headers.forEach(function(h){h.style.display=''});return}
+rows.forEach(function(r){r.style.display=r.dataset.impact===level?'':'none'});
+headers.forEach(function(h){var c=h.dataset.company;var v=table.querySelectorAll('.news-row[data-company="'+c+'"][data-impact="'+level+'"]');h.style.display=v.length>0?'':'none'});
+}
+window.addEventListener('scroll',function(){
+var b=document.getElementById('backToTop');
+if(window.scrollY>300){b.classList.add('visible')}else{b.classList.remove('visible')}
+});
+</script>
+</body>
+</html>
