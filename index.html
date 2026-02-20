@@ -132,8 +132,9 @@
             display: flex;
             align-items: center;
             gap: 16px;
-            margin: 60px 0 40px 0;
-            padding-bottom: 16px;
+            max-width: 1200px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px 16px 20px;
             border-bottom: 3px solid;
         }
 
@@ -328,7 +329,9 @@
         }
 
         .company-section {
-            margin-bottom: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px auto;
+            padding: 0 20px;
         }
 
         .company-section-header {
@@ -569,7 +572,7 @@
     <header>
         <div class="header-content">
             <h1 id="header-title-eng">Weekly Newsletter</h1>
-            <h1 id="header-title-kor" class="hidden-lang">주간 뉴스레터</h1>
+            <h1 id="header-title-kor" class="hidden-lang">Weekly Newsletter</h1>
             <p class="date-range" id="date-range-eng">February 14 – February 20, 2026</p>
             <p class="date-range hidden-lang" id="date-range-kor">2026년 2월 14일 ~ 2월 20일</p>
         </div>
@@ -1893,36 +1896,87 @@
             btn.classList.toggle('visible', window.scrollY > 300);
         });
 
+        // Store original English content on first load
+        const englishContent = {};
+        document.addEventListener('DOMContentLoaded', function() {
+            Object.keys(koreanTranslations.articles).forEach(articleId => {
+                const article = document.getElementById(articleId);
+                if (article) {
+                    const h4 = article.querySelector('h4');
+                    const summaryP = article.querySelector('p');
+                    const listItems = article.querySelectorAll('.details-list li');
+                    englishContent[articleId] = {
+                        title: h4 ? h4.textContent : '',
+                        summaryHTML: summaryP ? summaryP.innerHTML : '',
+                        details: Array.from(listItems).map(li => li.textContent)
+                    };
+                }
+            });
+            // Store English headline texts for summary table
+            document.querySelectorAll('.news-row .headline-text').forEach(span => {
+                span.setAttribute('data-eng', span.textContent);
+            });
+        });
+
         function switchLanguage(lang, btn) {
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
+            // Toggle header/section titles
             if (lang === 'eng') {
                 document.querySelectorAll('[id$="-eng"]').forEach(el => el.classList.remove('hidden-lang'));
                 document.querySelectorAll('[id$="-kor"]').forEach(el => el.classList.add('hidden-lang'));
             } else {
                 document.querySelectorAll('[id$="-eng"]').forEach(el => el.classList.add('hidden-lang'));
                 document.querySelectorAll('[id$="-kor"]').forEach(el => el.classList.remove('hidden-lang'));
+            }
 
-                // Update article content with Korean translations
-                Object.keys(koreanTranslations.articles).forEach(articleId => {
-                    const article = document.getElementById(articleId);
-                    if (article) {
-                        const trans = koreanTranslations.articles[articleId];
-                        const h4 = article.querySelector('h4');
-                        const summary = article.querySelector('p strong + br + *') || article.querySelector('p');
-                        const listItems = article.querySelectorAll('li');
+            // Update article card content
+            Object.keys(koreanTranslations.articles).forEach(articleId => {
+                const article = document.getElementById(articleId);
+                if (!article) return;
+                const h4 = article.querySelector('h4');
+                const summaryP = article.querySelector('p');
+                const listItems = article.querySelectorAll('.details-list li');
 
-                        if (h4) h4.textContent = trans.title;
-                        if (summary) {
-                            summary.innerHTML = summary.innerHTML.replace(/Old Navy[\s\S]*?new parents\./g, trans.summary);
-                        }
+                if (lang === 'kor') {
+                    const trans = koreanTranslations.articles[articleId];
+                    if (h4) h4.textContent = trans.title;
+                    if (summaryP) {
+                        const strongTag = summaryP.querySelector('strong');
+                        const label = strongTag ? strongTag.textContent : 'Summary:';
+                        summaryP.innerHTML = '<strong>' + label + '</strong> ' + trans.summary;
+                    }
+                    listItems.forEach((li, idx) => {
+                        if (trans.details[idx]) li.textContent = trans.details[idx];
+                    });
+                } else {
+                    const eng = englishContent[articleId];
+                    if (eng) {
+                        if (h4) h4.textContent = eng.title;
+                        if (summaryP) summaryP.innerHTML = eng.summaryHTML;
                         listItems.forEach((li, idx) => {
-                            if (trans.details[idx]) li.textContent = trans.details[idx];
+                            if (eng.details[idx]) li.textContent = eng.details[idx];
                         });
                     }
-                });
-            }
+                }
+            });
+
+            // Update summary table headlines
+            document.querySelectorAll('.news-row').forEach(row => {
+                const span = row.querySelector('.headline-text');
+                if (!span) return;
+                const artId = row.getAttribute('onclick');
+                if (!artId) return;
+                const match = artId.match(/'([^']+)'/);
+                if (!match) return;
+                const id = match[1];
+                if (lang === 'kor' && koreanTranslations.articles[id]) {
+                    span.textContent = koreanTranslations.articles[id].title;
+                } else {
+                    span.textContent = span.getAttribute('data-eng') || span.textContent;
+                }
+            });
         }
     </script>
 </body>
