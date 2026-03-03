@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly Newsletter | Feb 24–Mar 3, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--color-primary:#1a2332;--color-retailer:#16a34a;--color-supply:#dc2626;--color-bg:#fafbfc;--color-surface:#ffffff;--color-text:#1f2937;--color-text-light:#6b7280;--color-border:#e5e7eb;--shadow-sm:0 1px 3px rgba(0,0,0,0.05);--shadow-md:0 4px 12px rgba(0,0,0,0.08);--shadow-lg:0 10px 30px rgba(0,0,0,0.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',-apple-system,sans-serif;font-size:16px;line-height:1.7;color:var(--color-text);background:var(--color-bg)}
+h1,h2,h3{font-family:'Playfair Display',serif}
+h1{font-size:3.5rem;font-weight:900;letter-spacing:-0.02em;line-height:1.1;color:#fff}
+h2{font-size:2.2rem;font-weight:700;margin-bottom:30px;color:var(--color-primary)}
+h3{font-size:1.8rem;font-weight:700;margin-bottom:32px;scroll-margin-top:100px;color:var(--color-primary)}
+h4{font-size:1.3rem;font-weight:700;margin:32px 0 16px 0;color:var(--color-text)}
+a{color:#2563eb;text-decoration:none}a:hover{text-decoration:underline}
+header{background:linear-gradient(135deg,#1a2332 0%,#2d3748 100%);padding:60px 20px;margin-bottom:40px;box-shadow:var(--shadow-lg);text-align:center;position:relative}
+.date-range{font-size:1.1rem;opacity:0.9;font-weight:500;letter-spacing:0.05em;color:#cbd5e1;margin-top:12px}
+.lang-toggle{display:flex;justify-content:center;gap:8px;margin-top:20px}
+.lang-btn{padding:8px 24px;border-radius:25px;border:2px solid rgba(255,255,255,0.3);background:transparent;color:rgba(255,255,255,0.7);font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.25s}
+.lang-btn.active{background:rgba(255,255,255,0.15);color:#fff;border-color:rgba(255,255,255,0.6)}
+.lang-btn:hover{border-color:rgba(255,255,255,0.5)}
+.container{max-width:1200px;padding:40px 20px;margin:0 auto}
+/* Language toggle */
+.lang-ko{display:none}
+body.ko-mode .lang-en{display:none}
+body.ko-mode .lang-ko{display:inline}
+body.ko-mode h2.lang-en,body.ko-mode h3.lang-en,body.ko-mode h4.lang-en,body.ko-mode p.lang-en,body.ko-mode li.lang-en,body.ko-mode span.lang-en,body.ko-mode strong.lang-en,body.ko-mode div.lang-en{display:none}
+body.ko-mode h2.lang-ko,body.ko-mode h3.lang-ko,body.ko-mode h4.lang-ko,body.ko-mode p.lang-ko,body.ko-mode li.lang-ko,body.ko-mode span.lang-ko,body.ko-mode strong.lang-ko,body.ko-mode div.lang-ko{display:block}
+body:not(.ko-mode) h2.lang-ko,body:not(.ko-mode) h3.lang-ko,body:not(.ko-mode) h4.lang-ko,body:not(.ko-mode) p.lang-ko,body:not(.ko-mode) li.lang-ko,body:not(.ko-mode) span.lang-ko,body:not(.ko-mode) strong.lang-ko,body:not(.ko-mode) div.lang-ko{display:none}
+/* Summary Table */
+.summary-table{width:100%;border-collapse:collapse;background:var(--color-surface);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-md);margin-bottom:40px}
+.group-header{background:linear-gradient(135deg,#f8fafc,#f1f5f9)}
+.group-header td{padding:16px 24px;border-bottom:2px solid var(--color-border)}
+.group-header-content{display:flex;align-items:center;gap:14px}
+.company-avatar{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.72rem;color:#fff;flex-shrink:0}
+.company-name{font-weight:700;font-size:1rem;color:var(--color-primary)}
+.company-count{font-size:0.75rem;color:var(--color-text-light)}
+.news-row{cursor:pointer;transition:background 0.2s}
+.news-row:hover{background:#eef2ff}
+.news-row:hover .headline-text{text-decoration:underline}
+.news-row td{padding:14px 24px 14px 78px;border-bottom:1px solid #f1f3f7}
+.headline-cell{display:flex;align-items:center;gap:10px}
+.news-bullet{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.news-bullet.retailer{background:var(--color-retailer)}
+.news-bullet.supply{background:var(--color-supply)}
+.headline-text{font-size:0.9rem;font-weight:500;color:var(--color-text)}
+.impact-cell{text-align:right;white-space:nowrap}
+.impact-badge{padding:4px 12px;border-radius:8px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;display:inline-block}
+.impact-critical{background:#fef2f2;color:#dc2626}
+.impact-high{background:#fff7ed;color:#ea580c}
+.impact-medium{background:#eff6ff;color:#2563eb}
+.impact-low{background:#f3f4f6;color:#6b7280}
+/* Filter */
+.filter-bar{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.filter-btn{padding:8px 20px;border-radius:25px;border:2px solid #e2e8f0;background:var(--color-surface);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;color:var(--color-text-light);cursor:pointer;transition:all 0.25s}
+.filter-btn.active{background:var(--color-primary);color:#fff;border-color:var(--color-primary)}
+.filter-btn:hover{border-color:#94a3b8}
+/* Section Divider */
+.section-divider{display:flex;align-items:center;gap:16px;margin:60px 0 40px 0;padding-bottom:16px;border-bottom:3px solid}
+.section-divider.retailer{border-color:var(--color-retailer)}
+.section-divider.supply{border-color:var(--color-supply)}
+.section-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;font-weight:800;font-size:0.85rem}
+.section-icon.retailer{background:linear-gradient(135deg,var(--color-retailer),#0d8a2e)}
+.section-icon.supply{background:linear-gradient(135deg,var(--color-supply),#b91c1c)}
+/* Article Cards */
+.article-card{background:var(--color-surface);border-radius:16px;padding:32px;margin-bottom:24px;box-shadow:var(--shadow-sm);transition:all 0.3s;scroll-margin-top:24px}
+.article-card.retailer{border-left:4px solid var(--color-retailer)}
+.article-card.supply{border-left:4px solid var(--color-supply)}
+.article-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+@keyframes highlightFlash{0%{box-shadow:0 0 0 4px rgba(37,99,235,0.45)}100%{box-shadow:var(--shadow-sm)}}
+.article-card.flash{animation:highlightFlash 2s ease-out}
+.article-meta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-size:0.8rem;color:var(--color-text-light);margin-bottom:8px}
+.article-tag{display:inline-flex;align-items:center;padding:4px 12px;border-radius:8px;font-size:0.75rem;font-weight:600}
+.article-tag.retailer{background:#dcfce7;color:#15803d}
+.article-tag.supply{background:#fee2e2;color:#b91c1c}
+.article-date{color:var(--color-text-light)}
+.article-source a{color:#2563eb}
+.article-source a:hover{text-decoration:underline}
+.details-list{background:#f8fafc;padding:24px;border-radius:8px;margin:20px 0;border-left:3px solid #cbd5e1}
+.details-list ul{list-style:none;padding:0;margin-top:8px}
+.details-list li{padding:8px 0 8px 24px;position:relative;border-bottom:1px solid #eef0f3}
+.details-list li:last-child{border-bottom:none}
+.details-list li::before{content:'▸';position:absolute;left:0;color:var(--color-retailer);font-weight:700}
+.article-card.supply .details-list li::before{color:var(--color-supply)}
+/* Company Section */
+.company-section-header{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.company-section-header h3{margin-bottom:0}
+/* Toast */
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--color-primary);color:#fff;padding:10px 28px;border-radius:30px;font-size:0.82rem;font-weight:600;box-shadow:var(--shadow-lg);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);z-index:200;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* Back to Top */
+.back-to-top{position:fixed;bottom:30px;right:30px;background:var(--color-primary);color:#fff;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-md);border:none;font-size:1.2rem;cursor:pointer;opacity:0;transition:all 0.3s;z-index:100}
+.back-to-top.visible{opacity:1}
+.back-to-top:hover{transform:scale(1.1)}
+/* Responsive */
+@media(max-width:768px){
+h1{font-size:2.2rem}h2{font-size:1.6rem}h3{font-size:1.3rem}
+header{padding:40px 16px}
+.container{padding:24px 16px}
+.article-card{padding:20px}
+.news-row td{padding-left:60px}
+.filter-bar{gap:6px}
+.filter-btn{padding:6px 14px;font-size:0.8rem}
+}
+</style>
+</head>
+<body>
+<div class="toast" id="toast">📍 Scrolling to article...</div>
+
+<header>
+<h1>Weekly Newsletter</h1>
+<p class="date-range">FEBRUARY 24 – MARCH 3, 2026</p>
+<div class="lang-toggle">
+<button class="lang-btn active" onclick="setLanguage('en')">ENG</button>
+<span style="color:rgba(255,255,255,0.3);font-size:1.2rem">|</span>
+<button class="lang-btn" onclick="setLanguage('ko')">KOR</button>
+</div>
+</header>
+
+<div class="container">
+<h2 class="lang-en">Summary</h2>
+<h2 class="lang-ko">Summary</h2>
+
+<div class="filter-bar">
+<button class="filter-btn active" onclick="filterTable('all',this)">All</button>
+<button class="filter-btn" onclick="filterTable('critical',this)">Critical</button>
+<button class="filter-btn" onclick="filterTable('high',this)">High</button>
+<button class="filter-btn" onclick="filterTable('medium',this)">Medium</button>
+<button class="filter-btn" onclick="filterTable('low',this)">Low</button>
+</div>
+
+<table class="summary-table" id="summaryTable"><tbody>
+<tr class="group-header" data-company="guess" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#c8a84b,#8b6914)">GUESS</div><div class="company-info"><div class="company-name">GUESS</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="high" data-company="guess" onclick="scrollToArticle('art-guess-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Chiara Ferragni Fronts GUESS Global Ad Campaign for Spring 2026</span><span class="headline-text lang-ko">키아라 페라그니, GUESS 스프링 2026 글로벌 광고 캠페인 모델로 선정</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="group-header" data-company="capri" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#1a1a2e,#0f0f1a)">CPRI</div><div class="company-info"><div class="company-name">Capri Holdings</div><div class="company-count">2 articles</div></div></div></td></tr>
+<tr class="news-row" data-impact="medium" data-company="capri" onclick="scrollToArticle('art-capri-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Capri Holdings Announces CEO John Idol to Speak at Citi's 2026 Global Consumer & Retail Conference</span><span class="headline-text lang-ko">Capri Holdings CEO 존 아이돌, 시티 2026 글로벌 컨슈머&리테일 컨퍼런스 발표</span></div></td><td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td></tr>
+<tr class="news-row" data-impact="high" data-company="capri" onclick="scrollToArticle('art-capri-2')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Capri Holdings Appoints Tyler Reddien as Chief Financial Officer and Chief Operating Officer</span><span class="headline-text lang-ko">Capri Holdings, 타일러 레디엔을 최고재무책임자 겸 최고운영책임자로 임명</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="group-header" data-company="jimmychoo" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#1a1a1a,#000000)">JC</div><div class="company-info"><div class="company-name">Jimmy Choo</div><div class="company-count">2 articles</div></div></div></td></tr>
+<tr class="news-row" data-impact="high" data-company="jimmychoo" onclick="scrollToArticle('art-jimmychoo-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Jimmy Choo Bridal 2026 Campaign Launches with Gabbriette</span><span class="headline-text lang-ko">지미 추, 2026 브라이덜 캠페인 공식 출시</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="news-row" data-impact="high" data-company="jimmychoo" onclick="scrollToArticle('art-jimmychoo-2')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Jimmy Choo Unveils Spring 2026 Collection 'Future Feminine' at Milan Fashion Week</span><span class="headline-text lang-ko">지미추, 밀란 패션위크에서 '미래 페미닌' 스프링 2026 컬렉션 공개</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="group-header" data-company="tapestry" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#2c4a8c,#1a2f5e)">TPR</div><div class="company-info"><div class="company-name">Tapestry</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="high" data-company="tapestry" onclick="scrollToArticle('art-tapestry-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Tapestry Inc. Reports Strong Q2 FY2026 Earnings with Coach Driving 25% Revenue Growth</span><span class="headline-text lang-ko">Tapestry Inc., 코치가 25% 매출 성장을 견인하며 강한 Q2 FY2026 실적 보고</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="group-header" data-company="stanley" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#1b4d3e,#0d2e24)">STNLY</div><div class="company-info"><div class="company-name">Stanley</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="high" data-company="stanley" onclick="scrollToArticle('art-stanley-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Stanley 1913 Vitalize Collection Launches with Academy Sports Expansion</span><span class="headline-text lang-ko">Stanley 1913, Vitalize 컬렉션 출시 및 Academy Sports 확대</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="group-header" data-company="staud" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#d4a5a5,#a07070)">STAUD</div><div class="company-info"><div class="company-name">Staud</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="medium" data-company="staud" onclick="scrollToArticle('art-staud-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Staud Unveils Limited-Edition Tommy Bag with Artist Merikokeb Berhanu at Frieze LA</span><span class="headline-text lang-ko">Staud, Frieze LA에서 아티스트 Merikokeb Berhanu와 협업 제한판 Tommy Bag 출시</span></div></td><td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td></tr>
+<tr class="group-header" data-company="furla" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#e8523a,#c03d28)">FURLA</div><div class="company-info"><div class="company-name">Furla</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="high" data-company="furla" onclick="scrollToArticle('art-furla-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Furla's SS26 Milan-inspired bags lean into canvas, colour and quiet luxury</span><span class="headline-text lang-ko">Furla의 SS26 밀라노 영감 백, 캔버스, 컬러, 조용한 럭셔리로</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="group-header" data-company="longchamp" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#1a472a,#0d2e1a)">LC</div><div class="company-info"><div class="company-name">Longchamp</div><div class="company-count">2 articles</div></div></div></td></tr>
+<tr class="news-row" data-impact="high" data-company="longchamp" onclick="scrollToArticle('art-longchamp-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Longchamp Spring 2026: Cocooning Season introduces touchable luxury and playful design</span><span class="headline-text lang-ko">롱샹 S/S 2026: 코쿠닝 시즌, 촉각적 럭셔리와 장난기 넘치는 디자인 도입</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="news-row" data-impact="medium" data-company="longchamp" onclick="scrollToArticle('art-longchamp-2')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Longchamp celebrates Spring 2026 with Slide in Style collection and skating-inspired accessories</span><span class="headline-text lang-ko">롱샹, 스프링 2026 슬라이드 인 스타일 컬렉션과 스케이팅 영감 액세서리로 축제</span></div></td><td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td></tr>
+<tr class="group-header" data-company="rebeccaminkoff" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#2c2c2c,#1a1a1a)">RM</div><div class="company-info"><div class="company-name">Rebecca Minkoff</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="high" data-company="rebeccaminkoff" onclick="scrollToArticle('art-rebeccaminkoff-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Rebecca Minkoff expands European presence with Venice flagship shop and London exclusive bag styles</span><span class="headline-text lang-ko">Rebecca Minkoff, 베니스 플래그십 숍과 런던 익스클루시브 백 스타일로 유럽 입지 확대</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="group-header" data-company="verabradley" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#7b3f7f,#5c2d61)">VB</div><div class="company-info"><div class="company-name">Vera Bradley</div><div class="company-count">2 articles</div></div></div></td></tr>
+<tr class="news-row" data-impact="medium" data-company="verabradley" onclick="scrollToArticle('art-verabradley-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Vera Bradley launches Rapunzel-inspired Tangled collection with purple pattern featuring Disney character</span><span class="headline-text lang-ko">Vera Bradley, Rapunzel 영감 Tangled 컬렉션 출시, 디즈니 캐릭터 자주색 패턴으로</span></div></td><td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td></tr>
+<tr class="news-row" data-impact="medium" data-company="verabradley" onclick="scrollToArticle('art-verabradley-2')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Vera Bradley Schedules Q4 and Fiscal Year 2026 Earnings Release</span><span class="headline-text lang-ko">Vera Bradley, 2026 회계연도 4분기 실적 발표 예정</span></div></td><td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td></tr>
+<tr class="group-header" data-company="dooney" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#8b4513,#5c2d0a)">D&B</div><div class="company-info"><div class="company-name">Dooney & Bourke</div><div class="company-count">2 articles</div></div></div></td></tr>
+<tr class="news-row" data-impact="medium" data-company="dooney" onclick="scrollToArticle('art-dooney-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Dooney & Bourke releases Disney x BAGGU collection and new Pocahontas collaboration in March 2026</span><span class="headline-text lang-ko">Dooney & Bourke, 3월 2026년 디즈니 x BAGGU 컬렉션과 새로운 포카혼타스 협업 출시</span></div></td><td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td></tr>
+<tr class="news-row" data-impact="medium" data-company="dooney" onclick="scrollToArticle('art-dooney-2')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Disney x Dooney & Bourke Releases Mickey Mouse Blue Crossbody Bag</span><span class="headline-text lang-ko">Disney x Dooney & Bourke, Mickey Mouse 블루 크로스바디 백 출시</span></div></td><td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td></tr>
+<tr class="group-header" data-company="mansurgavriel" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#e8523a,#c03d28)">MG</div><div class="company-info"><div class="company-name">Mansur Gavriel</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="high" data-company="mansurgavriel" onclick="scrollToArticle('art-mansurgavriel-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Mansur Gavriel launches eco-friendly Apple Leather Bucket Bag with sustainable materials</span><span class="headline-text lang-ko">Mansur Gavriel, 지속 가능한 재료를 사용한 에코 프렌들리 Apple Leather 버킷백 출시</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="group-header" data-company="aimeekestenberg" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#2c2c2c,#1a1a1a)">AK</div><div class="company-info"><div class="company-name">Aimee Kestenberg</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="medium" data-company="aimeekestenberg" onclick="scrollToArticle('art-aimeekestenberg-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">AIMEE by Aimee Kestenberg Spring 2026 'The Healer's Garden' collection launches with sculptural crossbody bags</span><span class="headline-text lang-ko">AIMEE by Aimee Kestenberg 스프링 2026 '힐러의 정원' 컬렉션, 조각 크로스바디백으로 출시</span></div></td><td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td></tr>
+<tr class="group-header" data-company="loewe" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#000000,#1a1a1a)">LWE</div><div class="company-info"><div class="company-name">Loewe</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="high" data-company="loewe" onclick="scrollToArticle('art-loewe-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Loewe Spring 2026 Amazona 180 reinvents iconic bag with asymmetric design and slouchy attitude</span><span class="headline-text lang-ko">Loewe 스프링 2026 Amazona 180, 비대칭 디자인과 슬러시 태도로 아이콘 백 재발명</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="group-header" data-company="louisvuitton" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#1a1a2e,#0f0f1a)">LV</div><div class="company-info"><div class="company-name">Louis Vuitton</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="medium" data-company="louisvuitton" onclick="scrollToArticle('art-louisvuitton-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Louis Vuitton Unveils New Trophy Trunk for 2026 Formula 1 Season</span><span class="headline-text lang-ko">루이 비통, 2026년 포뮬러 1 시즌 새로운 트로피 트렁크 공개</span></div></td><td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td></tr>
+<tr class="group-header" data-company="gucci" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#1a1a1a,#2d2d2d)">GCI</div><div class="company-info"><div class="company-name">Gucci</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="high" data-company="gucci" onclick="scrollToArticle('art-gucci-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Demna's Debut Collection for Gucci Showcases Tom Ford-Inspired Aesthetic</span><span class="headline-text lang-ko">뎀나의 구찌 데뷔 컬렉션, 톰 포드 영감의 미학 선보임</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="group-header" data-company="prada" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#000000,#1a1a1a)">PDA</div><div class="company-info"><div class="company-name">Prada</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="high" data-company="prada" onclick="scrollToArticle('art-prada-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Prada Bonnie Extra-Large Handbag Spotted at Milan Fashion Week</span><span class="headline-text lang-ko">프라다 보니 초대형 핸드백, 밀라노 패션위크에서 스포팅됨</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="group-header" data-company="chanel" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#000000,#333333)">CHN</div><div class="company-info"><div class="company-name">Chanel</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="critical" data-company="chanel" onclick="scrollToArticle('art-chanel-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Matthieu Blazy's Chanel Spring 2026 Couture Debut Features Reimagined Flap Bags</span><span class="headline-text lang-ko">마티외 블레이지의 샤넬 스프링 2026 쿠튀르 데뷔, 재구성 플랩 백 선보임</span></div></td><td class="impact-cell"><span class="impact-badge impact-critical">CRITICAL</span></td></tr>
+<tr class="group-header" data-company="nordstrom" data-category="retailer"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#000000,#333333)">JWN</div><div class="company-info"><div class="company-name">Nordstrom</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="medium" data-company="nordstrom" onclick="scrollToArticle('art-nordstrom-1')"><td><div class="headline-cell"><div class="news-bullet retailer"></div><span class="headline-text lang-en">Nordstrom Redesigns Handbag Department for 125th Anniversary, Features Luxury Partnerships</span><span class="headline-text lang-ko">노드스트롬, 125주년 기념하며 핸드백 부서 재설계</span></div></td><td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td></tr>
+<tr class="group-header" data-company="supply" data-category="supply"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><div class="company-info"><div class="company-name">Trade & Tariff</div><div class="company-count">2 articles</div></div></div></td></tr>
+<tr class="news-row" data-impact="high" data-company="supply" onclick="scrollToArticle('art-sc-7')"><td><div class="headline-cell"><div class="news-bullet supply"></div><span class="headline-text lang-en">Supreme Court Strikes Down Trump Tariffs on Leather Goods, CEO Expects Price Relief</span><span class="headline-text lang-ko">대법원 가죽제품 트럼프 관세 무효화 판정, CEO 가격 인하 예상</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="news-row" data-impact="high" data-company="supply" onclick="scrollToArticle('art-sc-8')"><td><div class="headline-cell"><div class="news-bullet supply"></div><span class="headline-text lang-en">Trump Issues New 10% Global Tariff as Section 122 Plan B After Supreme Court IEEPA Ruling</span><span class="headline-text lang-ko">트럼프, 대법원 IEEPA 판정 후 122조 B안으로 새로운 10% 글로벌 관세 발표</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="group-header" data-company="supply" data-category="supply"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><div class="company-info"><div class="company-name">Raw Materials</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="high" data-company="supply" onclick="scrollToArticle('art-sc-10')"><td><div class="headline-cell"><div class="news-bullet supply"></div><span class="headline-text lang-en">Leather Industry Faces 22% Price Increase as Cattle Herd Reaches Smallest Level Since 1950s</span><span class="headline-text lang-ko">가죽 산업 22% 가격 인상 직면, 소 떼가 1950년대 이후 가장 낮은 수준에 도달</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="group-header" data-company="supply" data-category="supply"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><div class="company-info"><div class="company-name">Industry Trends</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="medium" data-company="supply" onclick="scrollToArticle('art-sc-9')"><td><div class="headline-cell"><div class="news-bullet supply"></div><span class="headline-text lang-en">APLF Report: Opinions and Signs on the Recovery in the Leather Industry in 2026</span><span class="headline-text lang-ko">APLF 보고서: 2026년 가죽 산업 회복의 의견 및 신호</span></div></td><td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td></tr>
+<tr class="group-header" data-company="supply_china" data-category="supply"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><div class="company-info"><div class="company-name">China Supply Chain</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="critical" data-company="supply_china" onclick="scrollToArticle('art-sc-3')"><td><div class="headline-cell"><div class="news-bullet supply"></div><span class="headline-text lang-en">Trump Administration Implements Global Tariff on Chinese Handbag Imports Following Court Ruling</span><span class="headline-text lang-ko">법원 판결 후 트럼프 행정부, 중국 핸드백 수입에 대한 글로벌 관세 시행</span></div></td><td class="impact-cell"><span class="impact-badge impact-critical">CRITICAL</span></td></tr>
+<tr class="group-header" data-company="supply_vietnam" data-category="supply"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><div class="company-info"><div class="company-name">Vietnam Supply Chain</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="medium" data-company="supply_vietnam" onclick="scrollToArticle('art-sc-5')"><td><div class="headline-cell"><div class="news-bullet supply"></div><span class="headline-text lang-en">Vietnam Leather and Footwear Exports Hit $27 Billion in 2024, Targeting $38-40 Billion by 2030</span><span class="headline-text lang-ko">베트남 가죽 및 신발 수출 2024년 270억 달러 달성, 2030년 380-400억 달러 목표</span></div></td><td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td></tr>
+<tr class="group-header" data-company="supply_india" data-category="supply"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><div class="company-info"><div class="company-name">India Supply Chain</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="high" data-company="supply_india" onclick="scrollToArticle('art-sc-4')"><td><div class="headline-cell"><div class="news-bullet supply"></div><span class="headline-text lang-en">India Launches Footwear and Leather Development Programme with 1,700 Crore Allocation Till March 2026</span><span class="headline-text lang-ko">인도, 2026년 3월까지 1,700억 루피 할당으로 신발 및 가죽 개발 프로그램 출범</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="group-header" data-company="supply_italy" data-category="supply"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><div class="company-info"><div class="company-name">Italy Supply Chain</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="high" data-company="supply_italy" onclick="scrollToArticle('art-sc-1')"><td><div class="headline-cell"><div class="news-bullet supply"></div><span class="headline-text lang-en">Italy at APLF: Engineering Excellence Across the Leather Supply Chain</span><span class="headline-text lang-ko">APLF에서의 이탈리아: 가죽 공급망 전역의 엔지니어링 우수성</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+<tr class="group-header" data-company="supply_southafrica" data-category="supply"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><div class="company-info"><div class="company-name">South Africa Supply Chain</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="medium" data-company="supply_southafrica" onclick="scrollToArticle('art-sc-2')"><td><div class="headline-cell"><div class="news-bullet supply"></div><span class="headline-text lang-en">South Africa Pavilion Returns to Fashion Access 2026</span><span class="headline-text lang-ko">남아프리카 파빌리온, 패션 액세스 2026 복귀</span></div></td><td class="impact-cell"><span class="impact-badge impact-medium">MEDIUM</span></td></tr>
+<tr class="group-header" data-company="supply_ushide" data-category="supply"><td colspan="2"><div class="group-header-content"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><div class="company-info"><div class="company-name">US Leather Supply</div><div class="company-count">1 article</div></div></div></td></tr>
+<tr class="news-row" data-impact="high" data-company="supply_ushide" onclick="scrollToArticle('art-sc-6')"><td><div class="headline-cell"><div class="news-bullet supply"></div><span class="headline-text lang-en">US Cattle Herd Hits Lowest Level Since 1950s, Creating Leather Hide Shortage Crisis in 2026</span><span class="headline-text lang-ko">미국 소 무리가 1950년대 이후 최저 수준에 도달, 2026년 가죽 원피 부족 위기 발생</span></div></td><td class="impact-cell"><span class="impact-badge impact-high">HIGH</span></td></tr>
+
+</tbody></table>
+</div>
+
+<!-- RETAILER SECTION -->
+<div class="container">
+<div class="section-divider retailer">
+<div class="section-icon retailer">R</div>
+<h2>Retailer</h2>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#c8a84b,#8b6914)">GUESS</div><h3>GUESS</h3></div>
+<div class="article-card retailer" id="art-guess-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – GUESS</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">February 24, 2026</span>
+      <span class="article-source"><a href="https://wwd.com/fashion-news/fashion-features/guess-chiara-ferragni-morelli-brothers-spring-2026-ad-campaign-1238466734/" target="_blank">WWD</a></span>
+    </div>
+    <h4 class="lang-en">Chiara Ferragni Fronts GUESS Global Ad Campaign for Spring 2026</h4>
+    <h4 class="lang-ko">키아라 페라그니, GUESS 스프링 2026 글로벌 광고 캠페인 모델로 선정</h4>
+    <p class="lang-en"><strong>Summary:</strong> GUESS announced Chiara Ferragni as the face of its Spring 2026 global advertising campaign, featuring the iconic Camden Bag as the 'IT' accessory of the season. The campaign launched globally in February 2026 with photography by the renowned Morelli Brothers, showcasing bold, versatile designs inspired by the American Dream.</p>
+    <p class="lang-ko"><strong>요약:</strong> GUESS는 키아라 페라그니를 스프링 2026 글로벌 광고 캠페인의 얼굴로 선정했으며, 상징적인 캠든 백이 시즌의 'IT' 액세서리로 등장합니다. 유명 사진작가 모렐리 브라더스가 촬영한 이 캠페인은 2월 2026년에 전 세계 광고, 인쇄 및 소셜 미디어를 통해 출시되었습니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Campaign features the Camden Bag, a sculptured silhouette with luxurious texture and refined detailing</li><li class="lang-en">Spring 2026 collection reimagines the American Dream with modern, forward-looking perspective</li><li class="lang-en">Iconic brand elements reinterpreted with new confidence, inspired by Texan cowboy aesthetic</li><li class="lang-en">Campaign launched across print, digital, and social media platforms globally</li><li class="lang-ko">캠든 백은 조각적 실루엣, 럭셔리한 텍스처, 정교한 디테일로 특징</li><li class="lang-ko">스프링 2026 컬렉션은 미국 드림을 현대적이고 미래 지향적 관점으로 재해석</li><li class="lang-ko">텍사스 카우보이 미학에서 영감을 받은 새로운 자신감으로 상징적 브랜드 요소 재해석</li><li class="lang-ko">전 세계 인쇄, 디지털, 소셜 미디어 플랫폼을 통해 캠페인 출시</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#1a1a2e,#0f0f1a)">CPRI</div><h3>Capri Holdings</h3></div>
+<div class="article-card retailer" id="art-capri-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Capri Holdings</span>
+      <span class="impact-badge impact-medium">MEDIUM</span>
+      <span class="article-date">March 02, 2026</span>
+      <span class="article-source"><a href="https://www.morningstar.com/news/business-wire/20260302348758/capri-holdings-limited-announces-participation-in-citis-2026-global-consumer-retail-conference" target="_blank">Morningstar/Business Wire</a></span>
+    </div>
+    <h4 class="lang-en">Capri Holdings Announces CEO John Idol to Speak at Citi's 2026 Global Consumer &amp; Retail Conference</h4>
+    <h4 class="lang-ko">Capri Holdings CEO 존 아이돌, 시티 2026 글로벌 컨슈머&amp;리테일 컨퍼런스 발표</h4>
+    <p class="lang-en"><strong>Summary:</strong> Capri Holdings confirmed that CEO John D. Idol will participate in a fireside chat at Citi's 2026 Global Consumer &amp; Retail Conference on March 2, 2026. The participation underscores Capri's ongoing transformation strategy across Michael Kors, Versace, and Jimmy Choo brands.</p>
+    <p class="lang-ko"><strong>요약:</strong> Capri Holdings는 CEO 존 아이돌이 2026년 3월 2일 시티의 글로벌 컨슈머&amp;리테일 컨퍼런스에 참석한다고 확인했습니다. 이는 마이클 코어스, 베르사체, 지미추 브랜드 전반의 지속적인 변혁 전략을 강조합니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">CEO John D. Idol to participate in fireside chat at Citi's 2026 conference on March 2, 2026</li><li class="lang-en">Event highlights Capri's strategic transformation initiatives across three luxury fashion brands</li><li class="lang-en">Conference participation demonstrates investor confidence in company's turnaround strategy</li><li class="lang-ko">CEO 존 아이돌, 2026년 3월 2일 시티 컨퍼런스 라운드테이블 토론 참석</li><li class="lang-ko">Capri의 세 럭셔리 패션 브랜드 전반의 전략적 변혁 이니셔티브 강조</li><li class="lang-ko">컨퍼런스 참석은 회사의 턴어라운드 전략에 대한 투자자 신뢰를 입증</li></ul>
+    </div>
+  </div>
+<div class="article-card retailer" id="art-capri-2">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Capri Holdings</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">March 01, 2026</span>
+      <span class="article-source"><a href="https://wwd.com/business-news/financial/capri-holdings-tyler-reddien-chief-financial-officer-chief-operating-officer-1238625680/" target="_blank">WWD</a></span>
+    </div>
+    <h4 class="lang-en">Capri Holdings Appoints Tyler Reddien as Chief Financial Officer and Chief Operating Officer</h4>
+    <h4 class="lang-ko">Capri Holdings, 타일러 레디엔을 최고재무책임자 겸 최고운영책임자로 임명</h4>
+    <p class="lang-en"><strong>Summary:</strong> Capri Holdings announced the appointment of Tyler Reddien as Chief Financial Officer and Chief Operating Officer, effective March 30, 2026. Reddien brings strategic financial and operational expertise from previous roles at The Body Shop and international experience at Natura &amp; Co.</p>
+    <p class="lang-ko"><strong>요약:</strong> Capri Holdings는 타일러 레디엔을 최고재무책임자 겸 최고운영책임자로 임명했으며, 2026년 3월 30일부터 취임합니다. 레디엔은 더 바디샵과 나투라&amp;코에서의 국제적 경험을 바탕으로 전략적 재무 및 운영 전문성을 제공합니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Tyler Reddien to serve as combined CFO and COO starting March 30, 2026</li><li class="lang-en">Base salary of $700,000 with annual cash incentives targeted at 100% of salary</li><li class="lang-en">New-hire RSU grant valued at approximately $500,000 plus long-term incentive award</li><li class="lang-ko">타일러 레디엔, 2026년 3월 30일부터 CFO 겸 COO 역할 수행</li><li class="lang-ko">기본 연봉 $700,000 및 연간 현금 인센티브는 연봉의 100% 목표</li><li class="lang-ko">약 $500,000 가치의 신입 RSU 그랜트 및 장기 인센티브 보상</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#1a1a1a,#000000)">JC</div><h3>Jimmy Choo</h3></div>
+<div class="article-card retailer" id="art-jimmychoo-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Jimmy Choo</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">February 24, 2026</span>
+      <span class="article-source"><a href="https://wwd.com/footwear-news/shoe-industry-news/gabbriette-jimmy-choo-bridal-campaign-1238624412/" target="_blank">WWD</a></span>
+    </div>
+    <h4 class="lang-en">Jimmy Choo Bridal 2026 Campaign Launches with Gabbriette</h4>
+    <h4 class="lang-ko">지미 추, 2026 브라이덜 캠페인 공식 출시</h4>
+    <p class="lang-en"><strong>Summary:</strong> Jimmy Choo unveils 'The Rules of Engagement' bridal campaign featuring creative Gabbriette, establishing a new vision for modern bridal footwear with innovative heel designs and sculptural silhouettes</p>
+    <p class="lang-ko"><strong>요약:</strong> 지미 추가 '더 룰스 오브 엔게이지먼트' 브라이덜 캠페인을 공개했으며, 크리에이티브 가브리엣을 주인공으로 현대적 브라이덜 신발의 새로운 비전 제시</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Campaign photographed by Mark Kean and styled by Vanessa Coyle</li><li class="lang-en">Features lifestyle-driven bridal narrative embracing modern femininity</li><li class="lang-en">Launched globally February 24, 2026 across digital and retail channels</li><li class="lang-ko">마크 킨 촬영, 바네사 코일 스타일링</li><li class="lang-ko">현대적 여성성을 담은 라이프스타일 브라이덜 내러티브</li><li class="lang-ko">2026년 2월 24일 전 세계 출시</li></ul>
+    </div>
+  </div>
+<div class="article-card retailer" id="art-jimmychoo-2">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Jimmy Choo</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">February 24, 2026</span>
+      <span class="article-source"><a href="https://us.jimmychoo.com/en/jc-world-pages/stories-jimmy-choo-unveils-spring-2026-at-milan-fashion-week.html" target="_blank">Jimmy Choo Official</a></span>
+    </div>
+    <h4 class="lang-en">Jimmy Choo Unveils Spring 2026 Collection 'Future Feminine' at Milan Fashion Week</h4>
+    <h4 class="lang-ko">지미추, 밀란 패션위크에서 '미래 페미닌' 스프링 2026 컬렉션 공개</h4>
+    <p class="lang-en"><strong>Summary:</strong> Jimmy Choo presented its Spring 2026 'Future Feminine' collection at Milan Fashion Week, celebrating the brand's 30-year anniversary. The collection features soft pastel colors, diaphanous lace, and innovative hybrid designs including ballerina-sneaker hybrids. Available in Jimmy Choo boutiques worldwide and online starting March 2026.</p>
+    <p class="lang-ko"><strong>요약:</strong> 지미추는 밀란 패션위크에서 스프링 2026 '미래 페미닌' 컬렉션을 선보였으며, 브랜드의 30주년을 기념했습니다. 컬렉션은 부드러운 파스텔 색상, 얇은 레이스, 발레리나-스니커 하이브리드를 포함한 혁신적인 하이브리드 디자인을 특징으로 합니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Spring 2026 collection celebrates Jimmy Choo's 30-year heritage with 'Future Feminine' theme</li><li class="lang-en">Features include soft pastels, diaphanous lace, and innovative SUNNY ballerina-sneaker hybrid design</li><li class="lang-en">Classic Scarlett pump reimagined with fresh pastel colorways and refined details</li><li class="lang-en">New Bon Bon and Faiz styles complement iconic leather bags available worldwide from March 2026</li><li class="lang-ko">스프링 2026 컬렉션은 지미추의 30주년 헤리티지를 '미래 페미닌' 테마로 축하</li><li class="lang-ko">부드러운 파스텔, 얇은 레이스, 혁신적인 SUNNY 발레리나-스니커 하이브리드 디자인 포함</li><li class="lang-ko">클래식 스칼렛 펌프가 신선한 파스텔 컬러웨이와 세련된 디테일로 재창조</li><li class="lang-ko">새로운 본본과 파이즈 스타일이 2026년 3월부터 전 세계에서 이용 가능한 아이코닉 레더백 보완</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#2c4a8c,#1a2f5e)">TPR</div><h3>Tapestry</h3></div>
+<div class="article-card retailer" id="art-tapestry-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Tapestry</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">March 01, 2026</span>
+      <span class="article-source"><a href="https://www.investing.com/news/company-news/tapestry-q2-2026-slides-coach-powers-18-revenue-growth-outlook-raised-93CH-4488180/" target="_blank">Investing.com</a></span>
+    </div>
+    <h4 class="lang-en">Tapestry Inc. Reports Strong Q2 FY2026 Earnings with Coach Driving 25% Revenue Growth</h4>
+    <h4 class="lang-ko">Tapestry Inc., 코치가 25% 매출 성장을 견인하며 강한 Q2 FY2026 실적 보고</h4>
+    <p class="lang-en"><strong>Summary:</strong> Tapestry delivered record results in Q2 FY2026, reporting revenue of $2.5 billion (18% YoY growth). Coach brand exceeded expectations with 25% revenue growth and acquired 2.9 million new customers. Tapestry raised full-year FY2026 guidance to over $7.75 billion in revenue, representing 14% growth on a constant currency basis.</p>
+    <p class="lang-ko"><strong>요약:</strong> Tapestry는 Q2 FY2026에서 기록적인 실적을 달성했으며 매출 $2.5 억(전년비 18% 성장)을 보고했습니다. 코치 브랜드는 25% 매출 성장과 290만 명의 신규 고객 확보로 기대를 초과했습니다. Tapestry는 FY2026 연간 지침을 $7.75 억 이상으로 상향 조정했습니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Q2 revenue reached $2.5 billion, up 18% year-over-year, surpassing analyst expectations of $2.29 billion</li><li class="lang-en">Coach brand delivered exceptional 25% revenue growth with 2.9 million new customer acquisitions</li><li class="lang-en">Earnings per share (EPS) of $2.69 beat forecasted $2.19 by 22.83%</li><li class="lang-en">Full-year FY2026 guidance raised to over $7.75 billion, representing 14% growth on constant currency basis</li><li class="lang-ko">Q2 매출 $2.5 억, 전년비 18% 성장, 분석가 예상 $2.29 억 초과</li><li class="lang-ko">코치 브랜드는 290만 명의 신규 고객 확보로 예외적인 25% 매출 성장 달성</li><li class="lang-ko">주당 순이익(EPS) $2.69는 예상치 $2.19를 22.83% 초과</li><li class="lang-ko">FY2026 연간 지침을 $7.75 억 이상으로 상향 조정, 상수 통화 기준 14% 성장</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#1b4d3e,#0d2e24)">STNLY</div><h3>Stanley</h3></div>
+<div class="article-card retailer" id="art-stanley-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Stanley</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">February 26, 2026</span>
+      <span class="article-source"><a href="https://investors.academy.com/news-releases/news-release-details/academy-sports-outdoors-expands-stanley-1913-assortment-new-bags" target="_blank">Academy Sports + Outdoors</a></span>
+    </div>
+    <h4 class="lang-en">Stanley 1913 Vitalize Collection Launches with Academy Sports Expansion</h4>
+    <h4 class="lang-ko">Stanley 1913, Vitalize 컬렉션 출시 및 Academy Sports 확대</h4>
+    <p class="lang-en"><strong>Summary:</strong> Stanley 1913 expands lifestyle offerings with Vitalize collection featuring insulated backpacks and crossbody bags made from recycled nylon, launching February 27 at Academy Sports and other major retailers with pricing from $35-$110</p>
+    <p class="lang-ko"><strong>요약:</strong> Stanley 1913, Vitalize 컬렉션으로 라이프스타일 제품 확대 - 재활용 나일론 소재 보온 백팩 및 크로스바디백 출시, Academy Sports 및 주요 리테일러에서 $35~$110 가격대로 판매 시작</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Vitalize Macro Method Tote retails for $110 with expandable compartments</li><li class="lang-en">Crossbody bag priced at $65, Carry-all at $35</li><li class="lang-en">Available in four colorways: Black, Rose Quartz, Sage Grey, and Twilight</li><li class="lang-en">Designed to integrate tumbler security and laptop protection features</li><li class="lang-ko">Vitalize Macro Method Tote $110 - 확장형 컴파트먼트 포함</li><li class="lang-ko">크로스바디백 $65, 캐리올 $35</li><li class="lang-ko">4가지 컬러: 블랙, 로즈 쿼츠, 세이지 그레이, 트와일라잇</li><li class="lang-ko">텀블러 보안 및 노트북 보호 기능 탑재</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#d4a5a5,#a07070)">STAUD</div><h3>Staud</h3></div>
+<div class="article-card retailer" id="art-staud-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Staud</span>
+      <span class="impact-badge impact-medium">MEDIUM</span>
+      <span class="article-date">February 28, 2026</span>
+      <span class="article-source"><a href="https://wwd.com/eye/parties/staud-frieze-los-angeles-party-rachel-sennott-orlando-bloom-1238630274/" target="_blank">WWD</a></span>
+    </div>
+    <h4 class="lang-en">Staud Unveils Limited-Edition Tommy Bag with Artist Merikokeb Berhanu at Frieze LA</h4>
+    <h4 class="lang-ko">Staud, Frieze LA에서 아티스트 Merikokeb Berhanu와 협업 제한판 Tommy Bag 출시</h4>
+    <p class="lang-en"><strong>Summary:</strong> Staud premiered a limited-edition Tommy Bag collaboration with Ethiopian-born artist Merikokeb Berhanu at Frieze Los Angeles, featuring intricate beadwork in four designs at $1,300 with only ten units of each design available</p>
+    <p class="lang-ko"><strong>요약:</strong> Staud, Frieze LA에서 에티오피아 아티스트 Merikokeb Berhanu와 협업 제한판 Tommy Bag 선보임 - 정교한 비드워크 4가지 디자인, 디자인당 10개 한정, $1,300</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Collaboration inspired by Berhanu's painting 'Untitled CII (2025)'</li><li class="lang-en">Intricate beadwork features saturated greens, blues, golds, and black colors</li><li class="lang-en">Limited edition of 10 pieces per design at $1,300</li><li class="lang-en">Unveiled at Chateau Marmont during Frieze Los Angeles 2026 event</li><li class="lang-ko">Berhanu의 회화 'Untitled CII (2025)'에서 영감</li><li class="lang-ko">그린, 블루, 골드, 검정색 비드워크</li><li class="lang-ko">디자인당 10개 한정, $1,300</li><li class="lang-ko">Frieze LA 2026 행사 중 Chateau Marmont에서 공개</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#e8523a,#c03d28)">FURLA</div><h3>Furla</h3></div>
+<div class="article-card retailer" id="art-furla-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Furla</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">March 03, 2026</span>
+      <span class="article-source"><a href="https://www.scmp.com/magazines/style/fashion/fashion-news/article/3345141/style-edit-furlas-ss26-milan-inspired-bags-lean-canvas-colour-and-quiet-luxury" target="_blank">South China Morning Post</a></span>
+    </div>
+    <h4 class="lang-en">Furla's SS26 Milan-inspired bags lean into canvas, colour and quiet luxury</h4>
+    <h4 class="lang-ko">Furla의 SS26 밀라노 영감 백, 캔버스, 컬러, 조용한 럭셔리로</h4>
+    <p class="lang-en"><strong>Summary:</strong> Furla launched its Spring-Summer 2026 collection with new pieces emphasizing lightweight, subtle design. The new Amelia bucket features a golden turnlock and clean lines in grained leather, canvas-and-leather or full leather options. The revived Divide It bag showcases structure with diagonal lines and Furla Archive branding.</p>
+    <p class="lang-ko"><strong>요약:</strong> Furla는 경량의 세련된 디자인을 강조하는 SS26 컬렉션을 출시했습니다. 새로운 Amelia 버킷은 금색 턴락과 정제된 라인으로 쌀 가죽, 캔버스-가죽 또는 전체 가죽 옵션으로 제공됩니다. 부활한 Divide It 가방은 대각선 구조와 Furla Archive 브랜딩을 선보입니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Amelia bucket available in mini proportions with removable shoulder strap</li><li class="lang-en">Iride returns in luminous shades: Aperitivo Orange, Velvet Pink, Mudec Yellow, Carta da Zucchero</li><li class="lang-en">Collection emphasizes summer wardrobe focus with quiet impact over spectacle</li><li class="lang-ko">Amelia 버킷은 분리 가능한 숄더 스트랩과 함께 미니 사이즈로 제공</li><li class="lang-ko">Iride는 밝은 색상으로 재출시됨: 애피리티보 오렌지, 벨벳 핑크, 무데크 옐로우, 카르타 다 주케로</li><li class="lang-ko">컬렉션은 현란함보다 조용한 영향력을 강조한 여름 의류에 초점</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#1a472a,#0d2e1a)">LC</div><h3>Longchamp</h3></div>
+<div class="article-card retailer" id="art-longchamp-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Longchamp</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">February 28, 2026</span>
+      <span class="article-source"><a href="https://luxferity.com/brand/longchamp/news/longchamp-spring-2026-cocooning-season" target="_blank">Luxferity</a></span>
+    </div>
+    <h4 class="lang-en">Longchamp Spring 2026: Cocooning Season introduces touchable luxury and playful design</h4>
+    <h4 class="lang-ko">롱샹 S/S 2026: 코쿠닝 시즌, 촉각적 럭셔리와 장난기 넘치는 디자인 도입</h4>
+    <p class="lang-en"><strong>Summary:</strong> Longchamp launches Spring 2026 'Cocooning Season' collection with knitted essentials, texture innovation, and whimsical accessories. The collection features Le Pliage Cocooning with three knitted pieces and the Le Roseau Shearling bucket bag in soft camel shearling trimmed with smooth calfskin.</p>
+    <p class="lang-ko"><strong>요약:</strong> 롱샹이 니팅 에센셜, 텍스처 혁신, 장난기 넘치는 액세서리를 특징으로 하는 S/S 2026 '코쿠닝 시즌' 컬렉션을 출시했습니다. 컬렉션에는 세 가지 니팅 피스로 구성된 Le Pliage Cocooning과 부드러운 낙타 시어링으로 마무리된 Le Roseau Shearling 버킷백이 포함되어 있습니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Le Pliage Cocooning: Sweater Tote Bag that becomes chic wrap with sleeves</li><li class="lang-en">Glove Pochettes reinvented from childhood mittens, now as handbag pieces</li><li class="lang-en">Private sale event in Paris March 19-21, 2026 featuring women's ready-to-wear and leather goods</li><li class="lang-ko">Le Pliage Cocooning: 소매가 있는 세련된 랩으로 변신하는 스웨터 토트백</li><li class="lang-ko">어린 시절 장갑에서 재탄생한 글러브 파우셋</li><li class="lang-ko">2026년 3월 19-21일 파리에서 진행되는 프라이빗 세일 (여성 레디-투-웨어 및 가죽 제품 취급)</li></ul>
+    </div>
+  </div>
+<div class="article-card retailer" id="art-longchamp-2">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Longchamp</span>
+      <span class="impact-badge impact-medium">MEDIUM</span>
+      <span class="article-date">February 26, 2026</span>
+      <span class="article-source"><a href="https://www.grazia.my/fashion/longchamp-spring-2026/" target="_blank">Grazia</a></span>
+    </div>
+    <h4 class="lang-en">Longchamp celebrates Spring 2026 with Slide in Style collection and skating-inspired accessories</h4>
+    <h4 class="lang-ko">롱샹, 스프링 2026 슬라이드 인 스타일 컬렉션과 스케이팅 영감 액세서리로 축제</h4>
+    <p class="lang-en"><strong>Summary:</strong> Longchamp draws inspiration from outdoor skating to welcome new beginnings with its Slide in Style collection for Spring 2026. The accessories lineup features the structured Le Roseau, now bedazzled with a cascade of red sequins.</p>
+    <p class="lang-ko"><strong>요약:</strong> 롱샹은 아웃도어 스케이팅에서 영감을 받아 스프링 2026 슬라이드 인 스타일 컬렉션으로 새로운 시작을 환영합니다. 액세서리 라인업은 빨간색 스팽글로 아름답게 장식된 구조적인 Le Roseau를 특징으로 합니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Slide in Style collection calls for renewal with skating-inspired theme</li><li class="lang-en">Le Roseau featured with red sequin cascade for seasonal statement pieces</li><li class="lang-en">Spring collection emphasizes playful elegance and outdoor inspiration</li><li class="lang-ko">슬라이드 인 스타일 컬렉션은 스케이팅 영감 테마로 갱신을 촉구</li><li class="lang-ko">Le Roseau는 계절 스테이트먼트 피스를 위해 빨간 스팽글 캐스케이드로 표현</li><li class="lang-ko">스프링 컬렉션은 장난기 있는 우아함과 아웃도어 영감을 강조</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#2c2c2c,#1a1a1a)">RM</div><h3>Rebecca Minkoff</h3></div>
+<div class="article-card retailer" id="art-rebeccaminkoff-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Rebecca Minkoff</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">February 26, 2026</span>
+      <span class="article-source"><a href="https://wwd.com/business-news/business-features/feature/rebecca-minkoff-expansion-europe-asia-plans-podcast-series-1202681280/" target="_blank">WWD</a></span>
+    </div>
+    <h4 class="lang-en">Rebecca Minkoff expands European presence with Venice flagship shop and London exclusive bag styles</h4>
+    <h4 class="lang-ko">Rebecca Minkoff, 베니스 플래그십 숍과 런던 익스클루시브 백 스타일로 유럽 입지 확대</h4>
+    <p class="lang-en"><strong>Summary:</strong> Rebecca Minkoff announces European expansion strategy with a new flagship shop in Venice and exclusive bag styles launched in London. The designer released a range of cross-body bags, mini-messengers, camera bags and clutches in colors like sapphire, clementine and sky blue, with prices ranging from 200-400 pounds. She aims to make Europe 20% of the business.</p>
+    <p class="lang-ko"><strong>요약:</strong> Rebecca Minkoff는 베니스의 새로운 플래그십 숍과 런던에서 출시된 익스클루시브 백 스타일로 유럽 확장 전략을 발표했습니다. 디자이너는 사파이어, 클레멘타인, 스카이 블루 같은 색상의 크로스 바디백, 미니 메신저, 카메라백 및 클러치 라인을 출시했으며, 가격은 200-400파운드입니다. 그녀는 유럽을 비즈니스의 20%로 만드는 것을 목표로 합니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">European retail debut at Venice flagship with local partner TODO</li><li class="lang-en">London launch features exclusive bag styles in sapphire, clementine, and sky blue</li><li class="lang-en">Price range: 200-400 GBP for cross-body, mini-messenger, camera and clutch styles</li><li class="lang-en">Strategic goal: make Europe 20% of Rebecca Minkoff business</li><li class="lang-ko">지역 파트너 TODO와 베니스 플래그십에서의 유럽 소매 데뷔</li><li class="lang-ko">런던 출시는 사파이어, 클레멘타인, 스카이 블루의 익스클루시브 백 스타일 제공</li><li class="lang-ko">가격 범위: 크로스 바디, 미니 메신저, 카메라 및 클러치 스타일의 200-400파운드</li><li class="lang-ko">전략적 목표: 유럽을 Rebecca Minkoff 비즈니스의 20%로 만들기</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#7b3f7f,#5c2d61)">VB</div><h3>Vera Bradley</h3></div>
+<div class="article-card retailer" id="art-verabradley-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Vera Bradley</span>
+      <span class="impact-badge impact-medium">MEDIUM</span>
+      <span class="article-date">March 01, 2026</span>
+      <span class="article-source"><a href="https://wdwnt.com/2026/03/rapunzel-featured-tangled-collection-vera-bradley/" target="_blank">WDW News Today</a></span>
+    </div>
+    <h4 class="lang-en">Vera Bradley launches Rapunzel-inspired Tangled collection with purple pattern featuring Disney character</h4>
+    <h4 class="lang-ko">Vera Bradley, Rapunzel 영감 Tangled 컬렉션 출시, 디즈니 캐릭터 자주색 패턴으로</h4>
+    <p class="lang-en"><strong>Summary:</strong> Vera Bradley introduces a new Rapunzel collection inspired by Disney's Tangled featuring purple bags with yellow, orange, and blue patterns depicting the Tangled sun, flowers, and Rapunzel's silhouette. The collection includes weekender bags, backpacks, and various accessories with the distinctive design.</p>
+    <p class="lang-ko"><strong>요약:</strong> Vera Bradley는 디즈니의 Tangled에서 영감을 받은 새로운 Rapunzel 컬렉션을 소개하며, Tangled 태양, 꽃, Rapunzel의 실루엣을 묘사하는 노란색, 주황색, 파란색 패턴의 자주색 백을 특징으로 합니다. 컬렉션은 독특한 디자인의 주말 백, 백팩 및 다양한 액세서리를 포함합니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Purple bags with yellow, orange, blue pattern featuring Tangled sun and flowers</li><li class="lang-en">Weekender bag with detachable adjustable strap and two 10.5-inch shoulder handles</li><li class="lang-en">Backpack with 7x8.75-inch dimensions and padded shoulder straps</li><li class="lang-en">Collection currently discounted online</li><li class="lang-ko">Tangled 태양과 꽃을 특징으로 한 노란색, 주황색, 파란색 패턴의 자주색 백</li><li class="lang-ko">분리 가능한 조절 가능한 스트랩과 두 개의 10.5인치 숄더 핸들이 있는 주말 백</li><li class="lang-ko">7x8.75인치 치수와 패딩 숄더 스트랩이 있는 백팩</li><li class="lang-ko">컬렉션은 현재 온라인에서 할인 중</li></ul>
+    </div>
+  </div>
+<div class="article-card retailer" id="art-verabradley-2">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Vera Bradley</span>
+      <span class="impact-badge impact-medium">MEDIUM</span>
+      <span class="article-date">February 26, 2026</span>
+      <span class="article-source"><a href="https://www.globenewswire.com/news-release/2026/02/26/3245538/17650/en/Vera-Bradley-Inc-Announces-Reporting-Date-For-Fourth-Quarter-and-Fiscal-Year-2026-Results.html" target="_blank">Globe Newswire</a></span>
+    </div>
+    <h4 class="lang-en">Vera Bradley Schedules Q4 and Fiscal Year 2026 Earnings Release</h4>
+    <h4 class="lang-ko">Vera Bradley, 2026 회계연도 4분기 실적 발표 예정</h4>
+    <p class="lang-en"><strong>Summary:</strong> Vera Bradley announced on February 26, 2026, that it will report results for the fourth quarter and fiscal year ending January 31, 2026 at 8:00 a.m. Eastern Time on Thursday, March 12, 2026. The company provides quarterly performance updates to investors regarding its handbag and accessories business.</p>
+    <p class="lang-ko"><strong>요약:</strong> Vera Bradley가 2026년 2월 26일 2026 회계연도 4분기(2026년 1월 31일 종료) 실적을 2026년 3월 12일 오전 8시(미국 동부시간) 발표할 예정이라고 공시했습니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Earnings report scheduled for March 12, 2026 at 8:00 a.m. ET</li><li class="lang-en">Reports Q4 and fiscal year 2026 results ending January 31, 2026</li><li class="lang-en">Investor update on company performance for accessories segment</li><li class="lang-ko">2026년 3월 12일 오전 8시(미국 동부시간) 실적 발표 예정</li><li class="lang-ko">2026 회계연도 4분기(2026년 1월 31일 종료) 실적 공시</li><li class="lang-ko">액세서리 부문 사업 성과에 대한 투자자 공시</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#8b4513,#5c2d0a)">D&B</div><h3>Dooney &amp; Bourke</h3></div>
+<div class="article-card retailer" id="art-dooney-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Dooney &amp; Bourke</span>
+      <span class="impact-badge impact-medium">MEDIUM</span>
+      <span class="article-date">March 02, 2026</span>
+      <span class="article-source"><a href="https://wdwnt.com/2026/03/dooney-bourke-vintage-parks-map-tote-wallet-walt-disney-world/" target="_blank">WDW News Today</a></span>
+    </div>
+    <h4 class="lang-en">Dooney &amp; Bourke releases Disney x BAGGU collection and new Pocahontas collaboration in March 2026</h4>
+    <h4 class="lang-ko">Dooney &amp; Bourke, 3월 2026년 디즈니 x BAGGU 컬렉션과 새로운 포카혼타스 협업 출시</h4>
+    <p class="lang-en"><strong>Summary:</strong> Dooney &amp; Bourke releases collaborative Disney collections in early March 2026. The Disney x BAGGU Collection launches March 4, 2026 at 10 AM PT, marking the first-ever collaboration between Disney and BAGGU with designs inspired by Mickey and Friends. The Pocahontas Collection releases March 9, 2026.</p>
+    <p class="lang-ko"><strong>요약:</strong> Dooney &amp; Bourke는 2026년 3월 초 협업 디즈니 컬렉션을 출시합니다. Disney x BAGGU 컬렉션은 2026년 3월 4일 오후 10시에 출시되며, 디즈니와 BAGGU 간의 첫 협업으로 Mickey and Friends 디자인에서 영감을 받았습니다. Pocahontas 컬렉션은 2026년 3월 9일에 출시됩니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Disney x BAGGU Collection releases March 4, 2026 at 10 AM PT on Disney Store</li><li class="lang-en">Pocahontas Collection releases March 9, 2026</li><li class="lang-en">Walt Disney World vintage parks map tote features pebbled exterior and leather piping</li><li class="lang-en">New tote has two black leather handles with contrast white stitching and zipper closure</li><li class="lang-ko">Disney x BAGGU 컬렉션은 2026년 3월 4일 오후 10시 PT에 Disney Store에서 출시</li><li class="lang-ko">Pocahontas 컬렉션은 2026년 3월 9일 출시</li><li class="lang-ko">Walt Disney World 빈티지 파크 맵 토트는 자갈 외부와 가죽 파이핑을 특징으로 함</li><li class="lang-ko">새로운 토트는 대비되는 흰색 스티칭과 지퍼 잠금이 있는 두 개의 검은색 가죽 핸들 특징</li></ul>
+    </div>
+  </div>
+<div class="article-card retailer" id="art-dooney-2">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Dooney &amp; Bourke</span>
+      <span class="impact-badge impact-medium">MEDIUM</span>
+      <span class="article-date">February 26, 2026</span>
+      <span class="article-source"><a href="https://wdwnt.com/2026/02/new-mickey-dooney-bourke-bag-available-on-disney-store/" target="_blank">WDW News Today</a></span>
+    </div>
+    <h4 class="lang-en">Disney x Dooney &amp; Bourke Releases Mickey Mouse Blue Crossbody Bag</h4>
+    <h4 class="lang-ko">Disney x Dooney &amp; Bourke, Mickey Mouse 블루 크로스바디 백 출시</h4>
+    <p class="lang-en"><strong>Summary:</strong> Dooney &amp; Bourke released the Mickey Mouse Blue Crossbody Bag on Disney Store on February 23, 2026. The light blue handbag features a pie-eyed Mickey design against sky blue coated cotton with an adjustable shoulder strap, interior pockets, and key hook, priced at $138.00.</p>
+    <p class="lang-ko"><strong>요약:</strong> Dooney &amp; Bourke가 2026년 2월 23일 Disney Store에서 Mickey Mouse Blue Crossbody Bag을 출시했습니다. 밝은 파란색 가죽 백으로 조절 가능한 어깨 스트랩, 내부 주머니, 열쇠고리가 있으며 가격은 $138입니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Released February 23, 2026 on Disney Store</li><li class="lang-en">Light blue coated cotton with pie-eyed Mickey design</li><li class="lang-en">Priced at $138.00 with adjustable shoulder strap and key hook</li><li class="lang-ko">2026년 2월 23일 Disney Store에서 출시</li><li class="lang-ko">밝은 파란색 코팅 코튼에 pie-eyed Mickey 디자인 적용</li><li class="lang-ko">조절 가능한 어깨 스트랩과 열쇠고리가 포함되어 있으며 $138 가격대</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#e8523a,#c03d28)">MG</div><h3>Mansur Gavriel</h3></div>
+<div class="article-card retailer" id="art-mansurgavriel-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Mansur Gavriel</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">February 27, 2026</span>
+      <span class="article-source"><a href="https://www.hollywoodreporter.com/lifestyle/shopping/mansur-gavriel-eco-friendly-bucket-bag-1235358496/" target="_blank">The Hollywood Reporter</a></span>
+    </div>
+    <h4 class="lang-en">Mansur Gavriel launches eco-friendly Apple Leather Bucket Bag with sustainable materials</h4>
+    <h4 class="lang-ko">Mansur Gavriel, 지속 가능한 재료를 사용한 에코 프렌들리 Apple Leather 버킷백 출시</h4>
+    <p class="lang-en"><strong>Summary:</strong> Mansur Gavriel debuts a sustainable iteration of its beloved Bucket Bag using apple leather. The bio-based material uses apple peels and cores left over from jam production, creating a material composed of 28% apple skin, 16% cotton, 20% polyester and 36% polyurethane, saving approximately 30,000 tons of food waste.</p>
+    <p class="lang-ko"><strong>요약:</strong> Mansur Gavriel는 애플 가죽을 사용한 사랑받는 버킷백의 지속 가능한 버전을 출시했습니다. 생물 기반 재료는 잼 생산에서 남은 애플 껍질과 심으로 만들어지며, 28% 애플 스킨, 16% 코튼, 20% 폴리에스터 및 36% 폴리우레탄으로 구성되어 약 30,000톤의 음식물 쓰레기를 절약합니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Material developed over 18 months with Italian partner Mabel Industries</li><li class="lang-en">Saves approximately 11.64 pounds of carbon per bag</li><li class="lang-en">Replaces 50% of fossil derivatives through apple discards</li><li class="lang-en">Available in multiple colorways: blackberry, natural, and seasonal tones</li><li class="lang-ko">이탈리아 파트너 Mabel Industries와 18개월에 걸쳐 개발된 재료</li><li class="lang-ko">가방당 약 11.64파운드의 탄소 절약</li><li class="lang-ko">애플 폐기물을 통해 50%의 화석 유도체 대체</li><li class="lang-ko">여러 컬러웨이로 제공: 블랙베리, 내추럴, 계절 톤</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#2c2c2c,#1a1a1a)">AK</div><h3>Aimee Kestenberg</h3></div>
+<div class="article-card retailer" id="art-aimeekestenberg-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Aimee Kestenberg</span>
+      <span class="impact-badge impact-medium">MEDIUM</span>
+      <span class="article-date">February 25, 2026</span>
+      <span class="article-source"><a href="https://www.aimeekestenberg.com/collections/spring-2026" target="_blank">AIMEE Official</a></span>
+    </div>
+    <h4 class="lang-en">AIMEE by Aimee Kestenberg Spring 2026 'The Healer's Garden' collection launches with sculptural crossbody bags</h4>
+    <h4 class="lang-ko">AIMEE by Aimee Kestenberg 스프링 2026 '힐러의 정원' 컬렉션, 조각 크로스바디백으로 출시</h4>
+    <p class="lang-en"><strong>Summary:</strong> AIMEE by Aimee Kestenberg launches Spring 2026 collection titled 'The Healer's Garden' featuring emotionally grounded design with sculptural crossbody bags, convertible shoulder bags, duffels, and belt bags. The collection emphasizes lightweight builds with ergonomic straps using calming tones like Healer's Green, Limestone, and Pure Blue.</p>
+    <p class="lang-ko"><strong>요약:</strong> AIMEE by Aimee Kestenberg은 '힐러의 정원' 제목의 스프링 2026 컬렉션을 출시했으며, 조각 크로스바디백, 컨버터블 숄더백, 더플 및 벨트백을 특징으로 하는 감정적으로 기반한 디자인을 선보입니다. 컬렉션은 Healer's Green, Limestone, Pure Blue 같은 진정하는 톤을 사용하는 인체공학적 스트랩이 있는 경량 구조를 강조합니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Sculptural design with clever engineering and lightweight builds</li><li class="lang-en">Ergonomic straps designed for comfortable everyday carry</li><li class="lang-en">Calming color palette: Healer's Green, Limestone, Pure Blue with botanical textures</li><li class="lang-en">Includes convertible and belt bags for versatile styling options</li><li class="lang-ko">영리한 엔지니어링과 경량 구조를 갖춘 조각 디자인</li><li class="lang-ko">편안한 일상 착용을 위해 설계된 인체공학적 스트랩</li><li class="lang-ko">진정하는 컬러 팔레트: Healer's Green, Limestone, Pure Blue와 식물 텍스처</li><li class="lang-ko">다양한 스타일링 옵션을 위한 컨버터블 및 벨트백 포함</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#000000,#1a1a1a)">LWE</div><h3>Loewe</h3></div>
+<div class="article-card retailer" id="art-loewe-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Loewe</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">February 26, 2026</span>
+      <span class="article-source"><a href="https://www.loewe.com/usa/en/pd/stories-collection/ss26-collection-campaign.html" target="_blank">Loewe Official</a></span>
+    </div>
+    <h4 class="lang-en">Loewe Spring 2026 Amazona 180 reinvents iconic bag with asymmetric design and slouchy attitude</h4>
+    <h4 class="lang-ko">Loewe 스프링 2026 Amazona 180, 비대칭 디자인과 슬러시 태도로 아이콘 백 재발명</h4>
+    <p class="lang-en"><strong>Summary:</strong> Loewe's Spring 2026 collection marks designers Jack McCollough and Lazaro Hernandez's debut with the Amazona 180, a slouchy, asymmetric reinvention of the 1970s house icon. The bag features a single top handle set to one side and arrives in three sizes (Mini, Small, Large) in soft leather and suede.</p>
+    <p class="lang-ko"><strong>요약:</strong> Loewe의 스프링 2026 컬렉션은 디자이너 Jack McCollough와 Lazaro Hernandez의 데뷔를 Amazona 180로 표시하며, 1970년대 하우스 아이콘의 슬러시한 비대칭 재발명입니다. 백은 한쪽에 설정된 단일 탑 핸들을 특징으로 하며 부드러운 가죽과 스웨드로 세 가지 크기(미니, 스몰, 라지)로 제공됩니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Named to celebrate Loewe's approaching 180th anniversary</li><li class="lang-en">Single top handle set asymmetrically on outer shell</li><li class="lang-en">Available in three sizes with inner gusseted wall design</li><li class="lang-en">Collection available in stores and online February 26, 2026</li><li class="lang-ko">Loewe의 다가오는 180주년 기념을 위해 명명됨</li><li class="lang-ko">외부 셸에 비대칭으로 설정된 단일 탑 핸들</li><li class="lang-ko">내부 거셋 벽 디자인을 갖춘 세 가지 크기로 제공</li><li class="lang-ko">컬렉션은 2026년 2월 26일 매장 및 온라인에서 이용 가능</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#1a1a2e,#0f0f1a)">LV</div><h3>Louis Vuitton</h3></div>
+<div class="article-card retailer" id="art-louisvuitton-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Louis Vuitton</span>
+      <span class="impact-badge impact-medium">MEDIUM</span>
+      <span class="article-date">March 02, 2026</span>
+      <span class="article-source"><a href="https://wwd.com/fashion-news/fashion-scoops/louis-vuitton-formula-1-partnership-2026-trophy-trunk-1238613001/" target="_blank">WWD</a></span>
+    </div>
+    <h4 class="lang-en">Louis Vuitton Unveils New Trophy Trunk for 2026 Formula 1 Season</h4>
+    <h4 class="lang-ko">루이 비통, 2026년 포뮬러 1 시즌 새로운 트로피 트렁크 공개</h4>
+    <p class="lang-en"><strong>Summary:</strong> Louis Vuitton revealed its newest Trophy Trunk for the 2026 Formula 1 season beginning in March. The luxury brand handcrafted 24 bespoke trunks, one for each Grand Prix race on the 2026 calendar, featuring signature Monogram canvas and bold 'V' for 'Victory' designs. The initiative aligns with LVMH's 10-year global partnership with Formula 1.</p>
+    <p class="lang-ko"><strong>요약:</strong> 루이 비통은 3월에 시작되는 2026년 포뮬러 1 시즌을 위한 새로운 트로피 트렁크를 공개했습니다. 럭셔리 브랜드는 2026 캘린더의 각 그랑프리 경주를 위해 24개의 맞춤형 트렁크를 제작했으며, 시그니처 모노그램 캔버스와 대담한 '빅토리' 'V' 디자인을 특징으로 합니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">24 handcrafted Trophy Trunks designed, one for each Grand Prix race on 2026 calendar</li><li class="lang-en">Each trunk features signature Monogram canvas and bold 'V' for 'Victory' design elements</li><li class="lang-en">Partnership includes TAG Heuer as official timekeeper and Moët &amp; Chandon as official Champagne</li><li class="lang-en">Season opens with Australian Grand Prix at Melbourne Grand Prix Circuit on March 7, 2026</li><li class="lang-ko">2026 캘린더의 각 그랑프리 경주를 위해 24개의 맞춤형 트로피 트렁크 설계</li><li class="lang-ko">각 트렁크는 시그니처 모노그램 캔버스와 대담한 '빅토리' 'V' 디자인 요소 특징</li><li class="lang-ko">TAG Heuer가 공식 시계 제조사, Moët &amp; Chandon이 공식 샴페인으로 파트너십 포함</li><li class="lang-ko">2026년 3월 7일 멜버른 그랑프리 서킷에서 호주 그랑프리로 시즌 개막</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#1a1a1a,#2d2d2d)">GCI</div><h3>Gucci</h3></div>
+<div class="article-card retailer" id="art-gucci-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Gucci</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">February 28, 2026</span>
+      <span class="article-source"><a href="https://www.indiatvnews.com/lifestyle/fashion/alia-bhatt-makes-a-powerful-style-statement-at-guccis-milan-runway-debut-under-demna-gvasalia-2026-02-28-1032016" target="_blank">India TV News</a></span>
+    </div>
+    <h4 class="lang-en">Demna's Debut Collection for Gucci Showcases Tom Ford-Inspired Aesthetic</h4>
+    <h4 class="lang-ko">뎀나의 구찌 데뷔 컬렉션, 톰 포드 영감의 미학 선보임</h4>
+    <p class="lang-en"><strong>Summary:</strong> Demna Gvasalia presented his first in-person runway collection for Gucci at Milan Fashion Week on February 27, 2026. The collection featured stilettos, low-waist leggings, miniskirts and reimagined handbags paying homage to the Tom Ford era.</p>
+    <p class="lang-ko"><strong>요약:</strong> 뎀나 그바살리아가 2026년 2월 27일 밀라노 패션위크에서 구찌의 첫 런웨이 컬렉션을 선보였다. 톰 포드 시대에 경의를 표하는 핸드백 재구성 포함.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Gucci Bamboo 1947 Bag updated with sleeker silhouette</li><li class="lang-en">Featured stilettos, low-waist leggings and miniskirts</li><li class="lang-en">References Italian culture and Botticelli artwork</li><li class="lang-en">Celebrity attendees included Paris Hilton and K-pop star Lee Know</li><li class="lang-ko">구찌 대나무 1947 백 새로운 슬릭한 실루엣</li><li class="lang-ko">톰 포드 시대에 대한 오마주</li><li class="lang-ko">이탈리아 문화와 보티첼리 예술 작품 참고</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#000000,#1a1a1a)">PDA</div><h3>Prada</h3></div>
+<div class="article-card retailer" id="art-prada-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Prada</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">February 25, 2026</span>
+      <span class="article-source"><a href="https://www.whowhatwear.com/fashion/celebrity-style/prada-bonnie-extra-large-bag-bella-hadid" target="_blank">Who What Wear</a></span>
+    </div>
+    <h4 class="lang-en">Prada Bonnie Extra-Large Handbag Spotted at Milan Fashion Week</h4>
+    <h4 class="lang-ko">프라다 보니 초대형 핸드백, 밀라노 패션위크에서 스포팅됨</h4>
+    <p class="lang-en"><strong>Summary:</strong> Bella Hadid arrived in Milan with Prada's Bonnie Extra-Large Handbag, a key style for spring 2026 that everyone will be wearing. The bag combines structured leather with soft volume.</p>
+    <p class="lang-ko"><strong>요약:</strong> 벨라 하디드가 밀라노에 도착할 때 프라다 보니 초대형 핸드백을 휴대했으며, 이는 봄 2026의 핵심 스타일이다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Spotted on celebrities including Bella Hadid</li><li class="lang-en">Part of Prada Spring/Summer 2026 collection</li><li class="lang-en">Large volume with hand-held structure</li><li class="lang-ko">벨라 하디드를 포함한 셀러브리티에게 스포팅됨</li><li class="lang-ko">프라다 SS26 컬렉션의 일부</li><li class="lang-ko">큰 용량 핸드백</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#000000,#333333)">CHN</div><h3>Chanel</h3></div>
+<div class="article-card retailer" id="art-chanel-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Chanel</span>
+      <span class="impact-badge impact-critical">CRITICAL</span>
+      <span class="article-date">March 02, 2026</span>
+      <span class="article-source"><a href="https://wwd.com/fashion-news/fashion-features/matthieu-blazychanel-haute-couture-debut-1238526006/" target="_blank">WWD</a></span>
+    </div>
+    <h4 class="lang-en">Matthieu Blazy's Chanel Spring 2026 Couture Debut Features Reimagined Flap Bags</h4>
+    <h4 class="lang-ko">마티외 블레이지의 샤넬 스프링 2026 쿠튀르 데뷔, 재구성 플랩 백 선보임</h4>
+    <p class="lang-en"><strong>Summary:</strong> Matthieu Blazy made his couture debut at Chanel with Spring 2026 collection on March 2, 2026. The new flap bag features extended leather straps, softer grained calfskin, and a more streamlined silhouette with iconic CC hardware repositioned on the front flap.</p>
+    <p class="lang-ko"><strong>요약:</strong> 마티외 블레이지가 2026년 3월 2일 샤넬 스프링 2026 쿠튀르에서 데뷔했다. 새로운 플랩 백은 연장된 가죽 스트랩을 특징으로 함.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">New flap bag with extended shoulder straps</li><li class="lang-en">Softer grained calfskin leather</li><li class="lang-en">More streamlined silhouette than original</li><li class="lang-en">Iconic CC hardware repositioned on front</li><li class="lang-en">Heavily spotted on celebrities Hailey Bieber, Dua Lipa, and Jennie</li><li class="lang-ko">연장된 어깨 스트랩을 가진 새로운 플랩 백</li><li class="lang-ko">부드러운 그레인 송아지 가죽</li><li class="lang-ko">CC 하드웨어 앞면에 재배치</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#000000,#333333)">JWN</div><h3>Nordstrom</h3></div>
+<div class="article-card retailer" id="art-nordstrom-1">
+    <div class="article-meta">
+      <span class="article-tag retailer">Handbag – Nordstrom</span>
+      <span class="impact-badge impact-medium">MEDIUM</span>
+      <span class="article-date">March 01, 2026</span>
+      <span class="article-source"><a href="https://wwd.com/business-news/retail/nordstrom-brand-merchandising-strategy-interviews-1238539291/" target="_blank">WWD</a></span>
+    </div>
+    <h4 class="lang-en">Nordstrom Redesigns Handbag Department for 125th Anniversary, Features Luxury Partnerships</h4>
+    <h4 class="lang-ko">노드스트롬, 125주년 기념하며 핸드백 부서 재설계</h4>
+    <p class="lang-en"><strong>Summary:</strong> Nordstrom is celebrating its 125th anniversary in 2026 with significant handbag department updates. The women's flagship store now features exclusive designer partnerships including Christian Louboutin capsule collection and Burberry collaborations.</p>
+    <p class="lang-ko"><strong>요약:</strong> 노드스트롬이 125주년을 기념하여 핸드백 부서 업데이트. 뉴욕 플래그십 스토어가 크리스찬 루부탱 캡슐 컬렉션 선보임.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Handbags moved to enlarged second floor department</li><li class="lang-en">Christian Louboutin exclusive capsule collection launched</li><li class="lang-en">Graffitied and monogrammed Burberry format with special products</li><li class="lang-en">Runway pieces available at flagship</li><li class="lang-en">Emerging brands including Ashlyn and Christopher John Rogers launching in 2026</li><li class="lang-ko">핸드백을 확대된 2층 부서로 이동</li><li class="lang-ko">크리스찬 루부탱 독점 캡슐 컬렉션</li><li class="lang-ko">버버리 특별 포맷</li></ul>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- SUPPLY CHAIN & TRADE POLICY SECTION -->
+<div class="container">
+<div class="section-divider supply">
+<div class="section-icon supply">SC</div>
+<h2>Supply Chain & Trade Policy</h2>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><h3>Trade &amp; Tariff</h3></div>
+<div class="article-card supply" id="art-sc-7">
+    <div class="article-meta">
+      <span class="article-tag supply">Supply Chain – Trade &amp; Tariff</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">February 27, 2026</span>
+      <span class="article-source"><a href="https://nbc16.com/news/local/local-leather-goods-ceo-expects-price-cuts-after-supreme-court-strikes-down-trump-tariffs-02-27-2026" target="_blank">NBC16</a></span>
+    </div>
+    <h4 class="lang-en">Supreme Court Strikes Down Trump Tariffs on Leather Goods, CEO Expects Price Relief</h4>
+    <h4 class="lang-ko">대법원 가죽제품 트럼프 관세 무효화 판정, CEO 가격 인하 예상</h4>
+    <p class="lang-en"><strong>Summary:</strong> Following the Supreme Court's 6-3 ruling on February 26, 2026 that the International Emergency Economic Powers Act (IEEPA) does not authorize tariff imposition, local leather goods CEO expects price cuts. The ruling invalidated IEEPA-based tariffs that had been imposing over $100,000 in monthly costs on leather companies.</p>
+    <p class="lang-ko"><strong>요약:</strong> 2026년 2월 26일 대법원의 6대3 판정 이후, 국제 긴급경제권한법(IEEPA)이 관세 부과를 승인하지 않는다는 결정으로, 지역 가죽제품 CEO가 가격 인하를 예상하고 있다. 이 판정은 가죽 회사들에 월 10만 달러 이상의 비용을 부과하던 IEEPA 기반 관세를 무효화했다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Supreme Court ruling on February 20, 2026: IEEPA does not authorize president to impose tariffs</li><li class="lang-en">Leather goods CEO reported over $100,000 in monthly tariff costs to his company</li><li class="lang-en">CEO expects to lower prices within next few months following the ruling</li><li class="lang-en">Ruling invalidated previous tariffs that had hit boots, handbags, and furniture</li><li class="lang-ko">2026년 2월 20일 대법원 판정: IEEPA는 대통령의 관세 부과를 승인하지 않음</li><li class="lang-ko">가죽제품 CEO가 월 10만 달러 이상의 관세 비용 보고</li><li class="lang-ko">CEO는 판정 후 향후 몇 개월 내 가격 인하 예상</li><li class="lang-ko">판정은 부츠, 핸드백, 가구에 영향을 미쳤던 이전 관세 무효화</li></ul>
+    </div>
+  </div>
+<div class="article-card supply" id="art-sc-8">
+    <div class="article-meta">
+      <span class="article-tag supply">Supply Chain – Trade &amp; Tariff</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">February 24, 2026</span>
+      <span class="article-source"><a href="https://www.tradecomplianceresourcehub.com/2026/02/24/trump-2-0-tariff-tracker/" target="_blank">Trade Compliance Resource Hub</a></span>
+    </div>
+    <h4 class="lang-en">Trump Issues New 10% Global Tariff as Section 122 Plan B After Supreme Court IEEPA Ruling</h4>
+    <h4 class="lang-ko">트럼프, 대법원 IEEPA 판정 후 122조 B안으로 새로운 10% 글로벌 관세 발표</h4>
+    <p class="lang-en"><strong>Summary:</strong> Following the Supreme Court's invalidation of IEEPA tariffs on February 20, 2026, President Trump issued a proclamation imposing a 10% global tariff under Section 122 effective February 24, 2026. The Trade Compliance Resource Hub reports this represents a pivot to alternative authority after the high court's landmark decision.</p>
+    <p class="lang-ko"><strong>요약:</strong> 2026년 2월 20일 대법원의 IEEPA 관세 무효화 이후, 트럼프 대통령은 2026년 2월 24일부터 효력을 갖는 122조 하에서 10% 글로벌 관세를 부과하는 공포를 발표했다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">New 10% global tariff effective February 24, 2026 under Section 122</li><li class="lang-en">Tariffs expected to last for at least 150 days</li><li class="lang-en">Represents Plan B after Supreme Court invalidated IEEPA authority on February 20</li><li class="lang-en">Tariffs on leather goods and handbags continue despite IEEPA ruling</li><li class="lang-ko">122조 하에서 2026년 2월 24일부터 효력을 갖는 새로운 10% 글로벌 관세</li><li class="lang-ko">관세는 최소 150일 동안 지속될 것으로 예상</li><li class="lang-ko">대법원이 2월 20일 IEEPA 권한을 무효화한 이후 B안을 나타냄</li><li class="lang-ko">IEEPA 판정에도 불구하고 가죽제품과 핸드백 관세 계속</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><h3>Raw Materials</h3></div>
+<div class="article-card supply" id="art-sc-10">
+    <div class="article-meta">
+      <span class="article-tag supply">Supply Chain – Raw Materials</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">February 25, 2026</span>
+      <span class="article-source"><a href="https://www.tekedia.com/tariffs-jolt-u-s-leather-industry-pushing-bootmakers-and-luxury-brands-toward-higher-prices/" target="_blank">Tekedia</a></span>
+    </div>
+    <h4 class="lang-en">Leather Industry Faces 22% Price Increase as Cattle Herd Reaches Smallest Level Since 1950s</h4>
+    <h4 class="lang-ko">가죽 산업 22% 가격 인상 직면, 소 떼가 1950년대 이후 가장 낮은 수준에 도달</h4>
+    <p class="lang-en"><strong>Summary:</strong> Analysts project that leather footwear and accessories prices will rise approximately 22% over 2026-2027 as U.S. cattle herds reach their smallest size since the 1950s due to drought and rising feed costs. Combined with tariff impacts and freight costs, the handbag and leather goods industry faces substantial raw material challenges.</p>
+    <p class="lang-ko"><strong>요약:</strong> 분석가들은 가뭄과 상승하는 사료 비용으로 인해 미국 소 떼가 1950년대 이후 가장 작은 크기에 도달함에 따라 2026-2027년에 가죽 신발과 액세서리 가격이 약 22% 상승할 것으로 예상한다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">US cattle herd at smallest level since 1950s due to prolonged drought</li><li class="lang-en">Rising feed costs driving herd liquidation</li><li class="lang-en">Leather footwear and accessories prices projected to rise 22% over 2026-2027</li><li class="lang-en">Long-term projections show 7% sustained price increases</li><li class="lang-en">Premium hide scarcity intensifying raw material constraints</li><li class="lang-ko">장기간의 가뭄으로 인해 미국 소 떼가 1950년대 이후 최저 수준</li><li class="lang-ko">사료 비용 상승으로 인한 소 떼 감축</li><li class="lang-ko">가죽 신발과 액세서리 가격 2026-2027년에 22% 상승 예상</li><li class="lang-ko">장기 예측은 7% 지속적인 가격 인상을 보여줌</li><li class="lang-ko">프리미엄 가죽 부족으로 원자재 제약 심화</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><h3>Industry Trends</h3></div>
+<div class="article-card supply" id="art-sc-9">
+    <div class="article-meta">
+      <span class="article-tag supply">Supply Chain – Industry Trends</span>
+      <span class="impact-badge impact-medium">MEDIUM</span>
+      <span class="article-date">February 25, 2026</span>
+      <span class="article-source"><a href="https://www.aplf.com/2026/02/25/aplf-report-opinions-and-signs-on-the-recovery-in-the-leather-industry-in-2026/" target="_blank">APLF (Asia Pacific Leather Forum)</a></span>
+    </div>
+    <h4 class="lang-en">APLF Report: Opinions and Signs on the Recovery in the Leather Industry in 2026</h4>
+    <h4 class="lang-ko">APLF 보고서: 2026년 가죽 산업 회복의 의견 및 신호</h4>
+    <p class="lang-en"><strong>Summary:</strong> Published on February 25, 2026, the APLF (Asia Pacific Leather Forum) report analyzes opinions and signs on leather industry recovery prospects for 2026. The report addresses tariff impacts, supply chain restructuring, and market stabilization expectations following February's trade policy changes.</p>
+    <p class="lang-ko"><strong>요약:</strong> 2026년 2월 25일 발표된 APLF(아시아 태평양 가죽 포럼) 보고서는 2026년 가죽 산업 회복 전망에 대한 의견과 신호를 분석한다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">February 25, 2026 publication date by Asia Pacific Leather Forum</li><li class="lang-en">Analyzes leather industry recovery prospects following tariff changes</li><li class="lang-en">Addresses market stabilization amid supply chain restructuring</li><li class="lang-en">Provides industry perspectives on 2026 outlook</li><li class="lang-en">Covers tariff impact mitigation strategies and market positioning</li><li class="lang-ko">아시아 태평양 가죽 포럼에 의한 2026년 2월 25일 발표</li><li class="lang-ko">관세 변화 이후 가죽 산업 회복 전망 분석</li><li class="lang-ko">공급망 재구성 중 시장 안정화 해결</li><li class="lang-ko">2026년 전망에 대한 산업 관점 제공</li><li class="lang-ko">관세 영향 완화 전략 및 시장 포지셔닝 다룸</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><h3>China Supply Chain</h3></div>
+<div class="article-card supply" id="art-sc-3">
+    <div class="article-meta">
+      <span class="article-tag supply">Supply Chain – China Supply Chain</span>
+      <span class="impact-badge impact-critical">CRITICAL</span>
+      <span class="article-date">February 24, 2026</span>
+      <span class="article-source"><a href="https://www.cnbc.com/2025/12/25/leather-prices-tariffs-trump-boots-handbags-furniture-twisted-x.html" target="_blank">CNBC</a></span>
+    </div>
+    <h4 class="lang-en">Trump Administration Implements Global Tariff on Chinese Handbag Imports Following Court Ruling</h4>
+    <h4 class="lang-ko">법원 판결 후 트럼프 행정부, 중국 핸드백 수입에 대한 글로벌 관세 시행</h4>
+    <p class="lang-en"><strong>Summary:</strong> Following a February 20, 2026 Supreme Court ruling on tariff authority, the Trump administration announced tariff policies impacting leather goods imports. A 10% global tariff was initially imposed on February 24, 2026, followed by announcement of 15% tariffs effective March 2026, affecting Chinese handbag and leather goods manufacturing.</p>
+    <p class="lang-ko"><strong>요약:</strong> 2026년 2월 20일 최고법원의 관세 권한 판결 후, 트럼프 행정부는 가죽제품 수입에 영향을 미치는 관세 정책을 발표했습니다. 2026년 2월 24일 10% 글로벌 관세가 초기 시행되었으며, 3월 2026년 15% 관세가 발표되어 중국 핸드백 및 가죽제품 제조에 영향을 미칩니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Supreme Court ruled on February 20, 2026 regarding presidential tariff authority under IEEPA</li><li class="lang-en">10% global tariff implemented February 24, 2026 under Section 122</li><li class="lang-en">15% global tariff announced by February 21, 2026, increasing pressure on Chinese handbag manufacturers</li><li class="lang-en">Analysts project 22% price increase for leather goods over 1-2 years due to tariffs and supply constraints</li><li class="lang-ko">2026년 2월 20일 대통령 관세 권한에 대한 대법원 판결</li><li class="lang-ko">2026년 2월 24일 Section 122에 따라 10% 글로벌 관세 시행</li><li class="lang-ko">2026년 2월 21일까지 15% 글로벌 관세 발표, 중국 핸드백 제조업체에 압력 증가</li><li class="lang-ko">분석가들은 관세 및 공급 제약으로 인해 1-2년 동안 가죽제품 가격이 22% 상승할 것으로 예상</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><h3>Vietnam Supply Chain</h3></div>
+<div class="article-card supply" id="art-sc-5">
+    <div class="article-meta">
+      <span class="article-tag supply">Supply Chain – Vietnam Supply Chain</span>
+      <span class="impact-badge impact-medium">MEDIUM</span>
+      <span class="article-date">February 26, 2026</span>
+      <span class="article-source"><a href="https://www.v-trust.com/en/blog/vietnam-leather-footwear-exports-2024" target="_blank">V-Trust</a></span>
+    </div>
+    <h4 class="lang-en">Vietnam Leather and Footwear Exports Hit $27 Billion in 2024, Targeting $38-40 Billion by 2030</h4>
+    <h4 class="lang-ko">베트남 가죽 및 신발 수출 2024년 270억 달러 달성, 2030년 380-400억 달러 목표</h4>
+    <p class="lang-en"><strong>Summary:</strong> Vietnam's leather and footwear industry reached $27.04 billion in total export value in 2024, marking 11.45% growth compared to 2023. The industry continues expansion with March 2025 production showing 28.4 million pairs of leather shoes and sandals, up 8.9% year-on-year.</p>
+    <p class="lang-ko"><strong>요약:</strong> 베트남의 가죽 및 신발 산업은 2024년 총 수출액 270.4억 달러에 달했으며, 2023년 대비 11.45% 성장을 기록했습니다. 업계는 계속 확장되고 있으며 2025년 3월 생산량은 가죽 신발 및 샌들 2,840만 쌍으로 전년 대비 8.9% 증가했습니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">2024 total export value reached $27.04 billion, 11.45% increase from 2023</li><li class="lang-en">March 2025 production: 28.4 million pairs, up from 26.6 million in February (8.9% YoY growth)</li><li class="lang-en">Vietnam is third-largest producer globally, second-largest exporter (1.3 billion pairs annually)</li><li class="lang-en">Industry targeting $38-40 billion in exports by 2030</li><li class="lang-ko">2024년 총 수출액 270.4억 달러, 2023년 대비 11.45% 증가</li><li class="lang-ko">2025년 3월 생산량: 2,840만 쌍 (2월 2,660만 쌍에서 증가, 전년 대비 8.9% 성장)</li><li class="lang-ko">베트남은 세계 3번째 생산국, 2번째 수출국 (연간 13억 쌍)</li><li class="lang-ko">산업은 2030년까지 380-400억 달러의 수출을 목표</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><h3>India Supply Chain</h3></div>
+<div class="article-card supply" id="art-sc-4">
+    <div class="article-meta">
+      <span class="article-tag supply">Supply Chain – India Supply Chain</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">February 28, 2026</span>
+      <span class="article-source"><a href="https://www.investindia.gov.in/sector/leather-and-footwear" target="_blank">Invest India</a></span>
+    </div>
+    <h4 class="lang-en">India Launches Footwear and Leather Development Programme with 1,700 Crore Allocation Till March 2026</h4>
+    <h4 class="lang-ko">인도, 2026년 3월까지 1,700억 루피 할당으로 신발 및 가죽 개발 프로그램 출범</h4>
+    <p class="lang-en"><strong>Summary:</strong> India's Government has launched the Indian Footwear and Leather Development Programme (IFLDP) with an allocation of Rs. 1,700 crore through March 2026 to boost current infrastructure. The Union Budget 2025-26 introduced a Focus Product Scheme targeting Rs. 4 lakh crore in turnover and significant expansion in leather goods exports.</p>
+    <p class="lang-ko"><strong>요약:</strong> 인도 정부는 2026년 3월까지 1,700억 루피 할당으로 인도 신발 및 가죽 개발 프로그램(IFLDP)을 출범시켜 현재 인프라를 강화하고 있습니다. 2025-26 연합 예산은 4조 루피의 매출과 가죽제품 수출의 대폭적인 확대를 목표로 하는 포커스 제품 스킴을 도입했습니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">Indian Footwear and Leather Development Programme allocated Rs. 1,700 crore through March 2026</li><li class="lang-en">Focus Product Scheme targets Rs. 4 lakh crore turnover and Rs. 1.1 lakh crore in exports</li><li class="lang-en">Program aims to create 2.2 million jobs in leather sector</li><li class="lang-en">India is second-largest exporter of leather garments, fourth-largest of leather goods globally</li><li class="lang-ko">인도 신발 및 가죽 개발 프로그램 2026년 3월까지 1,700억 루피 할당</li><li class="lang-ko">포커스 제품 스킴 4조 루피 매출과 1.1조 루피 수출 목표</li><li class="lang-ko">프로그램은 가죽 산업에 220만 개 일자리 창출을 목표</li><li class="lang-ko">인도는 가죽 의류의 두 번째 최대 수출국, 가죽제품의 네 번째 최대 수출국</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><h3>Italy Supply Chain</h3></div>
+<div class="article-card supply" id="art-sc-1">
+    <div class="article-meta">
+      <span class="article-tag supply">Supply Chain – Italy Supply Chain</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">February 23, 2026</span>
+      <span class="article-source"><a href="https://www.aplf.com/2026/02/23/italy-at-aplf-engineering-excellence-across-the-leather-supply-chain/" target="_blank">APLF</a></span>
+    </div>
+    <h4 class="lang-en">Italy at APLF: Engineering Excellence Across the Leather Supply Chain</h4>
+    <h4 class="lang-ko">APLF에서의 이탈리아: 가죽 공급망 전역의 엔지니어링 우수성</h4>
+    <p class="lang-en"><strong>Summary:</strong> Italy's leather ecosystem showcases heritage tanneries and precision machinery makers representing one of the most vertically integrated leather ecosystems globally. Italian manufacturers demonstrated engineering excellence at APLF with complete sourcing solutions from raw material to finished innovation.</p>
+    <p class="lang-ko"><strong>요약:</strong> 이탈리아의 가죽 생태계는 세계에서 가장 수직으로 통합된 가죽 생태계 중 하나를 대표하는 유산 태너리와 정밀 기계 제조업체를 선보입니다. APLF에서 이탈리아 제조업체들은 원자재에서 완성된 혁신까지 완전한 소싱 솔루션으로 엔지니어링 우수성을 입증했습니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">APLF Leather fair featured Italian manufacturers spanning five strategic pillars: Leather, Finished Leather, Specialty Leather, Chemicals, Components, and Machinery</li><li class="lang-en">Italian ecosystem delivers entire manufacturing equation from semi-processed hides to fully finished luxury leather under one roof</li><li class="lang-en">Exhibition held at Hong Kong Convention &amp; Exhibition Centre March 12-14, 2026</li><li class="lang-ko">APLF 가죽 박람회는 5개의 전략적 기둥을 아우르는 이탈리아 제조업체들이 참가했습니다</li><li class="lang-ko">이탈리아 생태계는 반가공 원피부터 완성된 럭셔리 가죽까지 전체 제조 과정을 한 지붕 아래에서 제공합니다</li><li class="lang-ko">2026년 3월 12-14일 홍콩 컨벤션&amp;엑스전센터에서 개최</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><h3>South Africa Supply Chain</h3></div>
+<div class="article-card supply" id="art-sc-2">
+    <div class="article-meta">
+      <span class="article-tag supply">Supply Chain – South Africa Supply Chain</span>
+      <span class="impact-badge impact-medium">MEDIUM</span>
+      <span class="article-date">February 25, 2026</span>
+      <span class="article-source"><a href="https://www.aplf.com/2026/02/25/south-africa-pavilion-returns-to-fashion-access-2026/" target="_blank">APLF</a></span>
+    </div>
+    <h4 class="lang-en">South Africa Pavilion Returns to Fashion Access 2026</h4>
+    <h4 class="lang-ko">남아프리카 파빌리온, 패션 액세스 2026 복귀</h4>
+    <p class="lang-en"><strong>Summary:</strong> South Africa's leather and fashion goods pavilion is returning to the APLF Fashion Access 2026 event in Hong Kong, bringing the Rainbow Nation's finest fashion and leather goods to the international market. This marks a key participation in the region's premier leather goods trade fair.</p>
+    <p class="lang-ko"><strong>요약:</strong> 남아프리카의 가죽 및 패션 상품 파빌리온이 홍콩의 APLF 패션 액세스 2026 행사에 복귀합니다. 이는 지역의 최고 가죽제품 무역 박람회에 대한 핵심 참가입니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">South Africa Pavilion featured at Fashion Access 2026 during APLF Leather fair</li><li class="lang-en">Event held March 12-14, 2026 at Hong Kong Convention &amp; Exhibition Centre</li><li class="lang-en">South African leather goods and fashion manufacturers showcasing products to international buyers</li><li class="lang-ko">남아프리카 파빌리온이 APLF 가죽 박람회 기간 중 패션 액세스 2026에 전시</li><li class="lang-ko">2026년 3월 12-14일 홍콩 컨벤션&amp;엑스전센터에서 개최</li><li class="lang-ko">남아프리카 가죽제품 및 패션 제조업체들이 국제 구매자들에게 제품 선보임</li></ul>
+    </div>
+  </div>
+</div>
+<div class="company-section"><div class="company-section-header"><div class="company-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b)">SC</div><h3>US Leather Supply</h3></div>
+<div class="article-card supply" id="art-sc-6">
+    <div class="article-meta">
+      <span class="article-tag supply">Supply Chain – US Leather Supply</span>
+      <span class="impact-badge impact-high">HIGH</span>
+      <span class="article-date">February 28, 2026</span>
+      <span class="article-source"><a href="https://www.reedsportswear.com/blogs/usa-leather-goods-industry-news-updates/the-impact-of-tariffs-on-u-s-imported-raw-leather-material-prices-a-comprehensive-market-analysis" target="_blank">Reed Leather</a></span>
+    </div>
+    <h4 class="lang-en">US Cattle Herd Hits Lowest Level Since 1950s, Creating Leather Hide Shortage Crisis in 2026</h4>
+    <h4 class="lang-ko">미국 소 무리가 1950년대 이후 최저 수준에 도달, 2026년 가죽 원피 부족 위기 발생</h4>
+    <p class="lang-en"><strong>Summary:</strong> The US cattle herd has reached its smallest size since the 1950s due to prolonged drought, rising feed costs, and herd liquidation, creating a critical raw material shortage for leather manufacturers. This shortage, combined with tariffs, is expected to drive leather goods prices up 22% through 2027-2028.</p>
+    <p class="lang-ko"><strong>요약:</strong> 연장된 가뭄, 상승하는 사료 비용, 및 목축 청산으로 인해 미국 소 무리가 1950년대 이후 최저 수준에 도달했으며, 가죽 제조업체를 위한 중요한 원자재 부족을 야기했습니다. 이 부족은 관세와 함께 2027-2028년까지 가죽제품 가격을 22% 상승시킬 것으로 예상됩니다.</p>
+    <div class="details-list">
+      <p><strong class="lang-en">Details:</strong><strong class="lang-ko">세부사항:</strong></p>
+      <ul><li class="lang-en">US cattle herd at smallest level since 1950s</li><li class="lang-en">Fewer cattle means fewer hides available for leather production</li><li class="lang-en">Premium hides with minimal marking and consistent thickness becoming increasingly scarce and expensive</li><li class="lang-en">Analysts expect 22% price increase for leather goods over next 1-2 years</li><li class="lang-ko">미국 소 무리가 1950년대 이후 최저 수준</li><li class="lang-ko">소가 적어질수록 가죽 생산을 위한 원피 감소</li><li class="lang-ko">흠집이 적고 두께가 일정한 프리미엄 원피가 점점 희귀하고 비싸짐</li><li class="lang-ko">분석가들은 향후 1-2년간 가죽제품 가격이 22% 상승할 것으로 예상</li></ul>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function setLanguage(lang){
+var btns=document.querySelectorAll('.lang-btn');
+btns.forEach(function(b){b.classList.remove('active')});
+if(lang==='ko'){document.body.classList.add('ko-mode');btns[1].classList.add('active')}
+else{document.body.classList.remove('ko-mode');btns[0].classList.add('active')}
+}
+function scrollToArticle(id){
+var el=document.getElementById(id);if(!el)return;
+var t=document.getElementById('toast');t.classList.add('show');
+setTimeout(function(){t.classList.remove('show')},1200);
+el.scrollIntoView({behavior:'smooth',block:'center'});
+el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');
+}
+function filterTable(level,btn){
+document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
+btn.classList.add('active');
+var table=document.getElementById('summaryTable');
+var rows=table.querySelectorAll('.news-row');
+var headers=table.querySelectorAll('.group-header');
+if(level==='all'){rows.forEach(function(r){r.style.display=''});headers.forEach(function(h){h.style.display=''});return}
+rows.forEach(function(r){r.style.display=r.dataset.impact===level?'':'none'});
+headers.forEach(function(h){var c=h.dataset.company;var v=table.querySelectorAll('.news-row[data-company="'+c+'"][data-impact="'+level+'"]');h.style.display=v.length>0?'':'none'});
+}
+window.addEventListener('scroll',function(){
+var b=document.getElementById('backToTop');
+if(window.scrollY>300){b.classList.add('visible')}else{b.classList.remove('visible')}
+});
+</script>
+</body>
+</html>
